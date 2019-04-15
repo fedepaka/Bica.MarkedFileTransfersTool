@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="B_BancaElecModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="MovimientoArchivos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PATHFROM" Type="nvarchar" MaxLength="3000" />
+          <Property Name="PATHTO" Type="nvarchar" MaxLength="3000" />
+          <Property Name="FILENAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="PROCESSNAME" Type="nvarchar" MaxLength="255" />
+          <Property Name="PROCESSNR" Type="int" />
+          <Property Name="TRANSFERRED" Type="bit" />
+          <Property Name="DOBACKUP" Type="bit" />
+          <Property Name="CREATED_USER_ID" Type="bigint" />
+          <Property Name="MODIFIED_USER_ID" Type="bigint" />
+          <Property Name="CREATED_DATE" Type="datetime" Nullable="false" />
+          <Property Name="MODIFIED_DATE" Type="datetime" />
+          <Property Name="DELETED" Type="bit" />
+        </EntityType>
+        <EntityContainer Name="B_BancaElecModelStoreContainer">
+          <EntitySet Name="MovimientoArchivos" EntityType="Self.MovimientoArchivos" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="B_BancaElecModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="B_BancaElecEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="MovimientoArchivos" EntityType="B_BancaElecModel.MovimientoArchivos" />
+        </EntityContainer>
+        <EntityType Name="MovimientoArchivos">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PATHFROM" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="PATHTO" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="FILENAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PROCESSNAME" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PROCESSNR" Type="Int32" />
+          <Property Name="TRANSFERRED" Type="Boolean" />
+          <Property Name="DOBACKUP" Type="Boolean" />
+          <Property Name="CREATED_USER_ID" Type="Int64" />
+          <Property Name="MODIFIED_USER_ID" Type="Int64" />
+          <Property Name="CREATED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MODIFIED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="DELETED" Type="Boolean" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="B_BancaElecModelStoreContainer" CdmEntityContainer="B_BancaElecEntities">
+          <EntitySetMapping Name="MovimientoArchivos">
+            <EntityTypeMapping TypeName="B_BancaElecModel.MovimientoArchivos">
+              <MappingFragment StoreEntitySet="MovimientoArchivos">
+                <ScalarProperty Name="DELETED" ColumnName="DELETED" />
+                <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
+                <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                <ScalarProperty Name="MODIFIED_USER_ID" ColumnName="MODIFIED_USER_ID" />
+                <ScalarProperty Name="CREATED_USER_ID" ColumnName="CREATED_USER_ID" />
+                <ScalarProperty Name="DOBACKUP" ColumnName="DOBACKUP" />
+                <ScalarProperty Name="TRANSFERRED" ColumnName="TRANSFERRED" />
+                <ScalarProperty Name="PROCESSNR" ColumnName="PROCESSNR" />
+                <ScalarProperty Name="PROCESSNAME" ColumnName="PROCESSNAME" />
+                <ScalarProperty Name="FILENAME" ColumnName="FILENAME" />
+                <ScalarProperty Name="PATHTO" ColumnName="PATHTO" />
+                <ScalarProperty Name="PATHFROM" ColumnName="PATHFROM" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

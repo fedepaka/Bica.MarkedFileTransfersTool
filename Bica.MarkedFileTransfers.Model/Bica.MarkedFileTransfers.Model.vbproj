@@ -63,6 +63,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -84,6 +86,24 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\B_BancaElecEntities.Context.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>B_BancaElecEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\B_BancaElecEntities.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>B_BancaElecEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\B_BancaElecEntities.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>B_BancaElecEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\MovimientoArchivos.vb">
+      <DependentUpon>B_BancaElecEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -110,6 +130,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="log4net.config" />
+    <EntityDeploy Include="Model\B_BancaElecEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>B_BancaElecEntities.Designer.vb</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\B_BancaElecEntities.edmx.diagram">
+      <DependentUpon>B_BancaElecEntities.edmx</DependentUpon>
+    </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -121,6 +148,22 @@
     </None>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Model\B_BancaElecEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>B_BancaElecEntities.edmx</DependentUpon>
+      <LastGenOutput>B_BancaElecEntities.Context.vb</LastGenOutput>
+    </Content>
+    <Content Include="Model\B_BancaElecEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>B_BancaElecEntities.edmx</DependentUpon>
+      <LastGenOutput>B_BancaElecEntities.vb</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

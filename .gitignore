@@ -115,3 +115,11 @@ packages/log4net\.2\.0\.8/log4net\.2\.0\.8\.nupkg
 *.cache
 
 Bica\.MarkedFileTransfers\.Model/obj/Debug/Bica\.MarkedFileTransfers\.Model\.vbproj\.FileListAbsolute\.txt
+
+Bica\.MarkedFileTransfers\.Model/bin/Debug/
+
+Bica\.MarkedFileTransfers\.Model/obj/Debug/
+
+Bica\.MarkedFileTransfersTool/bin/Debug/
+
+Bica\.MarkedFileTransfersTool/obj/Debug/
