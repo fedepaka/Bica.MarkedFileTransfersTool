@@ -22,6 +22,7 @@ Partial Public Class B_BancaElecEntities
         Throw New UnintentionalCodeFirstException()
     End Sub
 
-    Public Overridable Property MovimientoArchivos() As DbSet(Of MovimientoArchivos)
+    Public Overridable Property Procesos_MovimientoArchivos() As DbSet(Of Procesos_MovimientoArchivos)
+    Public Overridable Property Procesos_OrigenDestinoArchivos() As DbSet(Of Procesos_OrigenDestinoArchivos)
 
 End Class

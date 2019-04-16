@@ -5,7 +5,9 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="d49b6a06d27b4b02b3566a854af0f8fe" Name="Diagram1">
-        <EntityTypeShape EntityType="B_BancaElecModel.MovimientoArchivos" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="B_BancaElecModel.Procesos_MovimientoArchivos" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="B_BancaElecModel.Procesos_OrigenDestinoArchivos" Width="1.5" PointX="0.75" PointY="1.125" />
+        <AssociationConnector Association="B_BancaElecModel.FK_Procesos_MovimientoArchivos_OrigenDestinoArchivos" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -123,3 +123,15 @@ Bica\.MarkedFileTransfers\.Model/obj/Debug/
 Bica\.MarkedFileTransfersTool/bin/Debug/
 
 Bica\.MarkedFileTransfersTool/obj/Debug/
+
+Bica\.MarkedFileTransfersTool\.BusinessLayer/bin/Debug/netstandard2\.0/
+
+Bica\.MarkedFileTransfersTool\.BusinessLayer/obj/
+
+Bica\.MarkedFileTransfersTool\.TransfersTool/obj/Debug/
+
+Bica\.MarkedFileTransfersTool\.TransfersTool/bin/Debug/
+
+Bica\.MarkedFileTransfersTool\.Model/bin/Debug/
+
+Bica\.MarkedFileTransfersTool\.Model/obj/Debug/

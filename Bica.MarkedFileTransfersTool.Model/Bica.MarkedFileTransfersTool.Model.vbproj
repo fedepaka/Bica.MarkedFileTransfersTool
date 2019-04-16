@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3E6A4398-07A1-4DD8-B669-6013CDD37A6D}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <StartupObject>Bica.MarkedFileTransfersTool.My.MyApplication</StartupObject>
-    <RootNamespace>Bica.MarkedFileTransfersTool</RootNamespace>
-    <AssemblyName>Bica.MarkedFileTransfersTool</AssemblyName>
+    <ProjectGuid>{77843FA3-94BC-4768-8FEA-5BAF12981BE4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <StartupObject>
+    </StartupObject>
+    <RootNamespace>Bica.MarkedFileTransfersTool.Model</RootNamespace>
+    <AssemblyName>Bica.MarkedFileTransfersTool.Model</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <MyType>WindowsForms</MyType>
+    <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -22,7 +23,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>Bica.MarkedFileTransfersTool.xml</DocumentationFile>
+    <DocumentationFile>Bica.MarkedFileTransfersTool.Model.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -32,7 +33,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>Bica.MarkedFileTransfersTool.xml</DocumentationFile>
+    <DocumentationFile>Bica.MarkedFileTransfersTool.Model.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -48,13 +49,22 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -76,12 +86,26 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.vb">
-      <SubType>Form</SubType>
+    <Compile Include="Model\B_BancaElecEntities.Context.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>B_BancaElecEntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
-      <SubType>Form</SubType>
+    <Compile Include="Model\B_BancaElecEntities.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>B_BancaElecEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\B_BancaElecEntities.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>B_BancaElecEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Procesos_MovimientoArchivos.vb">
+      <DependentUpon>B_BancaElecEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Procesos_OrigenDestinoArchivos.vb">
+      <DependentUpon>B_BancaElecEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -109,6 +133,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="log4net.config" />
+    <EntityDeploy Include="Model\B_BancaElecEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>B_BancaElecEntities.Designer.vb</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\B_BancaElecEntities.edmx.diagram">
+      <DependentUpon>B_BancaElecEntities.edmx</DependentUpon>
+    </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -120,6 +151,23 @@
     </None>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Model\B_BancaElecEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>B_BancaElecEntities.edmx</DependentUpon>
+      <LastGenOutput>B_BancaElecEntities.Context.vb</LastGenOutput>
+    </Content>
+    <Content Include="Model\B_BancaElecEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>B_BancaElecEntities.edmx</DependentUpon>
+      <LastGenOutput>B_BancaElecEntities.vb</LastGenOutput>
+    </Content>
+    <Content Include="scripts\CreateTables.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
