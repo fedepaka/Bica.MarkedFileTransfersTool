@@ -1,8 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <RootNamespace>Bica.MarkedFileTransfersTool.BusinessLayer</RootNamespace>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Bica.MarkedFileTransfersTool.DALayer\Bica.MarkedFileTransfersTool.DALayer.vbproj" />
+    <ProjectReference Include="..\Bica.MarkedFileTransfersTool.Model\Bica.MarkedFileTransfersTool.Model.vbproj" />
+  </ItemGroup>
 
 </Project>

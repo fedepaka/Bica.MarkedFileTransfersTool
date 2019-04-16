@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{77843FA3-94BC-4768-8FEA-5BAF12981BE4}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <StartupObject>
-    </StartupObject>
-    <RootNamespace>Bica.MarkedFileTransfersTool.Model</RootNamespace>
-    <AssemblyName>Bica.MarkedFileTransfersTool.Model</AssemblyName>
+    <ProjectGuid>{116261AF-5746-447E-BA91-15D7FFD932EF}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <StartupObject>Bica.MarkedFileTransfersTool.DALayer.Module1</StartupObject>
+    <RootNamespace>Bica.MarkedFileTransfersTool.DALayer</RootNamespace>
+    <AssemblyName>Bica.MarkedFileTransfersTool.DALayer</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <MyType>Windows</MyType>
+    <MyType>Console</MyType>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -23,7 +22,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>Bica.MarkedFileTransfersTool.Model.xml</DocumentationFile>
+    <DocumentationFile>Bica.MarkedFileTransfersTool.DALayer.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -33,7 +32,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>Bica.MarkedFileTransfersTool.Model.xml</DocumentationFile>
+    <DocumentationFile>Bica.MarkedFileTransfersTool.DALayer.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -55,17 +54,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -78,15 +72,28 @@
     <Import Include="System.Collections" />
     <Import Include="System.Collections.Generic" />
     <Import Include="System.Data" />
-    <Import Include="System.Drawing" />
     <Import Include="System.Diagnostics" />
-    <Import Include="System.Windows.Forms" />
     <Import Include="System.Linq" />
     <Import Include="System.Xml.Linq" />
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constants.vb" />
+    <Compile Include="B_BancaElec.Context.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>B_BancaElec.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="B_BancaElec.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>B_BancaElec.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="B_BancaElec.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>B_BancaElec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Module1.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -102,8 +109,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="DTO\Procesos_MovimientoArchivos.vb" />
-    <Compile Include="DTO\Procesos_OrigenDestinoArchivos.vb" />
+    <Compile Include="Procesos_MovimientoArchivos.vb">
+      <DependentUpon>B_BancaElec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Procesos_OrigenDestinoArchivos.vb">
+      <DependentUpon>B_BancaElec.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Procesos_OrigenDestinoArchivos_DataModel.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -114,7 +126,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="log4net.config" />
+    <EntityDeploy Include="B_BancaElec.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>B_BancaElec.Designer.vb</LastGenOutput>
+    </EntityDeploy>
+    <None Include="B_BancaElec.edmx.diagram">
+      <DependentUpon>B_BancaElec.edmx</DependentUpon>
+    </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -127,12 +145,26 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="scripts\CreateTables.sql" />
+    <Content Include="B_BancaElec.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>B_BancaElec.edmx</DependentUpon>
+      <LastGenOutput>B_BancaElec.Context.vb</LastGenOutput>
+    </Content>
+    <Content Include="B_BancaElec.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>B_BancaElec.edmx</DependentUpon>
+      <LastGenOutput>B_BancaElec.vb</LastGenOutput>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bica.MarkedFileTransfersTool.Model\Bica.MarkedFileTransfersTool.Model.vbproj">
+      <Project>{77843fa3-94bc-4768-8fea-5baf12981be4}</Project>
+      <Name>Bica.MarkedFileTransfersTool.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

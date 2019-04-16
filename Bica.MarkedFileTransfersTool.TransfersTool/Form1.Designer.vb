@@ -22,10 +22,30 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        components = New System.ComponentModel.Container()
+        Me.dgvOrigenDestinoArchivos = New System.Windows.Forms.DataGridView()
+        CType(Me.dgvOrigenDestinoArchivos, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.SuspendLayout()
+        '
+        'dgvOrigenDestinoArchivos
+        '
+        Me.dgvOrigenDestinoArchivos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvOrigenDestinoArchivos.Location = New System.Drawing.Point(30, 86)
+        Me.dgvOrigenDestinoArchivos.Name = "dgvOrigenDestinoArchivos"
+        Me.dgvOrigenDestinoArchivos.Size = New System.Drawing.Size(727, 150)
+        Me.dgvOrigenDestinoArchivos.TabIndex = 0
+        '
+        'Form1
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.dgvOrigenDestinoArchivos)
+        Me.Name = "Form1"
         Me.Text = "Form1"
+        CType(Me.dgvOrigenDestinoArchivos, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
+
     End Sub
 
+    Friend WithEvents dgvOrigenDestinoArchivos As DataGridView
 End Class
