@@ -1,5 +1,4 @@
 ﻿Imports Bica.MarkedFileTransfersTool.DALayer
-Imports Bica.MarkedFileTransfersTool.Model
 
 Public Class OrigenDestinoArchivos
     Implements IOrigenDestinoArchivos
@@ -14,14 +13,11 @@ Public Class OrigenDestinoArchivos
         _daOrigenDestinoArchivos = New Procesos_OrigenDestinoArchivos_DataModel()
 
         Return _daOrigenDestinoArchivos.ObtenerOrigenDestinoArchivos(numeroProceso)
-        'Using resource As New Object
-
-        'End Using
-
-        'If Constants.BCO_Envio_Debito_Directo_Code = 10 Then Throw New Exception()
-
-        'Return New List(Of Procesos_OrigenDestinoArchivos)()
-
 
     End Function
+
+    Public Function CargaDatosProcesos(fecha As Date) As Boolean
+        Return True
+    End Function
+
 End Class

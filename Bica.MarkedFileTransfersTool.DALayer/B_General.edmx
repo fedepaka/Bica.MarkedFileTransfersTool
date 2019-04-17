@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="B_GeneralModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'B_General.dbo.Gen_Procesos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Gen_Procesos">
+          <Key>
+            <PropertyRef Name="Entidad" />
+            <PropertyRef Name="Sistema" />
+            <PropertyRef Name="Producto" />
+            <PropertyRef Name="Proceso" />
+            <PropertyRef Name="VsNet" />
+          </Key>
+          <Property Name="Entidad" Type="smallint" Nullable="false" />
+          <Property Name="Sistema" Type="smallint" Nullable="false" />
+          <Property Name="Producto" Type="smallint" Nullable="false" />
+          <Property Name="Proceso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DescProceso" Type="varchar" MaxLength="100" />
+          <Property Name="Habilitado" Type="tinyint" />
+          <Property Name="Ejecuta" Type="tinyint" />
+          <Property Name="Orden" Type="smallint" />
+          <Property Name="Prioridad" Type="smallint" />
+          <Property Name="Momento" Type="varchar" MaxLength="1" />
+          <Property Name="Periodicidad" Type="varchar" MaxLength="1" />
+          <Property Name="Externo" Type="tinyint" />
+          <Property Name="Sigue" Type="tinyint" />
+          <Property Name="Modulo" Type="varchar" MaxLength="50" />
+          <Property Name="Remoto" Type="tinyint" />
+          <Property Name="APedido" Type="tinyint" />
+          <Property Name="VsNet" Type="tinyint" Nullable="false" />
+          <Property Name="FecAudi" Type="datetime" />
+          <Property Name="HorAudi" Type="datetime" />
+          <Property Name="UsuAudi" Type="varchar" MaxLength="25" />
+          <Property Name="PrgAudi" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'B_General.dbo.Prov_DebitoDirecto' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Prov_DebitoDirecto">
+          <Key>
+            <PropertyRef Name="FechaPres" />
+            <PropertyRef Name="IdArchivo" />
+          </Key>
+          <Property Name="FechaPres" Type="datetime" Nullable="false" />
+          <Property Name="IdArchivo" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="TipoArch" Type="varchar" MaxLength="20" />
+          <Property Name="CantD" Type="int" />
+          <Property Name="FechaEnvio" Type="datetime" />
+          <Property Name="UsuarioEnvio" Type="varchar" MaxLength="50" />
+          <Property Name="NombreArchivo" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityContainer Name="B_GeneralModelStoreContainer">
+          <EntitySet Name="Gen_Procesos" EntityType="Self.Gen_Procesos" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Gen_Procesos].[Entidad] AS [Entidad], 
+    [Gen_Procesos].[Sistema] AS [Sistema], 
+    [Gen_Procesos].[Producto] AS [Producto], 
+    [Gen_Procesos].[Proceso] AS [Proceso], 
+    [Gen_Procesos].[DescProceso] AS [DescProceso], 
+    [Gen_Procesos].[Habilitado] AS [Habilitado], 
+    [Gen_Procesos].[Ejecuta] AS [Ejecuta], 
+    [Gen_Procesos].[Orden] AS [Orden], 
+    [Gen_Procesos].[Prioridad] AS [Prioridad], 
+    [Gen_Procesos].[Momento] AS [Momento], 
+    [Gen_Procesos].[Periodicidad] AS [Periodicidad], 
+    [Gen_Procesos].[Externo] AS [Externo], 
+    [Gen_Procesos].[Sigue] AS [Sigue], 
+    [Gen_Procesos].[Modulo] AS [Modulo], 
+    [Gen_Procesos].[Remoto] AS [Remoto], 
+    [Gen_Procesos].[APedido] AS [APedido], 
+    [Gen_Procesos].[VsNet] AS [VsNet], 
+    [Gen_Procesos].[FecAudi] AS [FecAudi], 
+    [Gen_Procesos].[HorAudi] AS [HorAudi], 
+    [Gen_Procesos].[UsuAudi] AS [UsuAudi], 
+    [Gen_Procesos].[PrgAudi] AS [PrgAudi]
+    FROM [dbo].[Gen_Procesos] AS [Gen_Procesos]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Prov_DebitoDirecto" EntityType="Self.Prov_DebitoDirecto" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Prov_DebitoDirecto].[FechaPres] AS [FechaPres], 
+    [Prov_DebitoDirecto].[IdArchivo] AS [IdArchivo], 
+    [Prov_DebitoDirecto].[TipoArch] AS [TipoArch], 
+    [Prov_DebitoDirecto].[CantD] AS [CantD], 
+    [Prov_DebitoDirecto].[FechaEnvio] AS [FechaEnvio], 
+    [Prov_DebitoDirecto].[UsuarioEnvio] AS [UsuarioEnvio], 
+    [Prov_DebitoDirecto].[NombreArchivo] AS [NombreArchivo]
+    FROM [dbo].[Prov_DebitoDirecto] AS [Prov_DebitoDirecto]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="B_GeneralModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Gen_Procesos">
+          <Key>
+            <PropertyRef Name="Entidad" />
+            <PropertyRef Name="Sistema" />
+            <PropertyRef Name="Producto" />
+            <PropertyRef Name="Proceso" />
+            <PropertyRef Name="VsNet" />
+          </Key>
+          <Property Name="Entidad" Type="Int16" Nullable="false" />
+          <Property Name="Sistema" Type="Int16" Nullable="false" />
+          <Property Name="Producto" Type="Int16" Nullable="false" />
+          <Property Name="Proceso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescProceso" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Habilitado" Type="Byte" />
+          <Property Name="Ejecuta" Type="Byte" />
+          <Property Name="Orden" Type="Int16" />
+          <Property Name="Prioridad" Type="Int16" />
+          <Property Name="Momento" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Periodicidad" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Externo" Type="Byte" />
+          <Property Name="Sigue" Type="Byte" />
+          <Property Name="Modulo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Remoto" Type="Byte" />
+          <Property Name="APedido" Type="Byte" />
+          <Property Name="VsNet" Type="Byte" Nullable="false" />
+          <Property Name="FecAudi" Type="DateTime" Precision="3" />
+          <Property Name="HorAudi" Type="DateTime" Precision="3" />
+          <Property Name="UsuAudi" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="PrgAudi" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Prov_DebitoDirecto">
+          <Key>
+            <PropertyRef Name="FechaPres" />
+            <PropertyRef Name="IdArchivo" />
+          </Key>
+          <Property Name="FechaPres" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdArchivo" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="TipoArch" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CantD" Type="Int32" />
+          <Property Name="FechaEnvio" Type="DateTime" Precision="3" />
+          <Property Name="UsuarioEnvio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NombreArchivo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="B_GeneralEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Gen_Procesos" EntityType="Self.Gen_Procesos" />
+          <EntitySet Name="Prov_DebitoDirecto" EntityType="Self.Prov_DebitoDirecto" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="B_GeneralModelStoreContainer" CdmEntityContainer="B_GeneralEntities">
+          <EntitySetMapping Name="Gen_Procesos">
+            <EntityTypeMapping TypeName="B_GeneralModel.Gen_Procesos">
+              <MappingFragment StoreEntitySet="Gen_Procesos">
+                <ScalarProperty Name="Entidad" ColumnName="Entidad" />
+                <ScalarProperty Name="Sistema" ColumnName="Sistema" />
+                <ScalarProperty Name="Producto" ColumnName="Producto" />
+                <ScalarProperty Name="Proceso" ColumnName="Proceso" />
+                <ScalarProperty Name="DescProceso" ColumnName="DescProceso" />
+                <ScalarProperty Name="Habilitado" ColumnName="Habilitado" />
+                <ScalarProperty Name="Ejecuta" ColumnName="Ejecuta" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="Prioridad" ColumnName="Prioridad" />
+                <ScalarProperty Name="Momento" ColumnName="Momento" />
+                <ScalarProperty Name="Periodicidad" ColumnName="Periodicidad" />
+                <ScalarProperty Name="Externo" ColumnName="Externo" />
+                <ScalarProperty Name="Sigue" ColumnName="Sigue" />
+                <ScalarProperty Name="Modulo" ColumnName="Modulo" />
+                <ScalarProperty Name="Remoto" ColumnName="Remoto" />
+                <ScalarProperty Name="APedido" ColumnName="APedido" />
+                <ScalarProperty Name="VsNet" ColumnName="VsNet" />
+                <ScalarProperty Name="FecAudi" ColumnName="FecAudi" />
+                <ScalarProperty Name="HorAudi" ColumnName="HorAudi" />
+                <ScalarProperty Name="UsuAudi" ColumnName="UsuAudi" />
+                <ScalarProperty Name="PrgAudi" ColumnName="PrgAudi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prov_DebitoDirecto">
+            <EntityTypeMapping TypeName="B_GeneralModel.Prov_DebitoDirecto">
+              <MappingFragment StoreEntitySet="Prov_DebitoDirecto">
+                <ScalarProperty Name="FechaPres" ColumnName="FechaPres" />
+                <ScalarProperty Name="IdArchivo" ColumnName="IdArchivo" />
+                <ScalarProperty Name="TipoArch" ColumnName="TipoArch" />
+                <ScalarProperty Name="CantD" ColumnName="CantD" />
+                <ScalarProperty Name="FechaEnvio" ColumnName="FechaEnvio" />
+                <ScalarProperty Name="UsuarioEnvio" ColumnName="UsuarioEnvio" />
+                <ScalarProperty Name="NombreArchivo" ColumnName="NombreArchivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
