@@ -14,6 +14,8 @@ Partial Public Class Procesos_MovimientoArchivos
     Public Property ID As Long
     Public Property Procesos_OrigenDestinoArchivosId As Long
     Public Property FILENAME As String
+    Public Property PRESENTATION_DATE As Date
+    Public Property ID_FILE As Long
     Public Property TRANSFERRED As Nullable(Of Boolean)
     Public Property DOBACKUP As Nullable(Of Boolean)
     Public Property CREATED_USER_ID As Nullable(Of Long)

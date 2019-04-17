@@ -26,7 +26,7 @@ GO
 
 --Insert data [Procesos_OrigenDestinoArchivos]
 -- 354 - BCO - Envio Debito Directo
-INSERT INTO dbo.Procesos_OrigenDestinoArchivos (PROCESSNR, PATHFROM, PATHTO, CREATED_USER_ID) VALUES (354, '\\FILESERVER\EntExt\Provincanje\aProvincanje\Debitos', '\\FILESERVER\EntExt\Provincanje\aProvincanje\Debitos\Enviados', 1);
+INSERT INTO dbo.Procesos_OrigenDestinoArchivos (PROCESSNR, PATHFROM, PATHTO, CREATED_USER_ID) VALUES (354, '\\FILESERVER\EntExt\Provincanje\aProvincanje\Debitos', '\\BBPROCESO2\COELSA\BICA\Importado', 1);
 GO
 --fin [Procesos_OrigenDestinoArchivos]
 
@@ -36,6 +36,8 @@ CREATE TABLE [dbo].[Procesos_MovimientoArchivos](
 	[ID] [bigint] IDENTITY(1,1) NOT NULL,
 	[Procesos_OrigenDestinoArchivosId] [bigint] NOT NULL,
 	[FILENAME] [nvarchar](255) NULL,
+	[PRESENTATION_DATE] [datetime] NOT NULL,
+	[ID_FILE] [bigint] NOT NULL,
 	[TRANSFERRED] [bit] NULL,
 	[DOBACKUP] [bit] NULL,
 	[CREATED_USER_ID] [bigint] NULL,
@@ -62,3 +64,17 @@ GO
 
 ALTER TABLE [dbo].[Procesos_MovimientoArchivos] ADD CONSTRAINT FK_Procesos_MovimientoArchivos_OrigenDestinoArchivos FOREIGN KEY (Procesos_OrigenDestinoArchivosId) REFERENCES Procesos_OrigenDestinoArchivos (ID)    
 GO  
+
+
+---
+INSERT INTO dbo.Procesos_MovimientoArchivos
+(Procesos_OrigenDestinoArchivosId, FILENAME, PRESENTATION_DATE, ID_FILE, CREATED_USER_ID) 
+VALUES (1, 'ARCHIVO1', GETDATE()-1, 1, 1);
+
+INSERT INTO dbo.Procesos_MovimientoArchivos
+(Procesos_OrigenDestinoArchivosId, FILENAME, PRESENTATION_DATE, ID_FILE, CREATED_USER_ID) 
+VALUES (1, 'ARCHIVO2', GETDATE(), 2, 1);
+
+INSERT INTO dbo.Procesos_MovimientoArchivos
+(Procesos_OrigenDestinoArchivosId, FILENAME, PRESENTATION_DATE, ID_FILE, CREATED_USER_ID) 
+VALUES (1, 'ARCHIVO3', GETDATE()+1, 3, 1);

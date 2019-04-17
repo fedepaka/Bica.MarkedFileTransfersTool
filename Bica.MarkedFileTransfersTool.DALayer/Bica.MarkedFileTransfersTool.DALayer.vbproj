@@ -112,6 +112,7 @@
     <Compile Include="Procesos_MovimientoArchivos.vb">
       <DependentUpon>B_BancaElec.tt</DependentUpon>
     </Compile>
+    <Compile Include="Procesos_MovimientoArchivos_DataModel.vb" />
     <Compile Include="Procesos_OrigenDestinoArchivos.vb">
       <DependentUpon>B_BancaElec.tt</DependentUpon>
     </Compile>
@@ -146,6 +147,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bica.MarkedFileTransfersTool.Model\Bica.MarkedFileTransfersTool.Model.vbproj">
+      <Project>{77843fa3-94bc-4768-8fea-5baf12981be4}</Project>
+      <Name>Bica.MarkedFileTransfersTool.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="B_BancaElec.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>B_BancaElec.edmx</DependentUpon>
@@ -156,15 +166,6 @@
       <DependentUpon>B_BancaElec.edmx</DependentUpon>
       <LastGenOutput>B_BancaElec.vb</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Bica.MarkedFileTransfersTool.Model\Bica.MarkedFileTransfersTool.Model.vbproj">
-      <Project>{77843fa3-94bc-4768-8fea-5baf12981be4}</Project>
-      <Name>Bica.MarkedFileTransfersTool.Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
