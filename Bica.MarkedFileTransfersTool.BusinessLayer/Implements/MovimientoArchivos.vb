@@ -1,4 +1,5 @@
-﻿Imports Bica.MarkedFileTransfersTool.DALayer
+﻿Imports Bica.MarkedFileTransfersTool.BusinessLayer
+Imports Bica.MarkedFileTransfersTool.DALayer
 Imports Bica.MarkedFileTransfersTool.Model
 
 Public Class MovimientoArchivos
@@ -13,9 +14,6 @@ Public Class MovimientoArchivos
 
     Public Function InsertarRegistroMovimientoArchivo(IdProcesoOrigen As Long, NombreArchivo As String, FechaPresentacion As Date, IdArchivo As Long, IdUsuarioCreacion As Long) As Long Implements IMovimientoArchivos.InsertarRegistroMovimientoArchivo
         _dataMovimientoArchivos = New Procesos_MovimientoArchivos_DataModel()
-
-
-
         Return _dataMovimientoArchivos.InsertarRegistroMovimientoArchivo(IdProcesoOrigen, NombreArchivo, FechaPresentacion, IdArchivo, IdUsuarioCreacion)
     End Function
 
@@ -23,4 +21,7 @@ Public Class MovimientoArchivos
         Throw New NotImplementedException()
     End Function
 
+    Public Function ObtenerMovimientoArchivos_NombreFecha(NombreArchivo As String, fecha As Date) As Model.Procesos_MovimientoArchivos Implements IMovimientoArchivos.ObtenerMovimientoArchivos_NombreFecha
+        Return _dataMovimientoArchivos.ObtenerMovimientoArchivos_NombreFecha(NombreArchivo, fecha)
+    End Function
 End Class

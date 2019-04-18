@@ -39,6 +39,7 @@ Partial Class Form1
         Me.lblNumeroProceso = New System.Windows.Forms.Label()
         Me.lblNombreProcesoTitulo = New System.Windows.Forms.Label()
         Me.lblNombreProceso = New System.Windows.Forms.Label()
+        Me.lblMensaje = New System.Windows.Forms.Label()
         CType(Me.dgvOrigenDestinoArchivos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
@@ -199,11 +200,21 @@ Partial Class Form1
         Me.lblNombreProceso.TabIndex = 6
         Me.lblNombreProceso.Text = "Label1"
         '
+        'lblMensaje
+        '
+        Me.lblMensaje.AutoSize = True
+        Me.lblMensaje.Location = New System.Drawing.Point(55, 478)
+        Me.lblMensaje.Name = "lblMensaje"
+        Me.lblMensaje.Size = New System.Drawing.Size(46, 13)
+        Me.lblMensaje.TabIndex = 14
+        Me.lblMensaje.Text = "mensaje"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(800, 519)
+        Me.Controls.Add(Me.lblMensaje)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.txtFechaProceso)
         Me.Controls.Add(Me.lblFechaProceso)
@@ -235,4 +246,5 @@ Partial Class Form1
     Friend WithEvents lblNumeroProceso As Label
     Friend WithEvents lblNombreProcesoTitulo As Label
     Friend WithEvents lblNombreProceso As Label
+    Friend WithEvents lblMensaje As Label
 End Class

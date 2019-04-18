@@ -27,6 +27,24 @@ Public Class Procesos_MovimientoArchivos_DataModel
     End Function
 
     ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="NombreArchivo"></param>
+    ''' <param name="fecha"></param>
+    ''' <returns></returns>
+    Public Function ObtenerMovimientoArchivos_NombreFecha(NombreArchivo As String, fecha As Date) As Model.Procesos_MovimientoArchivos
+        Dim registro As Procesos_MovimientoArchivos
+
+        Using resource As New B_BancaElecEntities()
+            registro = (From f In resource.Procesos_MovimientoArchivos
+                        Where f.FILENAME.ToLower() = NombreArchivo.Trim().ToLower() And
+                             DbFunctions.TruncateTime(f.PRESENTATION_DATE) = fecha And f.DELETED <> 0).FirstOrDefault()
+
+            Return Map(registro)
+        End Using
+    End Function
+
+    ''' <summary>
     ''' Guardar nuevo registro de archivo que será luego enviado al NTFTP
     ''' </summary>
     ''' <param name="IdProcesoOrigen">Id del proceso al que corresponda el archivo</param>
