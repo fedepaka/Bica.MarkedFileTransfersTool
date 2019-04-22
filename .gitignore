@@ -141,3 +141,9 @@ Bica\.MarkedFileTransfersTool\.DALayer/bin/Debug/
 Bica\.MarkedFileTransfersTool\.DALayer/obj/Debug/
 
 Bica\.MarkedFileTransfersTool\.Helper/obj/
+
+Bica\.MarkedFileTransfersTool\.Helper/bin/Debug/netstandard2\.0/
+
+Bica\.MarkedFileTransferTool\.WindowsService/bin/Debug/netstandard2\.0/
+
+Bica\.MarkedFileTransferTool\.WindowsService/obj/
