@@ -6,6 +6,7 @@ Public Class Procesos_MovimientoArchivos
     Public Property Presentation_Date As DateTime
     Public Property Id_File As Long
     Public Property Transferred As Boolean
+    Public Property ToBeTransfer As Boolean
     Public Property DoBackup As Boolean
     Public Property Created_User_Id As Long
     Public Property Modified_User_Id As Long?

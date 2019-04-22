@@ -149,6 +149,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <EntityDeploy Include="B_General.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>B_General.Designer.vb</LastGenOutput>
+    </EntityDeploy>
     <EntityDeploy Include="B_BancaElec.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>B_BancaElec.Designer.vb</LastGenOutput>
@@ -156,10 +160,6 @@
     <None Include="B_BancaElec.edmx.diagram">
       <DependentUpon>B_BancaElec.edmx</DependentUpon>
     </None>
-    <EntityDeploy Include="B_General.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>B_General.Designer.vb</LastGenOutput>
-    </EntityDeploy>
     <None Include="B_General.edmx.diagram">
       <DependentUpon>B_General.edmx</DependentUpon>
     </None>

@@ -1,5 +1,4 @@
-﻿Imports Bica.TransferGateway.WindowsService.ServiceReference
-Imports Quartz
+﻿Imports Quartz
 Imports System
 Imports System.Configuration
 Imports System.Threading.Tasks

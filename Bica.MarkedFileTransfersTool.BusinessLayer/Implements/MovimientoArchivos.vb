@@ -17,8 +17,11 @@ Public Class MovimientoArchivos
         Return _dataMovimientoArchivos.InsertarRegistroMovimientoArchivo(IdProcesoOrigen, NombreArchivo, FechaPresentacion, IdArchivo, IdUsuarioCreacion)
     End Function
 
-    Public Function ActualizarRegistroMovimientoArchivo(IdMovimientoArchivo As Long, Transferred As Boolean, DoBackup As Boolean, IdUpdatedUser As Long) As Long Implements IMovimientoArchivos.ActualizarRegistroMovimientoArchivo
-        Throw New NotImplementedException()
+    Public Function ActualizarRegistroMovimientoArchivo(IdMovimientoArchivo As Long, Transferred As Boolean, DoBackup As Boolean, IdUpdatedUser As Long, ToBeTransfer As Boolean) As Boolean Implements IMovimientoArchivos.ActualizarRegistroMovimientoArchivo
+        _dataMovimientoArchivos = New Procesos_MovimientoArchivos_DataModel()
+
+        Return _dataMovimientoArchivos.ActualizarRegistroMovimientoArchivo(IdMovimientoArchivo, Transferred, DoBackup, IdUpdatedUser, ToBeTransfer) > 0
+
     End Function
 
     Public Function ObtenerMovimientoArchivoPorNombre(Nombre As String) As Model.Procesos_MovimientoArchivos Implements IMovimientoArchivos.ObtenerMovimientoArchivoPorNombre
@@ -37,5 +40,14 @@ Public Class MovimientoArchivos
         Else
             Return False
         End If
+    End Function
+
+    Public Function ActualizarRegistroASerTransferido(IdMovimientoArchivo As Long, IdUpdatedUser As Long) As Boolean Implements IMovimientoArchivos.ActualizarRegistroASerTransferido
+        Return Me.ActualizarRegistroMovimientoArchivo(IdMovimientoArchivo, False, False, IdUpdatedUser, True) > 0
+    End Function
+
+    Public Function ObtenerMovimientoArchivoPorId(Id As Long) As Model.Procesos_MovimientoArchivos Implements IMovimientoArchivos.ObtenerMovimientoArchivoPorId
+        _dataMovimientoArchivos = New Procesos_MovimientoArchivos_DataModel()
+        Return _dataMovimientoArchivos.ObtenerMovimientoArchivoPorId(Id)
     End Function
 End Class
