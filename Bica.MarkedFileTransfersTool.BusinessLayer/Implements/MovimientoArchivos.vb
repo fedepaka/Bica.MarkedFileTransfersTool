@@ -14,9 +14,6 @@ Public Class MovimientoArchivos
 
     Public Function InsertarRegistroMovimientoArchivo(IdProcesoOrigen As Long, NombreArchivo As String, FechaPresentacion As Date, IdArchivo As Long, IdUsuarioCreacion As Long) As Long Implements IMovimientoArchivos.InsertarRegistroMovimientoArchivo
         _dataMovimientoArchivos = New Procesos_MovimientoArchivos_DataModel()
-
-
-
         Return _dataMovimientoArchivos.InsertarRegistroMovimientoArchivo(IdProcesoOrigen, NombreArchivo, FechaPresentacion, IdArchivo, IdUsuarioCreacion)
     End Function
 
