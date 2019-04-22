@@ -49,7 +49,7 @@ Namespace Bica.TransferGateway.WindowsService.Service
         End Sub
 
         Public Sub ScheduleJobs()
-            Dim job As IJobDetail = JobBuilder.Create(Of TransferJob)().WithIdentity(JobName, GroupName).Build()
+            Dim job As IJobDetail = JobBuilder.Create(Of TransferNTFTPJob)().WithIdentity(JobName, GroupName).Build()
             Dim trigger As ITrigger = TriggerBuilder.Create().WithIdentity(TriggerName, GroupName).StartNow().WithSimpleSchedule(Sub(x) x.WithIntervalInMinutes(IntervalMinutes).RepeatForever()).Build()
             scheduler.ScheduleJob(job, trigger).ConfigureAwait(False).GetAwaiter().GetResult()
         End Sub

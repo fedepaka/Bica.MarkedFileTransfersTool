@@ -5,7 +5,7 @@ Imports System.Configuration
 Imports System.Threading.Tasks
 
 Namespace Bica.TransferGateway.WindowsService.Service
-    Public Class TransferJob
+    Public Class TransferNTFTPJob
         Implements IJob
 
         'Private endpointUrl As String = ConfigurationSettings.AppSettings.[Get]("BASE_URL")

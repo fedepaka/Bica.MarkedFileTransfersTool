@@ -26,7 +26,7 @@ GO
 
 --Insert data [Procesos_OrigenDestinoArchivos]
 -- 354 - BCO - Envio Debito Directo
-INSERT INTO dbo.Procesos_OrigenDestinoArchivos (PROCESSNR, PATHFROM, PATHTO, CREATED_USER_ID) VALUES (354, '\\FILESERVER\EntExt\Provincanje\aProvincanje\Debitos', '\\BBPROCESO2\COELSA\BICA\Importado', 1);
+INSERT INTO dbo.Procesos_OrigenDestinoArchivos (PROCESSNR, PATHFROM, PATHTO, CREATED_USER_ID) VALUES (354, '\\FILESERVER\EntExt\Provincanje\aProvincanje\Debitos', '\\BBPROCESO2\Coelsa\Bica\Importado', 1);
 GO
 --fin [Procesos_OrigenDestinoArchivos]
 
