@@ -19,4 +19,22 @@ Public Class FileUtil
         Return File.Exists(path)
 
     End Function
+
+    ''' <summary>
+    ''' Extrae el nombre de un archivo desde el fullpath
+    ''' </summary>
+    ''' <param name="fullPath"></param>
+    ''' <returns></returns>
+    Public Shared Function ExtraerNombreArchivo(fullPath As String) As String
+        If String.IsNullOrEmpty(fullPath.Trim()) Then
+            Return String.Empty
+        End If
+
+        Dim arrString = fullPath.Split("\")
+        If arrString.Length > 0 Then
+            Return arrString.GetValue(arrString.Length - 1)
+        Else
+            Return String.Empty
+        End If
+    End Function
 End Class

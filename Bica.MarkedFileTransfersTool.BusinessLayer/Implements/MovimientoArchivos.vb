@@ -1,4 +1,5 @@
-﻿Imports Bica.MarkedFileTransfersTool.DALayer
+﻿Imports Bica.MarkedFileTransfersTool.BusinessLayer
+Imports Bica.MarkedFileTransfersTool.DALayer
 Imports Bica.MarkedFileTransfersTool.Model
 
 Public Class MovimientoArchivos
@@ -23,4 +24,21 @@ Public Class MovimientoArchivos
         Throw New NotImplementedException()
     End Function
 
+    Public Function ObtenerMovimientoArchivoPorNombre(Nombre As String) As Model.Procesos_MovimientoArchivos Implements IMovimientoArchivos.ObtenerMovimientoArchivoPorNombre
+        _dataMovimientoArchivos = New Procesos_MovimientoArchivos_DataModel()
+        Return _dataMovimientoArchivos.ObtenerMovimientoArchivoPorNombre(Nombre)
+    End Function
+
+    ''' <summary>
+    ''' Indica si existe registro con nombre especificado
+    ''' </summary>
+    ''' <param name="Nombre"></param>
+    ''' <returns></returns>
+    Public Function ExisteRegistroArchivo(Nombre As String) As Boolean Implements IMovimientoArchivos.ExisteRegistroArchivo
+        If Me.ObtenerMovimientoArchivoPorNombre(Nombre) IsNot Nothing Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
 End Class

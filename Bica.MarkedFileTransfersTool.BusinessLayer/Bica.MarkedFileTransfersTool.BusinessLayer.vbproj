@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Bica.MarkedFileTransfersTool.DALayer\Bica.MarkedFileTransfersTool.DALayer.vbproj" />
+    <ProjectReference Include="..\Bica.MarkedFileTransfersTool.Helper\Bica.MarkedFileTransfersTool.Helper.vbproj" />
     <ProjectReference Include="..\Bica.MarkedFileTransfersTool.Model\Bica.MarkedFileTransfersTool.Model.vbproj" />
   </ItemGroup>
 

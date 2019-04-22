@@ -14,7 +14,7 @@ Public Class Procesos_MovimientoArchivos_DataModel
         Using resource As New B_BancaElecEntities()
             registros = (From f In resource.Procesos_MovimientoArchivos
                          Where f.Procesos_OrigenDestinoArchivosId = IdProceso And
-                             DbFunctions.TruncateTime(f.PRESENTATION_DATE) = fecha And f.DELETED <> 0).ToList()
+                             DbFunctions.TruncateTime(f.PRESENTATION_DATE) = fecha.Date And f.DELETED <> 0).ToList()
 
             'cargamos lista de resultados
             Dim lista As List(Of Model.Procesos_MovimientoArchivos) = New List(Of Model.Procesos_MovimientoArchivos)
@@ -23,6 +23,22 @@ Public Class Procesos_MovimientoArchivos_DataModel
             Next
 
             Return lista
+        End Using
+    End Function
+
+    ''' <summary>
+    ''' Obtiene datos de un registro por nombre de archivo
+    ''' </summary>
+    ''' <param name="nombre"></param>
+    ''' <returns></returns>
+    Public Function ObtenerMovimientoArchivoPorNombre(nombre As String) As Model.Procesos_MovimientoArchivos
+        Dim registro As Procesos_MovimientoArchivos
+
+        Using resource As New B_BancaElecEntities()
+            registro = (From f In resource.Procesos_MovimientoArchivos
+                        Where f.FILENAME.ToLower() = nombre.ToLower() And f.DELETED <> 0).FirstOrDefault()
+
+            Return Map(registro)
         End Using
     End Function
 
@@ -85,14 +101,6 @@ Public Class Procesos_MovimientoArchivos_DataModel
         Return 0
     End Function
 
-    'Public Function ObtenerOrigenDestinoArchivos(IdProceso As Long) As Model.Procesos_OrigenDestinoArchivos
-
-    '    Using resource As New B_BancaElecEntities()
-    '        registro = (From f In resource.Procesos_OrigenDestinoArchivos Where f.PROCESSNR = IdProceso And f.DELETED <> 0).FirstOrDefault()
-    '        Return Map(registro)
-    '    End Using
-    'End Function
-
 #Region "Métodos Privados"
 
     ''' <summary>
@@ -108,13 +116,13 @@ Public Class Procesos_MovimientoArchivos_DataModel
         Dim retorno As New Model.Procesos_MovimientoArchivos()
         retorno.Created_Date = registro.CREATED_DATE
         retorno.Created_User_Id = registro.CREATED_USER_ID
-        retorno.DoBackup = registro.DOBACKUP
-        retorno.FileName = registro.FILENAME
+        retorno.DoBackup = If(registro.DOBACKUP Is Nothing, False, True)
+        retorno.FileName = If(registro.FILENAME Is Nothing, String.Empty, registro.FILENAME)
         retorno.Id = registro.ID
         retorno.Modified_Date = registro.MODIFIED_DATE
         retorno.Modified_User_Id = registro.MODIFIED_USER_ID
         retorno.Procesos_OrigenDestinoArchivosId = registro.Procesos_OrigenDestinoArchivosId
-        retorno.Transferred = registro.TRANSFERRED
+        retorno.Transferred = If(registro.TRANSFERRED Is Nothing, False, True)
         retorno.Id_File = registro.ID_FILE
         retorno.Presentation_Date = registro.PRESENTATION_DATE
         Return retorno

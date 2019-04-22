@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class Form1
+Partial Class frmDebitoDirectoEnvio
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -23,11 +23,6 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.dgvOrigenDestinoArchivos = New System.Windows.Forms.DataGridView()
-        Me.ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FileName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PresentationDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Transferred = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.Modified_Date = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.lblFechaProceso = New System.Windows.Forms.Label()
         Me.txtFechaProceso = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
@@ -39,6 +34,12 @@ Partial Class Form1
         Me.lblNumeroProceso = New System.Windows.Forms.Label()
         Me.lblNombreProcesoTitulo = New System.Windows.Forms.Label()
         Me.lblNombreProceso = New System.Windows.Forms.Label()
+        Me.btnCargarDatos = New System.Windows.Forms.Button()
+        Me.ID = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FileName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PresentationDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Transferred = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.Modified_Date = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.dgvOrigenDestinoArchivos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
@@ -55,44 +56,6 @@ Partial Class Form1
         Me.dgvOrigenDestinoArchivos.ReadOnly = True
         Me.dgvOrigenDestinoArchivos.Size = New System.Drawing.Size(675, 150)
         Me.dgvOrigenDestinoArchivos.TabIndex = 0
-        '
-        'ID
-        '
-        Me.ID.DataPropertyName = "Id"
-        Me.ID.HeaderText = "ID"
-        Me.ID.Name = "ID"
-        Me.ID.ReadOnly = True
-        Me.ID.Visible = False
-        '
-        'FileName
-        '
-        Me.FileName.DataPropertyName = "FileName"
-        Me.FileName.HeaderText = "Nombre Archivo"
-        Me.FileName.Name = "FileName"
-        Me.FileName.ReadOnly = True
-        '
-        'PresentationDate
-        '
-        Me.PresentationDate.DataPropertyName = "Presentation_Date"
-        Me.PresentationDate.HeaderText = "Fecha Presentación"
-        Me.PresentationDate.Name = "PresentationDate"
-        Me.PresentationDate.ReadOnly = True
-        '
-        'Transferred
-        '
-        Me.Transferred.DataPropertyName = "Transferred"
-        Me.Transferred.HeaderText = "Transferido"
-        Me.Transferred.Name = "Transferred"
-        Me.Transferred.ReadOnly = True
-        Me.Transferred.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Transferred.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        '
-        'Modified_Date
-        '
-        Me.Modified_Date.DataPropertyName = "Modified_Date"
-        Me.Modified_Date.HeaderText = "Fecha Transferido"
-        Me.Modified_Date.Name = "Modified_Date"
-        Me.Modified_Date.ReadOnly = True
         '
         'lblFechaProceso
         '
@@ -199,16 +162,67 @@ Partial Class Form1
         Me.lblNombreProceso.TabIndex = 6
         Me.lblNombreProceso.Text = "Label1"
         '
-        'Form1
+        'btnCargarDatos
+        '
+        Me.btnCargarDatos.Location = New System.Drawing.Point(613, 25)
+        Me.btnCargarDatos.Name = "btnCargarDatos"
+        Me.btnCargarDatos.Size = New System.Drawing.Size(75, 23)
+        Me.btnCargarDatos.TabIndex = 6
+        Me.btnCargarDatos.Text = "Cargar Datos"
+        Me.btnCargarDatos.UseVisualStyleBackColor = True
+        '
+        'ID
+        '
+        Me.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.ID.DataPropertyName = "Id"
+        Me.ID.HeaderText = "ID"
+        Me.ID.Name = "ID"
+        Me.ID.ReadOnly = True
+        Me.ID.Visible = False
+        '
+        'FileName
+        '
+        Me.FileName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.FileName.DataPropertyName = "FileName"
+        Me.FileName.HeaderText = "Nombre Archivo"
+        Me.FileName.Name = "FileName"
+        Me.FileName.ReadOnly = True
+        '
+        'PresentationDate
+        '
+        Me.PresentationDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.PresentationDate.DataPropertyName = "Presentation_Date"
+        Me.PresentationDate.HeaderText = "Fecha Presentación"
+        Me.PresentationDate.Name = "PresentationDate"
+        Me.PresentationDate.ReadOnly = True
+        '
+        'Transferred
+        '
+        Me.Transferred.DataPropertyName = "Transferred"
+        Me.Transferred.HeaderText = "Transferido"
+        Me.Transferred.Name = "Transferred"
+        Me.Transferred.ReadOnly = True
+        Me.Transferred.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Transferred.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'Modified_Date
+        '
+        Me.Modified_Date.DataPropertyName = "Modified_Date"
+        Me.Modified_Date.HeaderText = "Fecha Transferido"
+        Me.Modified_Date.Name = "Modified_Date"
+        Me.Modified_Date.ReadOnly = True
+        '
+        'frmDebitoDirectoEnvio
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.btnCargarDatos)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.txtFechaProceso)
         Me.Controls.Add(Me.lblFechaProceso)
         Me.Controls.Add(Me.dgvOrigenDestinoArchivos)
-        Me.Name = "Form1"
+        Me.Name = "frmDebitoDirectoEnvio"
         Me.Text = "Form1"
         CType(Me.dgvOrigenDestinoArchivos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
@@ -219,11 +233,6 @@ Partial Class Form1
     End Sub
 
     Friend WithEvents dgvOrigenDestinoArchivos As DataGridView
-    Friend WithEvents ID As DataGridViewTextBoxColumn
-    Friend WithEvents FileName As DataGridViewTextBoxColumn
-    Friend WithEvents PresentationDate As DataGridViewTextBoxColumn
-    Friend WithEvents Transferred As DataGridViewCheckBoxColumn
-    Friend WithEvents Modified_Date As DataGridViewTextBoxColumn
     Friend WithEvents lblFechaProceso As Label
     Friend WithEvents txtFechaProceso As TextBox
     Friend WithEvents GroupBox1 As GroupBox
@@ -235,4 +244,10 @@ Partial Class Form1
     Friend WithEvents lblNumeroProceso As Label
     Friend WithEvents lblNombreProcesoTitulo As Label
     Friend WithEvents lblNombreProceso As Label
+    Friend WithEvents btnCargarDatos As Button
+    Friend WithEvents ID As DataGridViewTextBoxColumn
+    Friend WithEvents FileName As DataGridViewTextBoxColumn
+    Friend WithEvents PresentationDate As DataGridViewTextBoxColumn
+    Friend WithEvents Transferred As DataGridViewCheckBoxColumn
+    Friend WithEvents Modified_Date As DataGridViewTextBoxColumn
 End Class

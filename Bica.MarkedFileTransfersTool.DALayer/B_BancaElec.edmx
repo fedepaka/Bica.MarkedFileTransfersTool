@@ -18,7 +18,7 @@
           <Property Name="DOBACKUP" Type="bit" />
           <Property Name="CREATED_USER_ID" Type="bigint" />
           <Property Name="MODIFIED_USER_ID" Type="bigint" />
-          <Property Name="CREATED_DATE" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_DATE" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
           <Property Name="MODIFIED_DATE" Type="datetime" />
           <Property Name="DELETED" Type="bit" />
         </EntityType>
@@ -32,7 +32,7 @@
           <Property Name="PATHTO" Type="nvarchar" MaxLength="3000" />
           <Property Name="CREATED_USER_ID" Type="bigint" />
           <Property Name="MODIFIED_USER_ID" Type="bigint" />
-          <Property Name="CREATED_DATE" Type="datetime" Nullable="false" />
+          <Property Name="CREATED_DATE" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
           <Property Name="MODIFIED_DATE" Type="datetime" />
           <Property Name="DELETED" Type="bit" />
         </EntityType>
@@ -74,7 +74,7 @@
           <Property Name="DOBACKUP" Type="Boolean" />
           <Property Name="CREATED_USER_ID" Type="Int64" />
           <Property Name="MODIFIED_USER_ID" Type="Int64" />
-          <Property Name="CREATED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_DATE" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="MODIFIED_DATE" Type="DateTime" Precision="3" />
           <Property Name="DELETED" Type="Boolean" />
           <NavigationProperty Name="Procesos_OrigenDestinoArchivos" Relationship="Self.FK_Procesos_MovimientoArchivos_OrigenDestinoArchivos" FromRole="Procesos_MovimientoArchivos" ToRole="Procesos_OrigenDestinoArchivos" />
@@ -89,7 +89,7 @@
           <Property Name="PATHTO" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
           <Property Name="CREATED_USER_ID" Type="Int64" />
           <Property Name="MODIFIED_USER_ID" Type="Int64" />
-          <Property Name="CREATED_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CREATED_DATE" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="MODIFIED_DATE" Type="DateTime" Precision="3" />
           <Property Name="DELETED" Type="Boolean" />
           <NavigationProperty Name="Procesos_MovimientoArchivos" Relationship="Self.FK_Procesos_MovimientoArchivos_OrigenDestinoArchivos" FromRole="Procesos_OrigenDestinoArchivos" ToRole="Procesos_MovimientoArchivos" />

@@ -32,7 +32,7 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.Bica.MarkedFileTransfersTool.TransfersTool.Form1
+            Me.MainForm = Global.Bica.MarkedFileTransfersTool.TransfersTool.frmDebitoDirectoEnvio
         End Sub
     End Class
 End Namespace

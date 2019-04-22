@@ -6,7 +6,7 @@ Public Class Procesos_DebitoDirecto_DataModel
 
         Using resource As New B_GeneralEntities()
             registro = (From f In resource.Prov_DebitoDirecto
-                        Where DbFunctions.TruncateTime(f.FechaPres) = fecha).FirstOrDefault()
+                        Where DbFunctions.TruncateTime(f.FechaPres) = fecha.Date).FirstOrDefault()
 
             Return Map(registro)
         End Using
