@@ -56,6 +56,7 @@ Public Class frmDebitoDirectoEnvio
         lblPathToTitulo.Text = "Path destino archivo:"
         lblPathTo.Text = objOrigenArchivo.PathTo
 
+        txtFechaProceso.ReadOnly = True
 
     End Sub
 
