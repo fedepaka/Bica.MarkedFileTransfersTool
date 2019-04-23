@@ -7,13 +7,13 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Bica.MarkedFileTransfersToo
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Bica.MarkedFileTransfersTool.Model", "Bica.MarkedFileTransfersTool.Model\Bica.MarkedFileTransfersTool.Model.vbproj", "{77843FA3-94BC-4768-8FEA-5BAF12981BE4}"
 EndProject
-Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "Bica.MarkedFileTransfersTool.BusinessLayer", "Bica.MarkedFileTransfersTool.BusinessLayer\Bica.MarkedFileTransfersTool.BusinessLayer.vbproj", "{78EE3A15-D35D-4DA2-9CE0-C356178367E8}"
-EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Bica.MarkedFileTransfersTool.DALayer", "Bica.MarkedFileTransfersTool.DALayer\Bica.MarkedFileTransfersTool.DALayer.vbproj", "{116261AF-5746-447E-BA91-15D7FFD932EF}"
 EndProject
-Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "Bica.MarkedFileTransfersTool.Helper", "Bica.MarkedFileTransfersTool.Helper\Bica.MarkedFileTransfersTool.Helper.vbproj", "{7DF965D6-8125-4277-A1A5-DA66392687F6}"
-EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Bica.MarkedFileTransferTool.WindowsService", "Bica.MarkedFileTransferTool.WindowsService\Bica.MarkedFileTransferTool.WindowsService.vbproj", "{0C866851-B8DB-4DD9-8919-66618E58DDBA}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Bica.MarkedFileTransfersTool.Helper", "Bica.MarkedFileTransfersTool.Helper\Bica.MarkedFileTransfersTool.Helper.vbproj", "{0DA02E6B-3380-4C7A-A584-6FFF2870EA7A}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Bica.MarkedFileTransfersTool.BusinessLayer", "Bica.MarkedFileTransfersTool.BusinessLayer\Bica.MarkedFileTransfersTool.BusinessLayer.vbproj", "{60DC39AE-95B8-458C-9D24-8DFB82DA0B92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,22 +29,22 @@ Global
 		{77843FA3-94BC-4768-8FEA-5BAF12981BE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77843FA3-94BC-4768-8FEA-5BAF12981BE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77843FA3-94BC-4768-8FEA-5BAF12981BE4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{78EE3A15-D35D-4DA2-9CE0-C356178367E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{78EE3A15-D35D-4DA2-9CE0-C356178367E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{78EE3A15-D35D-4DA2-9CE0-C356178367E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{78EE3A15-D35D-4DA2-9CE0-C356178367E8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{116261AF-5746-447E-BA91-15D7FFD932EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{116261AF-5746-447E-BA91-15D7FFD932EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{116261AF-5746-447E-BA91-15D7FFD932EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{116261AF-5746-447E-BA91-15D7FFD932EF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7DF965D6-8125-4277-A1A5-DA66392687F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7DF965D6-8125-4277-A1A5-DA66392687F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7DF965D6-8125-4277-A1A5-DA66392687F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7DF965D6-8125-4277-A1A5-DA66392687F6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0C866851-B8DB-4DD9-8919-66618E58DDBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0C866851-B8DB-4DD9-8919-66618E58DDBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C866851-B8DB-4DD9-8919-66618E58DDBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C866851-B8DB-4DD9-8919-66618E58DDBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DA02E6B-3380-4C7A-A584-6FFF2870EA7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DA02E6B-3380-4C7A-A584-6FFF2870EA7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DA02E6B-3380-4C7A-A584-6FFF2870EA7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DA02E6B-3380-4C7A-A584-6FFF2870EA7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60DC39AE-95B8-458C-9D24-8DFB82DA0B92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60DC39AE-95B8-458C-9D24-8DFB82DA0B92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60DC39AE-95B8-458C-9D24-8DFB82DA0B92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60DC39AE-95B8-458C-9D24-8DFB82DA0B92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

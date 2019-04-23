@@ -162,7 +162,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bica.MarkedFileTransfersTool.BusinessLayer\Bica.MarkedFileTransfersTool.BusinessLayer.vbproj">
-      <Project>{78ee3a15-d35d-4da2-9ce0-c356178367e8}</Project>
+      <Project>{60dc39ae-95b8-458c-9d24-8dfb82da0b92}</Project>
       <Name>Bica.MarkedFileTransfersTool.BusinessLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\Bica.MarkedFileTransfersTool.Model\Bica.MarkedFileTransfersTool.Model.vbproj">
