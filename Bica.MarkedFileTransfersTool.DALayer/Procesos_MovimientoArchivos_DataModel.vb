@@ -26,6 +26,12 @@ Public Class Procesos_MovimientoArchivos_DataModel
         End Using
     End Function
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="IdProceso"></param>
+    ''' <param name="fecha"></param>
+    ''' <returns></returns>
     Public Function ObtenerMovimientoArchivosPendientesEnviar(IdProceso As Long, fecha As Date) As List(Of Model.Procesos_MovimientoArchivos)
         Dim registros As List(Of Procesos_MovimientoArchivos)
 
@@ -35,6 +41,28 @@ Public Class Procesos_MovimientoArchivos_DataModel
                              DbFunctions.TruncateTime(f.PRESENTATION_DATE) = fecha.Date And
                              f.TO_BE_TRANSFER = 1 And
                              f.TRANSFERRED = 0 And
+                             f.DELETED <> 0).ToList()
+
+            'cargamos lista de resultados
+            Dim lista As List(Of Model.Procesos_MovimientoArchivos) = New List(Of Model.Procesos_MovimientoArchivos)
+            For Each item As Procesos_MovimientoArchivos In registros
+                lista.Add(Map(item))
+            Next
+
+            Return lista
+        End Using
+    End Function
+
+    Public Function ObtenerMovimientoArchivosCopiadosNTFTP(IdProceso As Long, fecha As Date) As List(Of Model.Procesos_MovimientoArchivos)
+        Dim registros As List(Of Procesos_MovimientoArchivos)
+
+        Using resource As New B_BancaElecEntities()
+            registros = (From f In resource.Procesos_MovimientoArchivos
+                         Where f.Procesos_OrigenDestinoArchivosId = IdProceso And
+                             DbFunctions.TruncateTime(f.PRESENTATION_DATE) = fecha.Date And
+                             f.TO_BE_TRANSFER = 0 And
+                             f.TRANSFERRED = 0 And
+                             f.COPIED = 1 And
                              f.DELETED <> 0).ToList()
 
             'cargamos lista de resultados
@@ -109,22 +137,19 @@ Public Class Procesos_MovimientoArchivos_DataModel
     ''' <param name="DoBackup"></param>
     ''' <param name="IdUpdatedUser"></param>
     ''' <returns></returns>
-    Public Function ActualizarRegistroMovimientoArchivo(IdMovimientoArchivo As Long, Transferred As Boolean, DoBackup As Boolean, IdUpdatedUser As Long, ToBeTransfer As Boolean) As Long
+    Public Function ActualizarRegistroMovimientoArchivo(IdMovimientoArchivo As Long, Transferred As Boolean, DoBackup As Boolean, IdUpdatedUser As Long, ToBeTransfer As Boolean, Copied As Boolean) As Long
         Using resource = New B_BancaElecEntities()
 
             Dim objMovArchivos = (From f In resource.Procesos_MovimientoArchivos
                                   Where f.ID = IdMovimientoArchivo And f.DELETED <> 0 Select f).FirstOrDefault()
 
             If objMovArchivos IsNot Nothing Then
-                'objMovArchivos = New Procesos_MovimientoArchivos()
                 objMovArchivos.MODIFIED_DATE = DateTime.Now
                 objMovArchivos.MODIFIED_USER_ID = IdUpdatedUser
                 objMovArchivos.DOBACKUP = DoBackup
                 objMovArchivos.TRANSFERRED = Transferred
                 objMovArchivos.TO_BE_TRANSFER = ToBeTransfer
-
-                'resource.Entry(objMovArchivos).State = EntityState.Modified
-
+                objMovArchivos.COPIED = Copied
                 If resource.SaveChanges() > 0 Then
                     Return 1
                 End If
@@ -157,6 +182,7 @@ Public Class Procesos_MovimientoArchivos_DataModel
         retorno.Procesos_OrigenDestinoArchivosId = registro.Procesos_OrigenDestinoArchivosId
         retorno.Transferred = If(registro.TRANSFERRED Is Nothing, False, registro.TRANSFERRED)
         retorno.ToBeTransfer = If(registro.TO_BE_TRANSFER Is Nothing, False, registro.TO_BE_TRANSFER)
+        retorno.Copied = If(registro.COPIED Is Nothing, False, registro.COPIED)
         retorno.Id_File = registro.ID_FILE
         retorno.Presentation_Date = registro.PRESENTATION_DATE
         Return retorno

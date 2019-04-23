@@ -41,6 +41,7 @@ CREATE TABLE [dbo].[Procesos_MovimientoArchivos](
 	[TRANSFERRED] [bit] NULL,
 	[DOBACKUP] [bit] NULL,
 	[TO_BE_TRANSFER] [bit] NULL,
+	[COPIED] [bit] NULL,
 	[CREATED_USER_ID] [bigint] NULL,
 	[MODIFIED_USER_ID] [bigint] NULL,
 	[CREATED_DATE] [datetime] NOT NULL,
@@ -61,6 +62,9 @@ ALTER TABLE [dbo].[Procesos_MovimientoArchivos] ADD  DEFAULT ((0)) FOR [DOBACKUP
 GO
 
 ALTER TABLE [dbo].[Procesos_MovimientoArchivos] ADD  DEFAULT ((0)) FOR [TO_BE_TRANSFER]
+GO
+
+ALTER TABLE [dbo].[Procesos_MovimientoArchivos] ADD  DEFAULT ((0)) FOR [COPIED]
 GO
 
 ALTER TABLE [dbo].[Procesos_MovimientoArchivos] ADD  DEFAULT (getdate()) FOR [CREATED_DATE]

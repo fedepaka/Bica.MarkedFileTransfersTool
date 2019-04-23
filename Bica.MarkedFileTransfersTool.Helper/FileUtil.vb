@@ -37,4 +37,33 @@ Public Class FileUtil
             Return String.Empty
         End If
     End Function
+
+    ''' <summary>
+    ''' Copia un archivo de una ruta a otra
+    ''' </summary>
+    ''' <param name="rutaOrigen"></param>
+    ''' <param name="rutaDestino"></param>
+    ''' <returns></returns>
+    Public Shared Function CopiarArchivo(rutaOrigen As String, rutaDestino As String) As Boolean
+        If String.IsNullOrEmpty(rutaOrigen) Or String.IsNullOrEmpty(rutaDestino) Then
+            Return False
+        Else
+            File.Copy(rutaOrigen, rutaDestino, True)
+        End If
+        Return True
+    End Function
+
+    ''' <summary>
+    ''' Indica si existe un directorio físico
+    ''' </summary>
+    ''' <param name="path"></param>
+    ''' <returns></returns>
+    Public Shared Function ExisteDirectorio(path As String) As Boolean
+        If String.IsNullOrEmpty(path) Then
+            Return False
+        Else
+            Return Directory.Exists(path)
+        End If
+    End Function
+
 End Class

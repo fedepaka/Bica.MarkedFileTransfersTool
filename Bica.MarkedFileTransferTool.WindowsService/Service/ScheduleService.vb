@@ -5,20 +5,37 @@ Imports System.Configuration
 Namespace Bica.TransferGateway.WindowsService.Service
     Public Class ScheduleService
         Private ReadOnly scheduler As IScheduler
-        Private Const INTERVAL_MINUTES As String = "INTERVAL_MINUTES"
-        Private Const JOB_NAME As String = "JOB_NAME"
-        Private Const GROUP_NAME As String = "GROUP_NAME"
-        Private Const TRIGGER_NAME As String = "TRIGGER_NAME"
+        Private Const INTERVAL_MINUTES_JOB_TRANSFER_NTFTP As String = "INTERVAL_MINUTES_JOB_TRANSFER_NTFTP"
+        Private Const INTERVAL_MINUTES_JOB_CHECK_NTFTP As String = "INTERVAL_MINUTES_JOB_CHECK_NTFTP"
 
-        Private Shared ReadOnly Property IntervalMinutes As Integer
+        Private Const JOB_NAME_TRANSFER_NTFTP As String = "JOB_NAME_TRANSFER_NTFTP"
+        Private Const JOB_NAME_CHECK_NTFTP As String = "JOB_NAME_CHECK_NTFTP"
+
+        Private Const GROUP_NAME As String = "GROUP_NAME"
+        Private Const TRIGGER_NAME_TRANSFER_NTFTP As String = "TRIGGER_NAME_TRANSFER_NTFTP"
+        Private Const TRIGGER_NAME_CHECK_NTFTP As String = "TRIGGER_NAME_CHECK_NTFTP"
+
+        Private Shared ReadOnly Property IntervalMinutesTransferNTFTP As Integer
             Get
-                Return Integer.Parse(ConfigurationManager.AppSettings.[Get](INTERVAL_MINUTES))
+                Return Integer.Parse(ConfigurationManager.AppSettings.[Get](INTERVAL_MINUTES_JOB_TRANSFER_NTFTP))
             End Get
         End Property
 
-        Private Shared ReadOnly Property JobName As String
+        Private Shared ReadOnly Property IntervalMinutesCheckNTFTP As Integer
             Get
-                Return ConfigurationManager.AppSettings.[Get](JOB_NAME)
+                Return Integer.Parse(ConfigurationManager.AppSettings.[Get](INTERVAL_MINUTES_JOB_CHECK_NTFTP))
+            End Get
+        End Property
+
+        Private Shared ReadOnly Property JobNameTransferNTFTP As String
+            Get
+                Return ConfigurationManager.AppSettings.[Get](JOB_NAME_TRANSFER_NTFTP)
+            End Get
+        End Property
+
+        Private Shared ReadOnly Property JobNameCheckNTFTP As String
+            Get
+                Return ConfigurationManager.AppSettings.[Get](JOB_NAME_CHECK_NTFTP)
             End Get
         End Property
 
@@ -28,9 +45,15 @@ Namespace Bica.TransferGateway.WindowsService.Service
             End Get
         End Property
 
-        Private Shared ReadOnly Property TriggerName As String
+        Private Shared ReadOnly Property TriggerNameTransferNTFTP As String
             Get
-                Return ConfigurationManager.AppSettings.[Get](TRIGGER_NAME)
+                Return ConfigurationManager.AppSettings.[Get](TRIGGER_NAME_TRANSFER_NTFTP)
+            End Get
+        End Property
+
+        Private Shared ReadOnly Property TriggerNameCheckNTFTP As String
+            Get
+                Return ConfigurationManager.AppSettings.[Get](TRIGGER_NAME_CHECK_NTFTP)
             End Get
         End Property
 
@@ -49,9 +72,13 @@ Namespace Bica.TransferGateway.WindowsService.Service
         End Sub
 
         Public Sub ScheduleJobs()
-            Dim job As IJobDetail = JobBuilder.Create(Of TransferNTFTPJob)().WithIdentity(JobName, GroupName).Build()
-            Dim trigger As ITrigger = TriggerBuilder.Create().WithIdentity(TriggerName, GroupName).StartNow().WithSimpleSchedule(Sub(x) x.WithIntervalInMinutes(IntervalMinutes).RepeatForever()).Build()
-            scheduler.ScheduleJob(job, trigger).ConfigureAwait(False).GetAwaiter().GetResult()
+            Dim transferJob As IJobDetail = JobBuilder.Create(Of TransferNTFTPJob)().WithIdentity(JobNameTransferNTFTP, GroupName).Build()
+            Dim checkJob As IJobDetail = JobBuilder.Create(Of CheckTransferNTFTPJob)().WithIdentity(JobNameCheckNTFTP, GroupName).Build()
+
+            Dim triggerTransfer As ITrigger = TriggerBuilder.Create().WithIdentity(TriggerNameTransferNTFTP, GroupName).StartNow().WithSimpleSchedule(Sub(x) x.WithIntervalInMinutes(IntervalMinutesTransferNTFTP).RepeatForever()).Build()
+            Dim triggerCheck As ITrigger = TriggerBuilder.Create().WithIdentity(TriggerNameCheckNTFTP, GroupName).StartNow().WithSimpleSchedule(Sub(x) x.WithIntervalInMinutes(IntervalMinutesCheckNTFTP).RepeatForever()).Build()
+            scheduler.ScheduleJob(transferJob, triggerTransfer).ConfigureAwait(False).GetAwaiter().GetResult()
+            scheduler.ScheduleJob(checkJob, triggerCheck).ConfigureAwait(False).GetAwaiter().GetResult()
         End Sub
     End Class
 End Namespace

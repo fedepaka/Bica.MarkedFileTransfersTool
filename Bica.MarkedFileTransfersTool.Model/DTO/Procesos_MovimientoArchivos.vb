@@ -8,6 +8,7 @@ Public Class Procesos_MovimientoArchivos
     Public Property Transferred As Boolean
     Public Property ToBeTransfer As Boolean
     Public Property DoBackup As Boolean
+    Public Property Copied As Boolean
     Public Property Created_User_Id As Long
     Public Property Modified_User_Id As Long?
     Public Property Created_Date As DateTime
