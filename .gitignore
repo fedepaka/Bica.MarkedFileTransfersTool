@@ -149,3 +149,7 @@ Bica\.MarkedFileTransferTool\.WindowsService/bin/Debug/netstandard2\.0/
 Bica\.MarkedFileTransferTool\.WindowsService/obj/
 
 Bica\.MarkedFileTransferTool\.WindowsService/bin/Debug/
+
+Bica\.MarkedFileTransfersTool\.BusinessLayer/bin/Debug/
+
+Bica\.MarkedFileTransfersTool\.Helper/bin/Debug/
