@@ -26,6 +26,27 @@ Public Class Procesos_MovimientoArchivos_DataModel
         End Using
     End Function
 
+    Public Function ObtenerMovimientoArchivosPendientesEnviar(IdProceso As Long, fecha As Date) As List(Of Model.Procesos_MovimientoArchivos)
+        Dim registros As List(Of Procesos_MovimientoArchivos)
+
+        Using resource As New B_BancaElecEntities()
+            registros = (From f In resource.Procesos_MovimientoArchivos
+                         Where f.Procesos_OrigenDestinoArchivosId = IdProceso And
+                             DbFunctions.TruncateTime(f.PRESENTATION_DATE) = fecha.Date And
+                             f.TO_BE_TRANSFER = 1 And
+                             f.TRANSFERRED = 0 And
+                             f.DELETED <> 0).ToList()
+
+            'cargamos lista de resultados
+            Dim lista As List(Of Model.Procesos_MovimientoArchivos) = New List(Of Model.Procesos_MovimientoArchivos)
+            For Each item As Procesos_MovimientoArchivos In registros
+                lista.Add(Map(item))
+            Next
+
+            Return lista
+        End Using
+    End Function
+
     ''' <summary>
     ''' Obtiene datos de un registro por nombre de archivo
     ''' </summary>

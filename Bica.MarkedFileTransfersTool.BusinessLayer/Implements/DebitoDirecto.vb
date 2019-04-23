@@ -9,7 +9,7 @@ Public Class DebitoDirecto
     Private _blMovArchivos As MovimientoArchivos
     Private _blOrigenDestino As OrigenDestinoArchivos
 
-    Public Function ObtenerDebitosDirectos(fecha As Date) As Procesos_DebitoDirecto Implements IDebitoDirecto.ObtenerDebitosDirectos
+    Public Function ObtenerDebitosDirectos(fecha As Date) As List(Of Procesos_DebitoDirecto) Implements IDebitoDirecto.ObtenerDebitosDirectos
 
         'buscamos los registros de débito directo del día
         _dataDebitoDirecto = New Procesos_DebitoDirecto_DataModel()
@@ -26,11 +26,13 @@ Public Class DebitoDirecto
         _blMovArchivos = New MovimientoArchivos()
         _blOrigenDestino = New OrigenDestinoArchivos()
 
-        Dim archivoDD = Me.ObtenerDebitosDirectos(fecha)
+        Dim listaArchivosDD = Me.ObtenerDebitosDirectos(fecha)
 
-        If archivoDD IsNot Nothing Then
+        For Each archivoDD As Procesos_DebitoDirecto In listaArchivosDD
+
             If FileUtil.ExisteArchivo(archivoDD.NombreArchivo) Then
                 Dim nombreArchivo = FileUtil.ExtraerNombreArchivo(archivoDD.NombreArchivo)
+
                 If Not _blMovArchivos.ExisteRegistroArchivo(nombreArchivo) Then
 
                     Dim origeDestino = _blOrigenDestino.ObtenerOrigenDestinoArchivos(Constants.BCO_Envio_Debito_Directo_Code)
@@ -39,8 +41,8 @@ Public Class DebitoDirecto
                         nombreArchivo, archivoDD.FechaEnvio, archivoDD.IdArchivo, 1)
                 End If
             End If
-        End If
 
+        Next
         Return True
     End Function
 End Class

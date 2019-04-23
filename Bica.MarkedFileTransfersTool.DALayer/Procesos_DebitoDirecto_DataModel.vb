@@ -1,14 +1,26 @@
 ﻿Imports System.Data.Entity
 
 Public Class Procesos_DebitoDirecto_DataModel
-    Public Function ObtenerDebitosDirectos(fecha As Date) As Model.Procesos_DebitoDirecto
-        Dim registro As Prov_DebitoDirecto
+
+    ''' <summary>
+    ''' Obtiene lista de archivos que van a ser generados por los sps (Prov_DebitoDirecto)
+    ''' </summary>
+    ''' <param name="fecha"></param>
+    ''' <returns></returns>
+    Public Function ObtenerDebitosDirectos(fecha As Date) As List(Of Model.Procesos_DebitoDirecto)
+        Dim registros As List(Of Prov_DebitoDirecto)
+
+        Dim lista As List(Of Model.Procesos_DebitoDirecto) = New List(Of Model.Procesos_DebitoDirecto)
 
         Using resource As New B_GeneralEntities()
-            registro = (From f In resource.Prov_DebitoDirecto
-                        Where DbFunctions.TruncateTime(f.FechaPres) = fecha.Date).FirstOrDefault()
+            registros = (From f In resource.Prov_DebitoDirecto
+                         Where DbFunctions.TruncateTime(f.FechaPres) = fecha.Date).ToList()
 
-            Return Map(registro)
+            For Each item As Prov_DebitoDirecto In registros
+                lista.Add(Map(item))
+            Next
+
+            Return lista
         End Using
     End Function
 

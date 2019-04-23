@@ -50,4 +50,10 @@ Public Class MovimientoArchivos
         _dataMovimientoArchivos = New Procesos_MovimientoArchivos_DataModel()
         Return _dataMovimientoArchivos.ObtenerMovimientoArchivoPorId(Id)
     End Function
+
+    Public Function ObtenerMovimientoArchivosPendientesEnviar(IdProceso As Long, fecha As Date) As List(Of Model.Procesos_MovimientoArchivos) Implements IMovimientoArchivos.ObtenerMovimientoArchivosPendientesEnviar
+        _dataMovimientoArchivos = New Procesos_MovimientoArchivos_DataModel()
+
+        Return _dataMovimientoArchivos.ObtenerMovimientoArchivosPendientesEnviar(IdProceso, fecha)
+    End Function
 End Class

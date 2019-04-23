@@ -12,9 +12,10 @@ Public Class frmDebitoDirectoEnvio
 
     Private Sub CargarDatos()
         lblMensaje.Text = String.Empty
+        Dim origenArchivoProceso = _datos.ObtenerOrigenDestinoArchivos(Model.Constants.BCO_Envio_Debito_Directo_Code)
         CargaDatosIniciales()
-        ConfigurarFormulario(_datos.ObtenerOrigenDestinoArchivos(Model.Constants.BCO_Envio_Debito_Directo_Code))
-        CargarDatosGrilla()
+        ConfigurarFormulario(origenArchivoProceso)
+        CargarDatosGrilla(origenArchivoProceso.Id)
     End Sub
 
     Private Sub CargaDatosIniciales()
@@ -22,26 +23,39 @@ Public Class frmDebitoDirectoEnvio
         _blDebitoDirecto.CargaArchivosDebitoDirecto(fechaProcesoActual)
     End Sub
 
-    Public Sub CargarDatosGrilla()
+    ''' <summary>
+    ''' Obtiene los registros de archivos generados para el Proceso dado
+    ''' </summary>
+    ''' <param name="IdProceso">Es el Id de la tabla Procesos_OrigenDestinoArchivos. Referencia al identificador de la configuración del proceso</param>
+    Public Sub CargarDatosGrilla(IdProceso As Long)
         Dim _datos = New OrigenDestinoArchivos()
         Dim _blMovArchivos = New MovimientoArchivos()
 
         dgvOrigenDestinoArchivos.DataSource = bindingSource1
-        'bindingSource1.DataSource = _datos.ObtenerOrigenDestinoArchivos(Model.Constants.BCO_Envio_Debito_Directo_Code)
-        Dim listaMovimientos = _blMovArchivos.ObtenerMovimientosArchivos(1, fechaProcesoActual)
+
+        Dim listaMovimientos = _blMovArchivos.ObtenerMovimientosArchivos(IdProceso, fechaProcesoActual)
 
         If listaMovimientos.Count <= 0 Then
-            lblMensaje.Text = "No existen datos de archivos para la fecha de proceso actual."
+            lblMensaje.Text = Constants.Formulario_Msg_SinDatos
         End If
 
         bindingSource1.DataSource = listaMovimientos
 
     End Sub
 
+    ''' <summary>
+    ''' Evento principal de la ejecución del formulario
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CargarDatos()
     End Sub
 
+    ''' <summary>
+    ''' Configuración de títulos y encabezados visibles en el formulario
+    ''' </summary>
+    ''' <param name="objOrigenArchivo"></param>
     Private Sub ConfigurarFormulario(objOrigenArchivo As Procesos_OrigenDestinoArchivos)
 
         Me.dgvOrigenDestinoArchivos.AutoGenerateColumns = False
@@ -75,6 +89,9 @@ Public Class frmDebitoDirectoEnvio
 
     End Sub
 
+    ''' <summary>
+    ''' Configuración respecto al marco del formulario
+    ''' </summary>
     Private Sub ConfigurarVistaFormulario()
         ' Define the border style of the form to a dialog box.
         Me.FormBorderStyle = FormBorderStyle.FixedDialog
@@ -91,6 +108,11 @@ Public Class frmDebitoDirectoEnvio
         Me.Text = Model.Constants.Formulario_Titulo
     End Sub
 
+    ''' <summary>
+    ''' Recargar datos
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub BtnCargarDatos_Click(sender As Object, e As EventArgs) Handles btnCargarDatos.Click
         Dim answer As DialogResult
 
@@ -101,6 +123,11 @@ Public Class frmDebitoDirectoEnvio
 
     End Sub
 
+    ''' <summary>
+    ''' Marcar archivo para ser enviado 
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub DgvOrigenDestinoArchivos_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvOrigenDestinoArchivos.CellClick
 
         Dim answer As DialogResult
@@ -120,7 +147,7 @@ Public Class frmDebitoDirectoEnvio
                 If answer = vbYes Then
                     Dim resUpdate = _blMovArchivos.ActualizarRegistroASerTransferido(idMovimientoArchivo, 1)
                 End If
-                CargarDatosGrilla()
+                CargarDatosGrilla(objMovArchivo.Procesos_OrigenDestinoArchivosId)
             End If
         End If
 
