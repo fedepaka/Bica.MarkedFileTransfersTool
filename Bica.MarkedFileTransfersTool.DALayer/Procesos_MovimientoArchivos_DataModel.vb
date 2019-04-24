@@ -39,9 +39,9 @@ Public Class Procesos_MovimientoArchivos_DataModel
             registros = (From f In resource.Procesos_MovimientoArchivos
                          Where f.Procesos_OrigenDestinoArchivosId = IdProceso And
                              DbFunctions.TruncateTime(f.PRESENTATION_DATE) = fecha.Date And
-                             f.TO_BE_TRANSFER = 1 And
+                             f.TO_BE_TRANSFER = True And
                              f.TRANSFERRED = 0 And
-                             f.DELETED <> 0).ToList()
+                             f.DELETED <> 0 Select f).ToList()
 
             'cargamos lista de resultados
             Dim lista As List(Of Model.Procesos_MovimientoArchivos) = New List(Of Model.Procesos_MovimientoArchivos)
@@ -62,7 +62,7 @@ Public Class Procesos_MovimientoArchivos_DataModel
                              DbFunctions.TruncateTime(f.PRESENTATION_DATE) = fecha.Date And
                              f.TO_BE_TRANSFER = 0 And
                              f.TRANSFERRED = 0 And
-                             f.COPIED = 1 And
+                             f.COPIED = True And
                              f.DELETED <> 0).ToList()
 
             'cargamos lista de resultados

@@ -51,6 +51,10 @@ Public Class MovimientoArchivos
         Return Me.ActualizarRegistroMovimientoArchivo(IdMovimientoArchivo, False, False, IdUpdatedUser, False, True) > 0
     End Function
 
+    Public Function ActualizarRegistroTransferido(IdMovimientoArchivo As Long, IdUpdatedUser As Long) As Boolean Implements IMovimientoArchivos.ActualizarRegistroTransferido
+        Return Me.ActualizarRegistroMovimientoArchivo(IdMovimientoArchivo, True, False, IdUpdatedUser, False, False) > 0
+    End Function
+
     Public Function ObtenerMovimientoArchivoPorId(Id As Long) As Model.Procesos_MovimientoArchivos Implements IMovimientoArchivos.ObtenerMovimientoArchivoPorId
         _dataMovimientoArchivos = New Procesos_MovimientoArchivos_DataModel()
         Return _dataMovimientoArchivos.ObtenerMovimientoArchivoPorId(Id)

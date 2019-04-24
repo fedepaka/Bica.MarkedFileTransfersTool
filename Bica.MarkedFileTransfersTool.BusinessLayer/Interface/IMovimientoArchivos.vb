@@ -10,5 +10,6 @@ Public Interface IMovimientoArchivos
     Function InsertarRegistroMovimientoArchivo(IdProcesoOrigen As Long, NombreArchivo As String, FechaPresentacion As Date, IdArchivo As Long, IdUsuarioCreacion As Long) As Long
     Function ActualizarRegistroMovimientoArchivo(IdMovimientoArchivo As Long, Transferred As Boolean, DoBackup As Boolean, IdUpdatedUser As Long, ToBeTransfer As Boolean, Copied As Boolean) As Boolean
     Function ActualizarRegistroASerTransferido(IdMovimientoArchivo As Long, IdUpdatedUser As Long) As Boolean
+    Function ActualizarRegistroTransferido(IdMovimientoArchivo As Long, IdUpdatedUser As Long) As Boolean
     Function ActualizarRegistroCopiado(IdMovimientoArchivo As Long, IdUpdatedUser As Long) As Boolean
 End Interface

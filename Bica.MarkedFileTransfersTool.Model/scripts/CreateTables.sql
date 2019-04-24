@@ -3,10 +3,13 @@
 CREATE TABLE [Procesos_OrigenDestinoArchivos] (
 [ID] [bigint] IDENTITY(1,1) NOT NULL,
 [PROCESSNR] int NULL,
-[PATHFROM] nvarchar(3000) NULL,
-[PATHTO] nvarchar(3000) NULL,
+[PATH_FROM] nvarchar(3000) NULL,
+[PATH_NTFTP_INPORT] nvarchar(3000) NULL,
+[PATH_NTFTP_SEND] nvarchar(3000) NULL,
 [CREATED_USER_ID] [bigint] NULL,
+[CREATED_USER_NAME] nvarchar(50) NULL,
 [MODIFIED_USER_ID] [bigint] NULL,
+[MODIFIED_USER_NAME] nvarchar(50) NULL,
 [CREATED_DATE] [datetime] NOT NULL,
 [MODIFIED_DATE] [datetime] NULL,
 [DELETED] [bit] NULL,
@@ -27,6 +30,7 @@ GO
 --Insert data [Procesos_OrigenDestinoArchivos]
 -- 354 - BCO - Envio Debito Directo
 INSERT INTO dbo.Procesos_OrigenDestinoArchivos (PROCESSNR, PATHFROM, PATHTO, CREATED_USER_ID) VALUES (354, '\\FILESERVER\EntExt\Provincanje\aProvincanje\Debitos', '\\BBPROCESO2\Coelsa\Bica\Importado', 1);
+INSERT INTO dbo.Procesos_OrigenDestinoArchivos (PROCESSNR, PATHFROM, PATHTO, CREATED_USER_ID) VALUES (354, '\\HP\fileserver\EntExt\Provincanje\aProvincanje1\Debitos', '\\HP\BBPROCESO2\Coelsa\Bica\Importado', 1);
 GO
 --fin [Procesos_OrigenDestinoArchivos]
 

@@ -19,7 +19,13 @@ Namespace Bica.TransferGateway.WindowsService.Service
                 Console.ResetColor()
                 Console.ForegroundColor = ConsoleColor.Green
                 Console.WriteLine(String.Format("Ejecución previa del JOB TransferNTFTPJob: {0}.", lastRun))
+            Else
+                Console.ResetColor()
+                Console.ForegroundColor = ConsoleColor.Green
+                Console.WriteLine(String.Format("Ejecución inicial del JOB TransferNTFTPJob: {0}.", context.FireTimeUtc.DateTime.ToString()))
             End If
+
+            IniciarProcesoTransferencia()
 
             Return Task.FromResult(0)
         End Function
@@ -27,13 +33,13 @@ Namespace Bica.TransferGateway.WindowsService.Service
         ''' <summary>
         ''' 
         ''' </summary>
-        ''' <param name="Fecha"></param>
-        ''' <param name="IdProceso"></param>
-        Private Function ObtenerRegistrosMovimientosArchivosPendientesEnviar(Fecha As Date, IdProceso As Long) As Tuple(Of Procesos_OrigenDestinoArchivos, List(Of Model.Procesos_MovimientoArchivos))
+        ''' <returns></returns>
+        Private Function IniciarProcesoTransferencia() As Boolean
+            Dim objMovimientoArchivos = _blMovimientoArchivos.ObtenerRegistrosMovimientosArchivosPendientesEnviar(fechaProcesoActual, _blOrigenDestinoArchivos.ObtenerOrigenDestinoArchivos(Constants.BCO_Envio_Debito_Directo_Code).Id)
 
-            Dim objProceso = _blOrigenDestinoArchivos.ObtenerOrigenDestinoArchivos(Constants.BCO_Envio_Debito_Directo_Code)
-            Return Tuple.Create(objProceso, _blMovimientoArchivos.ObtenerMovimientoArchivosPendientesEnviar(objProceso.Id, fechaProcesoActual))
+            Return MoverArchivos(objMovimientoArchivos)
         End Function
+
 
         ''' <summary>
         ''' Se encarga de mover los archivos a la carpeta de NTFTP
@@ -51,14 +57,16 @@ Namespace Bica.TransferGateway.WindowsService.Service
             For Each archivo As Model.Procesos_MovimientoArchivos In listaArchivos
                 'armamos la ruta del archivo
                 Dim rutaArchivoDesdeCompleta = String.Format("{0}\{1}", rutaOrigen, archivo.FileName)
-                'verificamos que exista
+                'verificamos que exista el archivo
                 'si existe el archivo en el origen
                 'y existe la ruta destino de NTFTP, copiamos el archivo
                 If Not FileUtil.ExisteArchivo(rutaArchivoDesdeCompleta) And
                     Not FileUtil.ExisteDirectorio(rutaDestino) Then
                     Return resultado
                 Else
-                    FileUtil.CopiarArchivo(rutaArchivoDesdeCompleta, rutaDestino)
+                    FileUtil.CopiarArchivo(rutaArchivoDesdeCompleta, String.Format("{0}\{1}", rutaDestino, archivo.FileName))
+                    'marcar como copiado
+                    _blMovimientoArchivos.ActualizarRegistroCopiado(archivo.Id, 1)
                 End If
             Next
             Return True
