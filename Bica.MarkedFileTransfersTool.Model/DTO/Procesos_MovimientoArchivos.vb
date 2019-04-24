@@ -14,4 +14,7 @@ Public Class Procesos_MovimientoArchivos
     Public Property Created_Date As DateTime
     Public Property Modified_Date As DateTime?
     Public Property Deleted As Boolean?
+
+    Public Property Created_User_Name As String
+    Public Property Modified_User_Name As String
 End Class

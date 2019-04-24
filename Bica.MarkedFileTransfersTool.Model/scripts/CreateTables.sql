@@ -6,6 +6,8 @@ CREATE TABLE [Procesos_OrigenDestinoArchivos] (
 [PATH_FROM] nvarchar(3000) NULL,
 [PATH_NTFTP_INPORT] nvarchar(3000) NULL,
 [PATH_NTFTP_SEND] nvarchar(3000) NULL,
+[PATH_NTFTP_RECIBED] nvarchar(3000) NULL,
+[PATH_TO] nvarchar(3000) NULL,
 [CREATED_USER_ID] [bigint] NULL,
 [CREATED_USER_NAME] nvarchar(50) NULL,
 [MODIFIED_USER_ID] [bigint] NULL,
@@ -29,8 +31,8 @@ GO
 
 --Insert data [Procesos_OrigenDestinoArchivos]
 -- 354 - BCO - Envio Debito Directo
-INSERT INTO dbo.Procesos_OrigenDestinoArchivos (PROCESSNR, PATHFROM, PATHTO, CREATED_USER_ID) VALUES (354, '\\FILESERVER\EntExt\Provincanje\aProvincanje\Debitos', '\\BBPROCESO2\Coelsa\Bica\Importado', 1);
-INSERT INTO dbo.Procesos_OrigenDestinoArchivos (PROCESSNR, PATHFROM, PATHTO, CREATED_USER_ID) VALUES (354, '\\HP\fileserver\EntExt\Provincanje\aProvincanje1\Debitos', '\\HP\BBPROCESO2\Coelsa\Bica\Importado', 1);
+INSERT INTO dbo.Procesos_OrigenDestinoArchivos (PROCESSNR, PATH_FROM, PATH_NTFTP_INPORT, PATH_NTFTP_SEND, PATH_NTFTP_RECIBED, PATH_TO, CREATED_USER_NAME) VALUES (354, '\\FILESERVER\EntExt\Provincanje\aProvincanje\Debitos', '\\BBPROCESO2\Coelsa\Bica\Importado', '\\BBPROCESO2\Coelsa\Bica\Enviado', '\\BBPROCESO2\Coelsa\Bica\Recibido', '\\FILESERVER\EntExt\Provincanje\alBanco\Debitos', 'arey');
+INSERT INTO dbo.Procesos_OrigenDestinoArchivos (PROCESSNR, PATH_FROM, PATH_NTFTP_INPORT, PATH_NTFTP_SEND, PATH_NTFTP_RECIBED, PATH_TO, CREATED_USER_NAME) VALUES (354, '\\HP\fileserver\EntExt\Provincanje\aProvincanje1\Debitos', '\\HP\BBPROCESO2\Coelsa\Bica\Importado', '\\HP\BBPROCESO2\Coelsa\Bica\Enviado', '\\HP\BBPROCESO2\Coelsa\Bica\Recibido', '\\HP\FILESERVER\EntExt\Provincanje\alBanco\Debitos', 'arey');
 GO
 --fin [Procesos_OrigenDestinoArchivos]
 
@@ -47,7 +49,9 @@ CREATE TABLE [dbo].[Procesos_MovimientoArchivos](
 	[TO_BE_TRANSFER] [bit] NULL,
 	[COPIED] [bit] NULL,
 	[CREATED_USER_ID] [bigint] NULL,
+	[CREATED_USER_NAME] nvarchar(50) NULL,
 	[MODIFIED_USER_ID] [bigint] NULL,
+	[MODIFIED_USER_NAME] nvarchar(50) NULL,
 	[CREATED_DATE] [datetime] NOT NULL,
 	[MODIFIED_DATE] [datetime] NULL,
 	[DELETED] [bit] NULL,

@@ -19,7 +19,9 @@
           <Property Name="TO_BE_TRANSFER" Type="bit" />
           <Property Name="COPIED" Type="bit" />
           <Property Name="CREATED_USER_ID" Type="bigint" />
+          <Property Name="CREATED_USER_NAME" Type="nvarchar" MaxLength="50" />
           <Property Name="MODIFIED_USER_ID" Type="bigint" />
+          <Property Name="MODIFIED_USER_NAME" Type="nvarchar" MaxLength="50" />
           <Property Name="CREATED_DATE" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
           <Property Name="MODIFIED_DATE" Type="datetime" />
           <Property Name="DELETED" Type="bit" />
@@ -30,10 +32,15 @@
           </Key>
           <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PROCESSNR" Type="int" />
-          <Property Name="PATHFROM" Type="nvarchar" MaxLength="3000" />
-          <Property Name="PATHTO" Type="nvarchar" MaxLength="3000" />
+          <Property Name="PATH_FROM" Type="nvarchar" MaxLength="3000" />
+          <Property Name="PATH_NTFTP_INPORT" Type="nvarchar" MaxLength="3000" />
+          <Property Name="PATH_NTFTP_SEND" Type="nvarchar" MaxLength="3000" />
+          <Property Name="PATH_NTFTP_RECIBED" Type="nvarchar" MaxLength="3000" />
+          <Property Name="PATH_TO" Type="nvarchar" MaxLength="3000" />
           <Property Name="CREATED_USER_ID" Type="bigint" />
+          <Property Name="CREATED_USER_NAME" Type="nvarchar" MaxLength="50" />
           <Property Name="MODIFIED_USER_ID" Type="bigint" />
+          <Property Name="MODIFIED_USER_NAME" Type="nvarchar" MaxLength="50" />
           <Property Name="CREATED_DATE" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
           <Property Name="MODIFIED_DATE" Type="datetime" />
           <Property Name="DELETED" Type="bit" />
@@ -84,7 +91,9 @@
           <Property Name="TO_BE_TRANSFER" Type="Boolean" />
           <Property Name="COPIED" Type="Boolean" />
           <Property Name="CREATED_USER_ID" Type="Int64" />
+          <Property Name="CREATED_USER_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MODIFIED_USER_ID" Type="Int64" />
+          <Property Name="MODIFIED_USER_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CREATED_DATE" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="MODIFIED_DATE" Type="DateTime" Precision="3" />
           <Property Name="DELETED" Type="Boolean" />
@@ -96,10 +105,15 @@
           </Key>
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PROCESSNR" Type="Int32" />
-          <Property Name="PATHFROM" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
-          <Property Name="PATHTO" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="PATH_FROM" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="PATH_NTFTP_INPORT" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="PATH_NTFTP_SEND" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="PATH_NTFTP_RECIBED" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="PATH_TO" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
           <Property Name="CREATED_USER_ID" Type="Int64" />
+          <Property Name="CREATED_USER_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MODIFIED_USER_ID" Type="Int64" />
+          <Property Name="MODIFIED_USER_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CREATED_DATE" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="MODIFIED_DATE" Type="DateTime" Precision="3" />
           <Property Name="DELETED" Type="Boolean" />
@@ -129,7 +143,9 @@
                 <ScalarProperty Name="DELETED" ColumnName="DELETED" />
                 <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
                 <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                <ScalarProperty Name="MODIFIED_USER_NAME" ColumnName="MODIFIED_USER_NAME" />
                 <ScalarProperty Name="MODIFIED_USER_ID" ColumnName="MODIFIED_USER_ID" />
+                <ScalarProperty Name="CREATED_USER_NAME" ColumnName="CREATED_USER_NAME" />
                 <ScalarProperty Name="CREATED_USER_ID" ColumnName="CREATED_USER_ID" />
                 <ScalarProperty Name="COPIED" ColumnName="COPIED" />
                 <ScalarProperty Name="TO_BE_TRANSFER" ColumnName="TO_BE_TRANSFER" />
@@ -149,10 +165,15 @@
                 <ScalarProperty Name="DELETED" ColumnName="DELETED" />
                 <ScalarProperty Name="MODIFIED_DATE" ColumnName="MODIFIED_DATE" />
                 <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+                <ScalarProperty Name="MODIFIED_USER_NAME" ColumnName="MODIFIED_USER_NAME" />
                 <ScalarProperty Name="MODIFIED_USER_ID" ColumnName="MODIFIED_USER_ID" />
+                <ScalarProperty Name="CREATED_USER_NAME" ColumnName="CREATED_USER_NAME" />
                 <ScalarProperty Name="CREATED_USER_ID" ColumnName="CREATED_USER_ID" />
-                <ScalarProperty Name="PATHTO" ColumnName="PATHTO" />
-                <ScalarProperty Name="PATHFROM" ColumnName="PATHFROM" />
+                <ScalarProperty Name="PATH_TO" ColumnName="PATH_TO" />
+                <ScalarProperty Name="PATH_NTFTP_RECIBED" ColumnName="PATH_NTFTP_RECIBED" />
+                <ScalarProperty Name="PATH_NTFTP_SEND" ColumnName="PATH_NTFTP_SEND" />
+                <ScalarProperty Name="PATH_NTFTP_INPORT" ColumnName="PATH_NTFTP_INPORT" />
+                <ScalarProperty Name="PATH_FROM" ColumnName="PATH_FROM" />
                 <ScalarProperty Name="PROCESSNR" ColumnName="PROCESSNR" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>

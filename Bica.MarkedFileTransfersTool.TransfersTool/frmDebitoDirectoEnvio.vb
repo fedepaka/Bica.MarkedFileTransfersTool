@@ -9,6 +9,7 @@ Public Class frmDebitoDirectoEnvio
     Private _datos As OrigenDestinoArchivos = New OrigenDestinoArchivos()
 
     Private _fuente As String = "Microsoft Sans Serif"
+    Private userName = "aRey"
 
     Private Sub CargarDatos()
         lblMensaje.Text = String.Empty
@@ -20,7 +21,7 @@ Public Class frmDebitoDirectoEnvio
 
     Private Sub CargaDatosIniciales()
 
-        _blDebitoDirecto.CargaArchivosDebitoDirecto(fechaProcesoActual)
+        _blDebitoDirecto.CargaArchivosDebitoDirecto(fechaProcesoActual, userName)
     End Sub
 
     ''' <summary>
@@ -145,7 +146,7 @@ Public Class frmDebitoDirectoEnvio
                 " para ser enviado?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
                 If answer = vbYes Then
-                    Dim resUpdate = _blMovArchivos.ActualizarRegistroASerTransferido(idMovimientoArchivo, 1)
+                    Dim resUpdate = _blMovArchivos.ActualizarRegistroASerTransferido(idMovimientoArchivo, userName)
                 End If
                 CargarDatosGrilla(objMovArchivo.Procesos_OrigenDestinoArchivosId)
             End If

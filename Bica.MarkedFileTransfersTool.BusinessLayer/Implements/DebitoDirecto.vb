@@ -22,7 +22,7 @@ Public Class DebitoDirecto
     ''' </summary>
     ''' <param name="fecha"></param>
     ''' <returns></returns>
-    Public Function CargaArchivosDebitoDirecto(fecha As Date) As Boolean Implements IDebitoDirecto.CopiarArchivosDebitoDirecto
+    Public Function CargaArchivosDebitoDirecto(fecha As Date, UserName As String) As Boolean Implements IDebitoDirecto.CopiarArchivosDebitoDirecto
         _blMovArchivos = New MovimientoArchivos()
         _blOrigenDestino = New OrigenDestinoArchivos()
 
@@ -38,7 +38,7 @@ Public Class DebitoDirecto
                     Dim origeDestino = _blOrigenDestino.ObtenerOrigenDestinoArchivos(Constants.BCO_Envio_Debito_Directo_Code)
 
                     _blMovArchivos.InsertarRegistroMovimientoArchivo(origeDestino.Id,
-                        nombreArchivo, archivoDD.FechaEnvio, archivoDD.IdArchivo, 1)
+                        nombreArchivo, archivoDD.FechaEnvio, archivoDD.IdArchivo, UserName)
                 End If
             End If
 

@@ -13,10 +13,15 @@ Imports System.Collections.Generic
 Partial Public Class Procesos_OrigenDestinoArchivos
     Public Property ID As Long
     Public Property PROCESSNR As Nullable(Of Integer)
-    Public Property PATHFROM As String
-    Public Property PATHTO As String
+    Public Property PATH_FROM As String
+    Public Property PATH_NTFTP_INPORT As String
+    Public Property PATH_NTFTP_SEND As String
+    Public Property PATH_TO As String
+    Public Property PATH_NTFTP_RECIBED As String
     Public Property CREATED_USER_ID As Nullable(Of Long)
+    Public Property CREATED_USER_NAME As String
     Public Property MODIFIED_USER_ID As Nullable(Of Long)
+    Public Property MODIFIED_USER_NAME As String
     Public Property CREATED_DATE As Date
     Public Property MODIFIED_DATE As Nullable(Of Date)
     Public Property DELETED As Nullable(Of Boolean)

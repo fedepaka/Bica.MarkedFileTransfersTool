@@ -53,14 +53,17 @@ Public Class Procesos_OrigenDestinoArchivos_DataModel
 
         Dim retorno As New Model.Procesos_OrigenDestinoArchivos()
         retorno.Created_Date = registro.CREATED_DATE
-        retorno.Created_User_Id = registro.CREATED_USER_ID
         retorno.Id = registro.ID
         retorno.Updated_Date = registro.MODIFIED_DATE
         retorno.Modified_User_Id = registro.MODIFIED_USER_ID
-        retorno.PathFrom = registro.PATHFROM
-        retorno.PathTo = registro.PATHTO
+        retorno.PathFrom = registro.PATH_FROM
+        retorno.PathInport = registro.PATH_NTFTP_INPORT
+        retorno.PathTo = registro.PATH_TO
+        retorno.PathSend = registro.PATH_NTFTP_SEND
+        retorno.PathRecibed = registro.PATH_NTFTP_RECIBED
         retorno.ProcessNr = registro.PROCESSNR
-
+        retorno.Created_User_Name = registro.CREATED_USER_NAME
+        retorno.Modified_User_Name = registro.MODIFIED_USER_NAME
         Return retorno
     End Function
 

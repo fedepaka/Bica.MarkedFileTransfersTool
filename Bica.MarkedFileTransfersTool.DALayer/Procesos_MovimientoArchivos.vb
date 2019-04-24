@@ -17,11 +17,13 @@ Partial Public Class Procesos_MovimientoArchivos
     Public Property PRESENTATION_DATE As Date
     Public Property ID_FILE As Long
     Public Property TRANSFERRED As Nullable(Of Boolean)
-    Public Property COPIED As Nullable(Of Boolean)
     Public Property DOBACKUP As Nullable(Of Boolean)
     Public Property TO_BE_TRANSFER As Nullable(Of Boolean)
+    Public Property COPIED As Nullable(Of Boolean)
     Public Property CREATED_USER_ID As Nullable(Of Long)
+    Public Property CREATED_USER_NAME As String
     Public Property MODIFIED_USER_ID As Nullable(Of Long)
+    Public Property MODIFIED_USER_NAME As String
     Public Property CREATED_DATE As Date
     Public Property MODIFIED_DATE As Nullable(Of Date)
     Public Property DELETED As Nullable(Of Boolean)

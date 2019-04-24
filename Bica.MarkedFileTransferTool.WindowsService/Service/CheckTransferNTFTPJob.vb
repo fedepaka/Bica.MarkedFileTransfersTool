@@ -43,7 +43,7 @@ Namespace Bica.TransferGateway.WindowsService.Service
             'si existen, marcarlos como transferido
 
             For Each archivo As Procesos_MovimientoArchivos In listaArchivos
-                If FileUtil.ExisteArchivo(String.Format("{0}\{1}", origenDestinoArchivos.PathTo, archivo.FileName)) Then
+                If FileUtil.ExisteArchivo(String.Format("{0}\{1}", origenDestinoArchivos.PathSend, archivo.FileName)) Then
                     _blMovimientoArchivos.ActualizarRegistroTransferido(archivo.Id, 1)
                 Else
                     retorno = False
@@ -53,11 +53,6 @@ Namespace Bica.TransferGateway.WindowsService.Service
 
             Return retorno
         End Function
-
-        'Private Function VerificarDestinoFinalArchivo()
-
-        'End Function
-
     End Class
 
 

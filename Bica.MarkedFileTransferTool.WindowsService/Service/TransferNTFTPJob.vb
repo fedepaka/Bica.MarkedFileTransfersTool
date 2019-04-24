@@ -52,7 +52,7 @@ Namespace Bica.TransferGateway.WindowsService.Service
             Dim listaArchivos As List(Of Model.Procesos_MovimientoArchivos) = procesoArchivo.Item2
 
             Dim rutaOrigen = datosProceso.PathFrom
-            Dim rutaDestino = datosProceso.PathTo
+            Dim rutaDestino = datosProceso.PathInport
 
             For Each archivo As Model.Procesos_MovimientoArchivos In listaArchivos
                 'armamos la ruta del archivo

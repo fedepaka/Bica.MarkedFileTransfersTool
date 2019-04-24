@@ -111,7 +111,7 @@ Public Class Procesos_MovimientoArchivos_DataModel
     ''' <param name="IdArchivo">Identificador del archivo interno a BICA</param>
     ''' <param name="IdUsuarioCreacion">Identifiador del usuario que ejecuta el evento</param>
     ''' <returns></returns>
-    Public Function InsertarRegistroMovimientoArchivo(IdProcesoOrigen As Long, NombreArchivo As String, FechaPresentacion As Date, IdArchivo As Long, IdUsuarioCreacion As Long) As Long
+    Public Function InsertarRegistroMovimientoArchivo(IdProcesoOrigen As Long, NombreArchivo As String, FechaPresentacion As Date, IdArchivo As Long, UserName As String) As Long
         Dim idREgistro As Long = 0
         Dim objMovArchivos As Procesos_MovimientoArchivos
         Using resource As New B_BancaElecEntities()
@@ -120,7 +120,7 @@ Public Class Procesos_MovimientoArchivos_DataModel
             objMovArchivos.FILENAME = NombreArchivo
             objMovArchivos.PRESENTATION_DATE = FechaPresentacion
             objMovArchivos.ID_FILE = IdArchivo
-            objMovArchivos.CREATED_USER_ID = IdUsuarioCreacion
+            objMovArchivos.CREATED_USER_NAME = UserName
             resource.Procesos_MovimientoArchivos.Add(objMovArchivos)
             resource.SaveChanges()
             idREgistro = objMovArchivos.ID
@@ -137,7 +137,7 @@ Public Class Procesos_MovimientoArchivos_DataModel
     ''' <param name="DoBackup"></param>
     ''' <param name="IdUpdatedUser"></param>
     ''' <returns></returns>
-    Public Function ActualizarRegistroMovimientoArchivo(IdMovimientoArchivo As Long, Transferred As Boolean, DoBackup As Boolean, IdUpdatedUser As Long, ToBeTransfer As Boolean, Copied As Boolean) As Long
+    Public Function ActualizarRegistroMovimientoArchivo(IdMovimientoArchivo As Long, Transferred As Boolean, DoBackup As Boolean, ToBeTransfer As Boolean, Copied As Boolean, UpdatedUserName As String) As Long
         Using resource = New B_BancaElecEntities()
 
             Dim objMovArchivos = (From f In resource.Procesos_MovimientoArchivos
@@ -145,11 +145,11 @@ Public Class Procesos_MovimientoArchivos_DataModel
 
             If objMovArchivos IsNot Nothing Then
                 objMovArchivos.MODIFIED_DATE = DateTime.Now
-                objMovArchivos.MODIFIED_USER_ID = IdUpdatedUser
                 objMovArchivos.DOBACKUP = DoBackup
                 objMovArchivos.TRANSFERRED = Transferred
                 objMovArchivos.TO_BE_TRANSFER = ToBeTransfer
                 objMovArchivos.COPIED = Copied
+                objMovArchivos.MODIFIED_USER_NAME = UpdatedUserName
                 If resource.SaveChanges() > 0 Then
                     Return 1
                 End If
@@ -173,7 +173,6 @@ Public Class Procesos_MovimientoArchivos_DataModel
 
         Dim retorno As New Model.Procesos_MovimientoArchivos()
         retorno.Created_Date = registro.CREATED_DATE
-        retorno.Created_User_Id = registro.CREATED_USER_ID
         retorno.DoBackup = If(registro.DOBACKUP Is Nothing, False, registro.DOBACKUP)
         retorno.FileName = If(registro.FILENAME Is Nothing, String.Empty, registro.FILENAME)
         retorno.Id = registro.ID
@@ -185,6 +184,8 @@ Public Class Procesos_MovimientoArchivos_DataModel
         retorno.Copied = If(registro.COPIED Is Nothing, False, registro.COPIED)
         retorno.Id_File = registro.ID_FILE
         retorno.Presentation_Date = registro.PRESENTATION_DATE
+        retorno.Created_User_Name = registro.CREATED_USER_NAME
+        retorno.Modified_User_Name = registro.MODIFIED_USER_NAME
         Return retorno
     End Function
 
