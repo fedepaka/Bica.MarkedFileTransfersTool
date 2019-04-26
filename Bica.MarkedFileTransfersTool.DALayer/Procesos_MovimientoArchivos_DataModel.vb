@@ -53,6 +53,16 @@ Public Class Procesos_MovimientoArchivos_DataModel
         End Using
     End Function
 
+    ''' <summary>
+    ''' Obtiene los registros de archivos que fueron recibidos 
+    ''' </summary>
+    ''' <param name="IdProceso"></param>
+    ''' <param name="fecha"></param>
+    ''' <returns></returns>
+    Public Function ObtenerMovimientoArchivosPendientesRecibir(IdProceso As Long, fecha As Date) As List(Of Model.Procesos_MovimientoArchivos)
+        Return ObtenerMovimientoArchivosPendientesEnviar(IdProceso, fecha)
+    End Function
+
     Public Function ObtenerMovimientoArchivosCopiadosNTFTP(IdProceso As Long, fecha As Date) As List(Of Model.Procesos_MovimientoArchivos)
         Dim registros As List(Of Procesos_MovimientoArchivos)
 

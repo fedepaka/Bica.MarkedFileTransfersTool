@@ -25,9 +25,18 @@ Namespace Bica.TransferGateway.WindowsService.Service
                 Console.WriteLine(String.Format("Ejecución inicial del JOB ReciberNTFTPJob: {0}.", context.FireTimeUtc.DateTime.ToString()))
             End If
 
-            'IniciarProcesoTransferencia()
-
+            IniciarProcesoRecepcion()
             Return Task.FromResult(0)
+        End Function
+
+        Private Function IniciarProcesoRecepcion() As Boolean
+            'Dim objOrigenArchivosRecibir = _blOrigenDestinoArchivos.ObtenerOrigenDestinoArchivosPorRecibir()
+
+            'For Each objOrigenArchivos As Procesos_OrigenDestinoArchivos In objOrigenArchivosRecibir
+            '    Dim objMovimientoArchivos = _blMovimientoArchivos.ObtenerRegistrosMovimientosArchivosRecibidos(fechaProcesoActual, objOrigenArchivos.Id)
+
+            '    Return MoverArchivosAsync(Tuple.Create(objOrigenArchivos, objMovimientoArchivos))
+            'Next
         End Function
     End Class
 End Namespace
