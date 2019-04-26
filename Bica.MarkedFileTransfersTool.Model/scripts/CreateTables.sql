@@ -67,12 +67,19 @@ INSERT INTO dbo.Procesos_OrigenDestinoArchivos (PROCESSNR, Procesos_TipoDireccio
 INSERT INTO dbo.Procesos_OrigenDestinoArchivos (PROCESSNR, Procesos_TipoDireccionArchivoId, PATH_FROM, PATH_NTFTP_INPORT, PATH_NTFTP_SEND, PATH_NTFTP_RECIBED, PATH_TO, CREATED_USER_NAME) VALUES (364, 2, '\\FILESERVER\EntExt\Provincanje\aProvincanje1\Debitos', '\\BBPROCESO2\Coelsa\Bica\Importado', '\\BBPROCESO2\Coelsa\Bica\Enviado', '\\BBPROCESO2\Coelsa\Bica\Recibido', '\\FILESERVER\EntExt\Provincanje\alBanco\Debitos', 'arey');
 */
 --DEV
+/*
 INSERT INTO dbo.Procesos_OrigenDestinoArchivos (PROCESSNR, Procesos_TipoDireccionArchivoId, PATH_FROM, PATH_NTFTP_INPORT, PATH_NTFTP_SEND, PATH_NTFTP_RECIBED, PATH_TO, CREATED_USER_NAME) VALUES (354, 1, '\\HP\FILESERVER\EntExt\Provincanje\aProvincanje1\Debitos', '\\HP\BBPROCESO2\Coelsa\Bica\Importado', '\\HP\BBPROCESO2\Coelsa\Bica\Enviado', null, null, 'arey');
 INSERT INTO dbo.Procesos_OrigenDestinoArchivos (PROCESSNR, Procesos_TipoDireccionArchivoId, PATH_FROM, PATH_NTFTP_INPORT, PATH_NTFTP_SEND, PATH_NTFTP_RECIBED, PATH_TO, CREATED_USER_NAME) VALUES (359, 1, '\\HP\FILESERVER\EntExt\Provincanje\aProvincanje1\Debitos', '\\HP\BBPROCESO2\Coelsa\Bica\Importado', '\\HP\BBPROCESO2\Coelsa\Bica\Enviado', null, null, 'arey');
 INSERT INTO dbo.Procesos_OrigenDestinoArchivos (PROCESSNR, Procesos_TipoDireccionArchivoId, PATH_FROM, PATH_NTFTP_INPORT, PATH_NTFTP_SEND, PATH_NTFTP_RECIBED, PATH_TO, CREATED_USER_NAME) VALUES (355, 2, null, null, null, '\\HP\BBPROCESO2\Coelsa\Bica\Recibido', '\\HP\FILESERVER\EntExt\Provincanje\alBanco\Debitos', 'arey');
 INSERT INTO dbo.Procesos_OrigenDestinoArchivos (PROCESSNR, Procesos_TipoDireccionArchivoId, PATH_FROM, PATH_NTFTP_INPORT, PATH_NTFTP_SEND, PATH_NTFTP_RECIBED, PATH_TO, CREATED_USER_NAME) VALUES (363, 2, null, null, null, '\\HP\BBPROCESO2\Coelsa\Bica\Recibido', '\\HP\FILESERVER\EntExt\Provincanje\alBanco\Debitos', 'arey');
 INSERT INTO dbo.Procesos_OrigenDestinoArchivos (PROCESSNR, Procesos_TipoDireccionArchivoId, PATH_FROM, PATH_NTFTP_INPORT, PATH_NTFTP_SEND, PATH_NTFTP_RECIBED, PATH_TO, CREATED_USER_NAME) VALUES (364, 2, null, null, null, '\\HP\BBPROCESO2\Coelsa\Bica\Recibido', '\\HP\FILESERVER\EntExt\Provincanje\alBanco\Debitos', 'arey');
-
+*/
+--TESTING
+INSERT INTO dbo.Procesos_OrigenDestinoArchivos (PROCESSNR, Procesos_TipoDireccionArchivoId, PATH_FROM, PATH_NTFTP_INPORT, PATH_NTFTP_SEND, PATH_NTFTP_RECIBED, PATH_TO, CREATED_USER_NAME) VALUES (354, 1, '\\FILESERVER\EntExt\Provincanje\aProvincanje1\Debitos', '\\cctecn32\BBPROCESOS2_TEST\Coelsa\Bica\Importado', '\\cctecn32\BBPROCESOS2_TEST\Coelsa\Bica\Enviado', null, null, 'arey');
+INSERT INTO dbo.Procesos_OrigenDestinoArchivos (PROCESSNR, Procesos_TipoDireccionArchivoId, PATH_FROM, PATH_NTFTP_INPORT, PATH_NTFTP_SEND, PATH_NTFTP_RECIBED, PATH_TO, CREATED_USER_NAME) VALUES (359, 1, '\\FILESERVER\EntExt\Provincanje\aProvincanje1\Debitos', '\\cctecn32\BBPROCESOS2_TEST\Coelsa\Bica\Importado', '\\cctecn32\BBPROCESOS2_TEST\Coelsa\Bica\Enviado', null, null, 'arey');
+INSERT INTO dbo.Procesos_OrigenDestinoArchivos (PROCESSNR, Procesos_TipoDireccionArchivoId, PATH_FROM, PATH_NTFTP_INPORT, PATH_NTFTP_SEND, PATH_NTFTP_RECIBED, PATH_TO, CREATED_USER_NAME) VALUES (355, 2, null, null, null, '\\HP\BBPROCESO2\Coelsa\Bica\Recibido', '\\HP\FILESERVER\EntExt\Provincanje\alBanco\Debitos', 'arey');
+INSERT INTO dbo.Procesos_OrigenDestinoArchivos (PROCESSNR, Procesos_TipoDireccionArchivoId, PATH_FROM, PATH_NTFTP_INPORT, PATH_NTFTP_SEND, PATH_NTFTP_RECIBED, PATH_TO, CREATED_USER_NAME) VALUES (363, 2, null, null, null, '\\HP\BBPROCESO2\Coelsa\Bica\Recibido', '\\HP\FILESERVER\EntExt\Provincanje\alBanco\Debitos', 'arey');
+IN
 GO
 --fin [Procesos_OrigenDestinoArchivos]
 
