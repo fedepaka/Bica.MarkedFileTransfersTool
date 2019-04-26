@@ -77,7 +77,7 @@ Public Class frmDebitoDirectoEnvio
         lblPathFrom.Text = objOrigenArchivo.PathFrom
 
         lblPathToTitulo.Text = "Path destino archivo:"
-        lblPathTo.Text = objOrigenArchivo.PathTo
+        lblPathTo.Text = objOrigenArchivo.PathSend
 
         txtFechaProceso.ReadOnly = True
 

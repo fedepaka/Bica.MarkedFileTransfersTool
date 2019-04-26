@@ -24,5 +24,6 @@ Partial Public Class B_BancaElecEntities
 
     Public Overridable Property Procesos_MovimientoArchivos() As DbSet(Of Procesos_MovimientoArchivos)
     Public Overridable Property Procesos_OrigenDestinoArchivos() As DbSet(Of Procesos_OrigenDestinoArchivos)
+    Public Overridable Property Procesos_TipoDireccionArchivo() As DbSet(Of Procesos_TipoDireccionArchivo)
 
 End Class

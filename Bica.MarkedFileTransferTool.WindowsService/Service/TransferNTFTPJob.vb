@@ -5,13 +5,22 @@ Imports Bica.MarkedFileTransfersTool
 Imports Bica.MarkedFileTransfersTool.Helper
 
 Namespace Bica.TransferGateway.WindowsService.Service
+    ''' <summary>
+    ''' Métodos y clases necesarias para transferencia de archivos al NTFTP
+    ''' </summary>
     Public Class TransferNTFTPJob
         Implements IJob
 
         Private _blMovimientoArchivos As MovimientoArchivos = New MovimientoArchivos()
         Private _blOrigenDestinoArchivos As OrigenDestinoArchivos = New OrigenDestinoArchivos()
         Private fechaProcesoActual As Date = Date.Now
+        Private userName As String = Me.GetType().Name
 
+        ''' <summary>
+        ''' Método principal del Job
+        ''' </summary>
+        ''' <param name="context"></param>
+        ''' <returns></returns>
         Public Function Execute(ByVal context As IJobExecutionContext) As Task Implements IJob.Execute
             Dim lastRun = If(context.PreviousFireTimeUtc?.DateTime.ToString(), String.Empty)
 
@@ -31,15 +40,28 @@ Namespace Bica.TransferGateway.WindowsService.Service
         End Function
 
         ''' <summary>
-        ''' 
+        ''' Principal que ejecuta la transferencia de archivos
         ''' </summary>
         ''' <returns></returns>
         Private Function IniciarProcesoTransferencia() As Boolean
-            Dim objMovimientoArchivos = _blMovimientoArchivos.ObtenerRegistrosMovimientosArchivosPendientesEnviar(fechaProcesoActual, _blOrigenDestinoArchivos.ObtenerOrigenDestinoArchivos(Constants.BCO_Envio_Debito_Directo_Code).Id)
+            Dim objOrigenArchivosAEnviar = _blOrigenDestinoArchivos.ObtenerOrigenDestinoArchivosPorEnviar()
 
-            Return MoverArchivos(objMovimientoArchivos)
+            For Each objOrigenArchivos As Procesos_OrigenDestinoArchivos In objOrigenArchivosAEnviar
+                Dim objMovimientoArchivos = _blMovimientoArchivos.ObtenerRegistrosMovimientosArchivosPendientesEnviar(fechaProcesoActual, objOrigenArchivos.Id)
+
+                Return MoverArchivosAsync(Tuple.Create(objOrigenArchivos, objMovimientoArchivos))
+            Next
         End Function
 
+        ''' <summary>
+        '''  Taréa asíncrona en nuevo thread para transferencia de archivo
+        ''' </summary>
+        ''' <param name="procesoArchivo"></param>
+        ''' <returns></returns>
+        Private Function MoverArchivosAsync(ByVal procesoArchivo As Tuple(Of Procesos_OrigenDestinoArchivos, List(Of Model.Procesos_MovimientoArchivos))) As Boolean
+            Dim fatory = Task.Factory.StartNew(Function() MoverArchivos(procesoArchivo))
+            Return fatory.Result
+        End Function
 
         ''' <summary>
         ''' Se encarga de mover los archivos a la carpeta de NTFTP
@@ -66,12 +88,11 @@ Namespace Bica.TransferGateway.WindowsService.Service
                 Else
                     FileUtil.CopiarArchivo(rutaArchivoDesdeCompleta, String.Format("{0}\{1}", rutaDestino, archivo.FileName))
                     'marcar como copiado
-                    _blMovimientoArchivos.ActualizarRegistroCopiado(archivo.Id, 1)
+                    _blMovimientoArchivos.ActualizarRegistroCopiado(archivo.Id, userName)
                 End If
             Next
             Return True
         End Function
-
 
     End Class
 End Namespace

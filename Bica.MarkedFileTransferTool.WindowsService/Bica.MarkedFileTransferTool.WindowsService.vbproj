@@ -116,6 +116,7 @@
     <Compile Include="Program.vb" />
     <Compile Include="Service\CheckTransferNTFTPJob.vb" />
     <Compile Include="Service\ConfigureService.vb" />
+    <Compile Include="Service\ReciberNTFTPJob.vb" />
     <Compile Include="Service\ScheduleService.vb" />
     <Compile Include="Service\TransferNTFTPJob.vb" />
   </ItemGroup>

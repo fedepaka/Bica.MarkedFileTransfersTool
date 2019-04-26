@@ -136,6 +136,9 @@
       <DependentUpon>B_BancaElec.tt</DependentUpon>
     </Compile>
     <Compile Include="Procesos_OrigenDestinoArchivos_DataModel.vb" />
+    <Compile Include="Procesos_TipoDireccionArchivo.vb">
+      <DependentUpon>B_BancaElec.tt</DependentUpon>
+    </Compile>
     <Compile Include="Prov_DebitoDirecto.vb">
       <DependentUpon>B_General.tt</DependentUpon>
     </Compile>

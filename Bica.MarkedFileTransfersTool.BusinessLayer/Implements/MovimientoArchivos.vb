@@ -78,10 +78,11 @@ Public Class MovimientoArchivos
     ''' <param name="Fecha"></param>
     ''' <param name="IdProceso"></param>
     ''' <returns></returns>
-    Public Function ObtenerRegistrosMovimientosArchivosPendientesEnviar(Fecha As Date, IdProceso As Long) As Tuple(Of Model.Procesos_OrigenDestinoArchivos, List(Of Model.Procesos_MovimientoArchivos))
+    Public Function ObtenerRegistrosMovimientosArchivosPendientesEnviar(Fecha As Date, IdProceso As Long) As List(Of Model.Procesos_MovimientoArchivos)
 
-        Dim objProceso = _blOrigenDestinoArchivos.ObtenerOrigenDestinoArchivos(Constants.BCO_Envio_Debito_Directo_Code)
-        Return Tuple.Create(objProceso, ObtenerMovimientoArchivosPendientesEnviar(objProceso.Id, Fecha))
+        'Dim objProceso = _blOrigenDestinoArchivos.ObtenerOrigenDestinoArchivos(Constants.BCO_Envio_Debito_Directo_Code)
+        'Return Tuple.Create(objProceso, ObtenerMovimientoArchivosPendientesEnviar(IdProceso, Fecha))
+        Return ObtenerMovimientoArchivosPendientesEnviar(IdProceso, Fecha)
     End Function
 
     ''' <summary>
@@ -90,10 +91,11 @@ Public Class MovimientoArchivos
     ''' <param name="Fecha"></param>
     ''' <param name="IdProceso"></param>
     ''' <returns></returns>
-    Public Function ObtenerRegistrosMovimientosArchivosCopiados(Fecha As Date, IdProceso As Long) As Tuple(Of Model.Procesos_OrigenDestinoArchivos, List(Of Model.Procesos_MovimientoArchivos))
+    Public Function ObtenerRegistrosMovimientosArchivosCopiados(Fecha As Date, IdProceso As Long) As List(Of Model.Procesos_MovimientoArchivos)
 
-        Dim objProceso = _blOrigenDestinoArchivos.ObtenerOrigenDestinoArchivos(Constants.BCO_Envio_Debito_Directo_Code)
-        Return Tuple.Create(objProceso, ObtenerMovimientoArchivosCopiadosNTFTP(objProceso.Id, Fecha))
+        'Dim objProceso = _blOrigenDestinoArchivos.ObtenerOrigenDestinoArchivos(Constants.BCO_Envio_Debito_Directo_Code)
+        'Return Tuple.Create(objProceso, ObtenerMovimientoArchivosCopiadosNTFTP(objProceso.Id, Fecha))
+        Return ObtenerMovimientoArchivosCopiadosNTFTP(IdProceso, Fecha)
     End Function
 
 

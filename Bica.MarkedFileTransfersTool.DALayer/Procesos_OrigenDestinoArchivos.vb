@@ -13,11 +13,12 @@ Imports System.Collections.Generic
 Partial Public Class Procesos_OrigenDestinoArchivos
     Public Property ID As Long
     Public Property PROCESSNR As Nullable(Of Integer)
+    Public Property Procesos_TipoDireccionArchivoId As Long
     Public Property PATH_FROM As String
     Public Property PATH_NTFTP_INPORT As String
     Public Property PATH_NTFTP_SEND As String
-    Public Property PATH_TO As String
     Public Property PATH_NTFTP_RECIBED As String
+    Public Property PATH_TO As String
     Public Property CREATED_USER_ID As Nullable(Of Long)
     Public Property CREATED_USER_NAME As String
     Public Property MODIFIED_USER_ID As Nullable(Of Long)
@@ -27,5 +28,6 @@ Partial Public Class Procesos_OrigenDestinoArchivos
     Public Property DELETED As Nullable(Of Boolean)
 
     Public Overridable Property Procesos_MovimientoArchivos As ICollection(Of Procesos_MovimientoArchivos) = New HashSet(Of Procesos_MovimientoArchivos)
+    Public Overridable Property Procesos_TipoDireccionArchivo As Procesos_TipoDireccionArchivo
 
 End Class

@@ -20,6 +20,7 @@ Partial Public Class Procesos_MovimientoArchivos
     Public Property DOBACKUP As Nullable(Of Boolean)
     Public Property TO_BE_TRANSFER As Nullable(Of Boolean)
     Public Property COPIED As Nullable(Of Boolean)
+    Public Property RECIBED As Nullable(Of Boolean)
     Public Property CREATED_USER_ID As Nullable(Of Long)
     Public Property CREATED_USER_NAME As String
     Public Property MODIFIED_USER_ID As Nullable(Of Long)

@@ -8,34 +8,28 @@ Public Class Procesos_OrigenDestinoArchivos_DataModel
     ''' <param name="IdProceso"></param>
     ''' <returns></returns>
     Public Function ObtenerOrigenDestinoArchivos(IdProceso As Long) As Model.Procesos_OrigenDestinoArchivos
-        Dim setGeneral As List(Of Gen_Procesos)
-
-        'Using rGeneral As New B_GeneralEntities
-        '    setGeneral = (From gen In rGeneral.Gen_Procesos Where gen.Proceso = IdProceso).ToList()
-        'End Using
-
         Using resource As New B_BancaElecEntities()
             registro = (From f In resource.Procesos_OrigenDestinoArchivos Where f.PROCESSNR = IdProceso And f.DELETED <> 0).FirstOrDefault()
-
-
-
-            'Dim pepe = From elec In resource.Procesos_OrigenDestinoArchivos
-            '           Join gen In setGeneral On elec.PROCESSNR Equals gen.Proceso
-            '           Where elec.PROCESSNR = IdProceso
-            '           Select New Procesos_OrigenDestinoArchivos With {.ID = elec.ID,
-            '               .MODIFIED_DATE = elec.MODIFIED_DATE,
-            '               .CREATED_DATE = elec.CREATED_DATE,
-            '               .CREATED_USER_ID = elec.CREATED_USER_ID,
-            '               .PROCESSNR = elec.PROCESSNR,
-            '               .PATHFROM = elec.PATHFROM,
-            '               .PATHTO = elec.PATHTO,
-            '               .MODIFIED_USER_ID = elec.MODIFIED_USER_ID}
-            '''Select elec.ID, elec.MODIFIED_DATE, elec.CREATED_DATE, elec.CREATED_USER_ID, elec.PROCESSNR, elec.PATHFROM, elec.PATHTO, elec.MODIFIED_USER_ID
-
-            'Dim x = pepe.ToList()
-
             Return Map(registro)
+        End Using
+    End Function
 
+    ''' <summary>
+    ''' Obtener información de los procesos según el típo. De envío o recepción
+    ''' </summary>
+    ''' <param name="TipoProcesoNombre"></param>
+    ''' <returns></returns>
+    Public Function ObtenerOrigenDestinoArchivosPorTipo(TipoProcesoNombre As String) As List(Of Model.Procesos_OrigenDestinoArchivos)
+        Using resource As New B_BancaElecEntities()
+
+            Dim registros = (From f In resource.Procesos_OrigenDestinoArchivos Where f.Procesos_TipoDireccionArchivo.NAME = TipoProcesoNombre And f.DELETED <> 0 Select f).ToList()
+
+            'cargamos lista de resultados
+            Dim lista As List(Of Model.Procesos_OrigenDestinoArchivos) = New List(Of Model.Procesos_OrigenDestinoArchivos)
+            For Each item As Procesos_OrigenDestinoArchivos In registros
+                lista.Add(Map(item))
+            Next
+            Return lista
         End Using
     End Function
 
@@ -54,6 +48,7 @@ Public Class Procesos_OrigenDestinoArchivos_DataModel
         Dim retorno As New Model.Procesos_OrigenDestinoArchivos()
         retorno.Created_Date = registro.CREATED_DATE
         retorno.Id = registro.ID
+        retorno.Procesos_TipoDireccionArchivoId = registro.Procesos_TipoDireccionArchivoId
         retorno.Updated_Date = registro.MODIFIED_DATE
         retorno.Modified_User_Id = registro.MODIFIED_USER_ID
         retorno.PathFrom = registro.PATH_FROM

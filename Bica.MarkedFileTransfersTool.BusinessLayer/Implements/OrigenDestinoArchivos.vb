@@ -1,4 +1,6 @@
-﻿Imports Bica.MarkedFileTransfersTool.DALayer
+﻿Imports Bica.MarkedFileTransfersTool.BusinessLayer
+Imports Bica.MarkedFileTransfersTool.DALayer
+Imports Bica.MarkedFileTransfersTool.Model
 
 Public Class OrigenDestinoArchivos
     Implements IOrigenDestinoArchivos
@@ -19,5 +21,18 @@ Public Class OrigenDestinoArchivos
     Public Function CargaDatosProcesos(fecha As Date) As Boolean
         Return True
     End Function
+
+    Public Function ObtenerOrigenDestinoArchivosPorTipo(TipoProcesoNombre As String) As List(Of Model.Procesos_OrigenDestinoArchivos) Implements IOrigenDestinoArchivos.ObtenerOrigenDestinoArchivosPorTipo
+        _daOrigenDestinoArchivos = New Procesos_OrigenDestinoArchivos_DataModel()
+        Return _daOrigenDestinoArchivos.ObtenerOrigenDestinoArchivosPorTipo(TipoProcesoNombre)
+    End Function
+    Public Function ObtenerOrigenDestinoArchivosPorEnviar() As List(Of Model.Procesos_OrigenDestinoArchivos) Implements IOrigenDestinoArchivos.ObtenerOrigenDestinoArchivosPorEnviar
+        Return ObtenerOrigenDestinoArchivosPorTipo(Constants.Procesos_TipoDireccionArchivo_ENVIO)
+    End Function
+
+    Public Function ObtenerOrigenDestinoArchivosPorRecibir() As List(Of Model.Procesos_OrigenDestinoArchivos) Implements IOrigenDestinoArchivos.ObtenerOrigenDestinoArchivosPorRecibir
+        Return ObtenerOrigenDestinoArchivosPorTipo(Constants.Procesos_TipoDireccionArchivo_RECEPCION)
+    End Function
+
 
 End Class

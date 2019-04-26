@@ -2,6 +2,7 @@
 
     Public Property Id As Long
     Public Property ProcessNr As Long
+    Public Property Procesos_TipoDireccionArchivoId As Long
     Public Property PathFrom As String
     Public Property PathTo As String
     Public Property PathInport As String
