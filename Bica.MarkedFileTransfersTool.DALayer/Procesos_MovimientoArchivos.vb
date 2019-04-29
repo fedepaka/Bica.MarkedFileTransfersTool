@@ -11,23 +11,21 @@ Imports System
 Imports System.Collections.Generic
 
 Partial Public Class Procesos_MovimientoArchivos
-    Public Property ID As Long
+    Public Property Id As Long
     Public Property Procesos_OrigenDestinoArchivosId As Long
-    Public Property FILENAME As String
-    Public Property PRESENTATION_DATE As Date
-    Public Property ID_FILE As Long
-    Public Property TRANSFERRED As Nullable(Of Boolean)
-    Public Property DOBACKUP As Nullable(Of Boolean)
-    Public Property TO_BE_TRANSFER As Nullable(Of Boolean)
-    Public Property COPIED As Nullable(Of Boolean)
-    Public Property RECIBED As Nullable(Of Boolean)
-    Public Property CREATED_USER_ID As Nullable(Of Long)
-    Public Property CREATED_USER_NAME As String
-    Public Property MODIFIED_USER_ID As Nullable(Of Long)
-    Public Property MODIFIED_USER_NAME As String
-    Public Property CREATED_DATE As Date
-    Public Property MODIFIED_DATE As Nullable(Of Date)
-    Public Property DELETED As Nullable(Of Boolean)
+    Public Property NombreArchivo As String
+    Public Property FechaPresentacion As Date
+    Public Property IdArchivo As Long
+    Public Property Transferido As Boolean
+    Public Property HacerBackup As Boolean
+    Public Property ParaTransferir As Boolean
+    Public Property Copiado As Boolean
+    Public Property Recibido As Boolean
+    Public Property UsuarioCreacion As String
+    Public Property FechaCreacion As Date
+    Public Property UsuarioModificacion As String
+    Public Property FechaModificacion As Nullable(Of Date)
+    Public Property Eliminado As Boolean
 
     Public Overridable Property Procesos_OrigenDestinoArchivos As Procesos_OrigenDestinoArchivos
 

@@ -9,7 +9,7 @@ Public Class Procesos_OrigenDestinoArchivos_DataModel
     ''' <returns></returns>
     Public Function ObtenerOrigenDestinoArchivos(IdProceso As Long) As Model.Procesos_OrigenDestinoArchivos
         Using resource As New B_BancaElecEntities()
-            registro = (From f In resource.Procesos_OrigenDestinoArchivos Where f.PROCESSNR = IdProceso And f.DELETED <> 0).FirstOrDefault()
+            registro = (From f In resource.Procesos_OrigenDestinoArchivos Where f.NumeroProceso = IdProceso And f.Eliminado = False).FirstOrDefault()
             Return Map(registro)
         End Using
     End Function
@@ -22,7 +22,7 @@ Public Class Procesos_OrigenDestinoArchivos_DataModel
     Public Function ObtenerOrigenDestinoArchivosPorTipo(TipoProcesoNombre As String) As List(Of Model.Procesos_OrigenDestinoArchivos)
         Using resource As New B_BancaElecEntities()
 
-            Dim registros = (From f In resource.Procesos_OrigenDestinoArchivos Where f.Procesos_TipoDireccionArchivo.NAME = TipoProcesoNombre And f.DELETED <> 0 Select f).ToList()
+            Dim registros = (From f In resource.Procesos_OrigenDestinoArchivos Where f.Procesos_TipoDireccionArchivo.Nombre = TipoProcesoNombre And f.Eliminado = False Select f).ToList()
 
             'cargamos lista de resultados
             Dim lista As List(Of Model.Procesos_OrigenDestinoArchivos) = New List(Of Model.Procesos_OrigenDestinoArchivos)
@@ -46,19 +46,18 @@ Public Class Procesos_OrigenDestinoArchivos_DataModel
         End If
 
         Dim retorno As New Model.Procesos_OrigenDestinoArchivos()
-        retorno.Created_Date = registro.CREATED_DATE
+        retorno.FechaCreacion = registro.FechaCreacion
         retorno.Id = registro.ID
         retorno.Procesos_TipoDireccionArchivoId = registro.Procesos_TipoDireccionArchivoId
-        retorno.Updated_Date = registro.MODIFIED_DATE
-        retorno.Modified_User_Id = registro.MODIFIED_USER_ID
-        retorno.PathFrom = registro.PATH_FROM
-        retorno.PathInport = registro.PATH_NTFTP_INPORT
-        retorno.PathTo = registro.PATH_TO
-        retorno.PathSend = registro.PATH_NTFTP_SEND
-        retorno.PathRecibed = registro.PATH_NTFTP_RECIBED
-        retorno.ProcessNr = registro.PROCESSNR
-        retorno.Created_User_Name = registro.CREATED_USER_NAME
-        retorno.Modified_User_Name = registro.MODIFIED_USER_NAME
+        retorno.Updated_Date = registro.FechaModificacion
+        retorno.PathFrom = registro.UbicacionDesde
+        retorno.PathInport = registro.UbicacionNTFTPImportar
+        retorno.PathTo = registro.UbicacionDestino
+        retorno.PathSend = registro.UbicacionNTFTPEnviar
+        retorno.PathRecibed = registro.UbicacionNTFTPRecibir
+        retorno.ProcessNr = registro.NumeroProceso
+        retorno.UsuarioCreacion = registro.UsuarioCreacion
+        retorno.UsuarioModificacion = registro.UsuarioModificacion
         Return retorno
     End Function
 

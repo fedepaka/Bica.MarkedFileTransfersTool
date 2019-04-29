@@ -14,7 +14,7 @@ Public Class Procesos_MovimientoArchivos_DataModel
         Using resource As New B_BancaElecEntities()
             registros = (From f In resource.Procesos_MovimientoArchivos
                          Where f.Procesos_OrigenDestinoArchivosId = IdProceso And
-                             DbFunctions.TruncateTime(f.PRESENTATION_DATE) = fecha.Date And f.DELETED <> 0).ToList()
+                             DbFunctions.TruncateTime(f.FechaPresentacion) = fecha.Date And f.Eliminado = False).ToList()
 
             'cargamos lista de resultados
             Dim lista As List(Of Model.Procesos_MovimientoArchivos) = New List(Of Model.Procesos_MovimientoArchivos)
@@ -38,10 +38,10 @@ Public Class Procesos_MovimientoArchivos_DataModel
         Using resource As New B_BancaElecEntities()
             registros = (From f In resource.Procesos_MovimientoArchivos
                          Where f.Procesos_OrigenDestinoArchivosId = IdProceso And
-                             DbFunctions.TruncateTime(f.PRESENTATION_DATE) = fecha.Date And
-                             f.TO_BE_TRANSFER = True And
-                             f.TRANSFERRED = 0 And
-                             f.DELETED <> 0 Select f).ToList()
+                             DbFunctions.TruncateTime(f.FechaPresentacion) = fecha.Date And
+                             f.ParaTransferir = True And
+                             f.Transferido = False And
+                             f.Eliminado = False Select f).ToList()
 
             'cargamos lista de resultados
             Dim lista As List(Of Model.Procesos_MovimientoArchivos) = New List(Of Model.Procesos_MovimientoArchivos)
@@ -69,11 +69,11 @@ Public Class Procesos_MovimientoArchivos_DataModel
         Using resource As New B_BancaElecEntities()
             registros = (From f In resource.Procesos_MovimientoArchivos
                          Where f.Procesos_OrigenDestinoArchivosId = IdProceso And
-                             DbFunctions.TruncateTime(f.PRESENTATION_DATE) = fecha.Date And
-                             f.TO_BE_TRANSFER = 0 And
-                             f.TRANSFERRED = 0 And
-                             f.COPIED = True And
-                             f.DELETED <> 0).ToList()
+                             DbFunctions.TruncateTime(f.FechaPresentacion) = fecha.Date And
+                             f.ParaTransferir = False And
+                             f.Transferido = False And
+                             f.Copiado = True And
+                             f.Eliminado = False).ToList()
 
             'cargamos lista de resultados
             Dim lista As List(Of Model.Procesos_MovimientoArchivos) = New List(Of Model.Procesos_MovimientoArchivos)
@@ -95,7 +95,7 @@ Public Class Procesos_MovimientoArchivos_DataModel
 
         Using resource As New B_BancaElecEntities()
             registro = (From f In resource.Procesos_MovimientoArchivos
-                        Where f.FILENAME.ToLower() = nombre.ToLower() And f.DELETED <> 0).FirstOrDefault()
+                        Where f.NombreArchivo.ToLower() = nombre.ToLower() And f.Eliminado = False).FirstOrDefault()
 
             Return Map(registro)
         End Using
@@ -106,7 +106,7 @@ Public Class Procesos_MovimientoArchivos_DataModel
 
         Using resource As New B_BancaElecEntities()
             registro = (From f In resource.Procesos_MovimientoArchivos
-                        Where f.ID = Id And f.DELETED <> 0).FirstOrDefault()
+                        Where f.Id = Id And f.Eliminado = False).FirstOrDefault()
 
             Return Map(registro)
         End Using
@@ -119,7 +119,6 @@ Public Class Procesos_MovimientoArchivos_DataModel
     ''' <param name="NombreArchivo">Nombre del archivo</param>
     ''' <param name="FechaPresentacion">Fecha en la que será presentado el archivo</param>
     ''' <param name="IdArchivo">Identificador del archivo interno a BICA</param>
-    ''' <param name="IdUsuarioCreacion">Identifiador del usuario que ejecuta el evento</param>
     ''' <returns></returns>
     Public Function InsertarRegistroMovimientoArchivo(IdProcesoOrigen As Long, NombreArchivo As String, FechaPresentacion As Date, IdArchivo As Long, UserName As String) As Long
         Dim idREgistro As Long = 0
@@ -127,13 +126,13 @@ Public Class Procesos_MovimientoArchivos_DataModel
         Using resource As New B_BancaElecEntities()
             objMovArchivos = New Procesos_MovimientoArchivos()
             objMovArchivos.Procesos_OrigenDestinoArchivosId = IdProcesoOrigen
-            objMovArchivos.FILENAME = NombreArchivo
-            objMovArchivos.PRESENTATION_DATE = FechaPresentacion
-            objMovArchivos.ID_FILE = IdArchivo
-            objMovArchivos.CREATED_USER_NAME = UserName
+            objMovArchivos.NombreArchivo = NombreArchivo
+            objMovArchivos.FechaPresentacion = FechaPresentacion
+            objMovArchivos.IdArchivo = IdArchivo
+            objMovArchivos.UsuarioCreacion = UserName
             resource.Procesos_MovimientoArchivos.Add(objMovArchivos)
             resource.SaveChanges()
-            idREgistro = objMovArchivos.ID
+            idREgistro = objMovArchivos.Id
 
         End Using
         Return idREgistro
@@ -145,21 +144,20 @@ Public Class Procesos_MovimientoArchivos_DataModel
     ''' <param name="IdMovimientoArchivo"></param>
     ''' <param name="Transferred"></param>
     ''' <param name="DoBackup"></param>
-    ''' <param name="IdUpdatedUser"></param>
     ''' <returns></returns>
     Public Function ActualizarRegistroMovimientoArchivo(IdMovimientoArchivo As Long, Transferred As Boolean, DoBackup As Boolean, ToBeTransfer As Boolean, Copied As Boolean, UpdatedUserName As String) As Long
         Using resource = New B_BancaElecEntities()
 
             Dim objMovArchivos = (From f In resource.Procesos_MovimientoArchivos
-                                  Where f.ID = IdMovimientoArchivo And f.DELETED <> 0 Select f).FirstOrDefault()
+                                  Where f.Id = IdMovimientoArchivo And f.Eliminado = False Select f).FirstOrDefault()
 
             If objMovArchivos IsNot Nothing Then
-                objMovArchivos.MODIFIED_DATE = DateTime.Now
-                objMovArchivos.DOBACKUP = DoBackup
-                objMovArchivos.TRANSFERRED = Transferred
-                objMovArchivos.TO_BE_TRANSFER = ToBeTransfer
-                objMovArchivos.COPIED = Copied
-                objMovArchivos.MODIFIED_USER_NAME = UpdatedUserName
+                objMovArchivos.FechaModificacion = DateTime.Now
+                objMovArchivos.HacerBackup = DoBackup
+                objMovArchivos.Transferido = Transferred
+                objMovArchivos.ParaTransferir = ToBeTransfer
+                objMovArchivos.Copiado = Copied
+                objMovArchivos.UsuarioModificacion = UpdatedUserName
                 If resource.SaveChanges() > 0 Then
                     Return 1
                 End If
@@ -182,20 +180,19 @@ Public Class Procesos_MovimientoArchivos_DataModel
         End If
 
         Dim retorno As New Model.Procesos_MovimientoArchivos()
-        retorno.Created_Date = registro.CREATED_DATE
-        retorno.DoBackup = If(registro.DOBACKUP Is Nothing, False, registro.DOBACKUP)
-        retorno.FileName = If(registro.FILENAME Is Nothing, String.Empty, registro.FILENAME)
+        retorno.FechaCreacion = registro.FechaCreacion
+        retorno.DoBackup = registro.HacerBackup
+        retorno.FileName = If(registro.NombreArchivo Is Nothing, String.Empty, registro.NombreArchivo)
         retorno.Id = registro.ID
-        retorno.Modified_Date = registro.MODIFIED_DATE
-        retorno.Modified_User_Id = registro.MODIFIED_USER_ID
+        retorno.FechaModificacion = registro.FechaModificacion
         retorno.Procesos_OrigenDestinoArchivosId = registro.Procesos_OrigenDestinoArchivosId
-        retorno.Transferred = If(registro.TRANSFERRED Is Nothing, False, registro.TRANSFERRED)
-        retorno.ToBeTransfer = If(registro.TO_BE_TRANSFER Is Nothing, False, registro.TO_BE_TRANSFER)
-        retorno.Copied = If(registro.COPIED Is Nothing, False, registro.COPIED)
-        retorno.Id_File = registro.ID_FILE
-        retorno.Presentation_Date = registro.PRESENTATION_DATE
-        retorno.Created_User_Name = registro.CREATED_USER_NAME
-        retorno.Modified_User_Name = registro.MODIFIED_USER_NAME
+        retorno.Transferred = registro.Transferido
+        retorno.ToBeTransfer = registro.ParaTransferir
+        retorno.Copied = registro.Copiado
+        retorno.Id_File = registro.IdArchivo
+        retorno.Presentation_Date = registro.FechaPresentacion
+        retorno.UsuarioCreacion = registro.UsuarioCreacion
+        retorno.UsuarioModificacion = registro.UsuarioModificacion
         Return retorno
     End Function
 

@@ -41,7 +41,7 @@ Partial Class frmDebitoDirectoEnvio
         Me.PresentationDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ToBeTransfer = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.Transferred = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.Modified_Date = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FechaModificacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btnAction = New System.Windows.Forms.DataGridViewButtonColumn()
         CType(Me.dgvOrigenDestinoArchivos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -53,7 +53,7 @@ Partial Class frmDebitoDirectoEnvio
         Me.dgvOrigenDestinoArchivos.AllowUserToDeleteRows = False
         Me.dgvOrigenDestinoArchivos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader
         Me.dgvOrigenDestinoArchivos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvOrigenDestinoArchivos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ID, Me.FileName, Me.PresentationDate, Me.ToBeTransfer, Me.Transferred, Me.Modified_Date, Me.btnAction})
+        Me.dgvOrigenDestinoArchivos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ID, Me.FileName, Me.PresentationDate, Me.ToBeTransfer, Me.Transferred, Me.FechaModificacion, Me.btnAction})
         Me.dgvOrigenDestinoArchivos.Location = New System.Drawing.Point(55, 288)
         Me.dgvOrigenDestinoArchivos.Name = "dgvOrigenDestinoArchivos"
         Me.dgvOrigenDestinoArchivos.ReadOnly = True
@@ -237,15 +237,15 @@ Partial Class frmDebitoDirectoEnvio
         Me.Transferred.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         Me.Transferred.Width = 85
         '
-        'Modified_Date
+        'FechaModificacion
         '
-        Me.Modified_Date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.Modified_Date.DataPropertyName = "Modified_Date"
-        Me.Modified_Date.FillWeight = 456.8528!
-        Me.Modified_Date.HeaderText = "Fecha Transferido"
-        Me.Modified_Date.Name = "Modified_Date"
-        Me.Modified_Date.ReadOnly = True
-        Me.Modified_Date.Width = 108
+        Me.FechaModificacion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.FechaModificacion.DataPropertyName = "FechaModificacion"
+        Me.FechaModificacion.FillWeight = 456.8528!
+        Me.FechaModificacion.HeaderText = "Fecha Transferido"
+        Me.FechaModificacion.Name = "FechaModificacion"
+        Me.FechaModificacion.ReadOnly = True
+        Me.FechaModificacion.Width = 108
         '
         'btnAction
         '
@@ -301,6 +301,6 @@ Partial Class frmDebitoDirectoEnvio
     Friend WithEvents PresentationDate As DataGridViewTextBoxColumn
     Friend WithEvents ToBeTransfer As DataGridViewCheckBoxColumn
     Friend WithEvents Transferred As DataGridViewCheckBoxColumn
-    Friend WithEvents Modified_Date As DataGridViewTextBoxColumn
+    Friend WithEvents FechaModificacion As DataGridViewTextBoxColumn
     Friend WithEvents btnAction As DataGridViewButtonColumn
 End Class

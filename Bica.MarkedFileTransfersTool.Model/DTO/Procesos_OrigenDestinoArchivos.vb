@@ -10,9 +10,9 @@
     Public Property PathRecibed As String
     Public Property Created_User_Id As Long
     Public Property Modified_User_Id As Long?
-    Public Property Created_Date As DateTime
+    Public Property FechaCreacion As DateTime
     Public Property Updated_Date As DateTime?
     Public Property Deleted As Boolean?
-    Public Property Created_User_Name As String
-    Public Property Modified_User_Name As String
+    Public Property UsuarioCreacion As String
+    Public Property UsuarioModificacion As String
 End Class

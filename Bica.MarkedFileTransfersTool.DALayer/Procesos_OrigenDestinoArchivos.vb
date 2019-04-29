@@ -11,21 +11,19 @@ Imports System
 Imports System.Collections.Generic
 
 Partial Public Class Procesos_OrigenDestinoArchivos
-    Public Property ID As Long
-    Public Property PROCESSNR As Nullable(Of Integer)
+    Public Property Id As Long
+    Public Property NumeroProceso As Nullable(Of Integer)
     Public Property Procesos_TipoDireccionArchivoId As Long
-    Public Property PATH_FROM As String
-    Public Property PATH_NTFTP_INPORT As String
-    Public Property PATH_NTFTP_SEND As String
-    Public Property PATH_NTFTP_RECIBED As String
-    Public Property PATH_TO As String
-    Public Property CREATED_USER_ID As Nullable(Of Long)
-    Public Property CREATED_USER_NAME As String
-    Public Property MODIFIED_USER_ID As Nullable(Of Long)
-    Public Property MODIFIED_USER_NAME As String
-    Public Property CREATED_DATE As Date
-    Public Property MODIFIED_DATE As Nullable(Of Date)
-    Public Property DELETED As Nullable(Of Boolean)
+    Public Property UbicacionDesde As String
+    Public Property UbicacionNTFTPImportar As String
+    Public Property UbicacionNTFTPEnviar As String
+    Public Property UbicacionNTFTPRecibir As String
+    Public Property UbicacionDestino As String
+    Public Property UsuarioCreacion As String
+    Public Property FechaCreacion As Date
+    Public Property UsuarioModificacion As String
+    Public Property FechaModificacion As Nullable(Of Date)
+    Public Property Eliminado As Nullable(Of Boolean)
 
     Public Overridable Property Procesos_MovimientoArchivos As ICollection(Of Procesos_MovimientoArchivos) = New HashSet(Of Procesos_MovimientoArchivos)
     Public Overridable Property Procesos_TipoDireccionArchivo As Procesos_TipoDireccionArchivo

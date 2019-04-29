@@ -11,14 +11,14 @@ Imports System
 Imports System.Collections.Generic
 
 Partial Public Class Procesos_TipoDireccionArchivo
-    Public Property ID As Long
-    Public Property NAME As String
-    Public Property DESCRIPTION As String
-    Public Property CREATED_USER_NAME As String
-    Public Property CREATED_DATE As Date
-    Public Property MODIFIED_USER_NAME As String
-    Public Property MODIFIED_DATE As Nullable(Of Date)
-    Public Property DELETED As Nullable(Of Boolean)
+    Public Property Id As Long
+    Public Property Nombre As String
+    Public Property Descripcion As String
+    Public Property UsuarioCreacion As String
+    Public Property FechaCreacion As Date
+    Public Property UsuarioModificacion As String
+    Public Property FechaModificacion As Nullable(Of Date)
+    Public Property Eliminado As Nullable(Of Boolean)
 
     Public Overridable Property Procesos_OrigenDestinoArchivos As ICollection(Of Procesos_OrigenDestinoArchivos) = New HashSet(Of Procesos_OrigenDestinoArchivos)
 
