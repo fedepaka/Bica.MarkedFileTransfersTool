@@ -13,8 +13,17 @@ Public Class Procesos_DebitoDirecto_DataModel
         Dim lista As List(Of Model.Procesos_DebitoDirecto) = New List(Of Model.Procesos_DebitoDirecto)
 
         Using resource As New B_GeneralEntities()
-            registros = (From f In resource.Prov_DebitoDirecto
-                         Where DbFunctions.TruncateTime(f.FechaPres) = fecha.Date).ToList()
+
+            Dim pepe = (From f In resource.Prov_DebitoDirecto
+                        Where DbFunctions.TruncateTime(f.FechaPres) = fecha.Date
+                        Select New With {.CantD = f.CantD, .FechaEnvio = f.FechaEnvio, .FechaPres = f.FechaPres,
+                            .IdArchivo = f.IdArchivo, .NombreArchivo = f.NombreArchivo, .TipoArch = f.TipoArch, .UsuarioEnvio = f.UsuarioEnvio}).ToList()
+
+
+            registros = pepe.[Select](Function(f) New Prov_DebitoDirecto With {
+                .CantD = f.CantD, .FechaEnvio = f.FechaEnvio, .FechaPres = f.FechaPres,
+                            .IdArchivo = f.IdArchivo, .NombreArchivo = f.NombreArchivo, .TipoArch = f.TipoArch, .UsuarioEnvio = f.UsuarioEnvio
+            }).ToList()
 
             For Each item As Prov_DebitoDirecto In registros
                 lista.Add(Map(item))
