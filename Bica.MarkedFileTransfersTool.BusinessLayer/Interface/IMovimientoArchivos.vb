@@ -3,7 +3,7 @@
 Public Interface IMovimientoArchivos
     Function ObtenerMovimientosArchivos(IdProceso As Long, fecha As Date) As List(Of Procesos_MovimientoArchivos)
     Function ObtenerMovimientoArchivosPendientesEnviar(IdProceso As Long, fecha As Date) As List(Of Model.Procesos_MovimientoArchivos)
-    Function ObtenerMovimientoArchivosPendientesRecibir(IdProceso As Long, fecha As Date) As List(Of Model.Procesos_MovimientoArchivos)
+    Function ObtenerMovimientoArchivosPendientesRecibir(fecha As Date, IdProceso As Long) As List(Of Model.Procesos_MovimientoArchivos)
     Function ObtenerMovimientoArchivosCopiadosNTFTP(IdProceso As Long, fecha As Date) As List(Of Model.Procesos_MovimientoArchivos)
     Function ObtenerMovimientoArchivoPorNombre(Nombre As String) As Procesos_MovimientoArchivos
     Function ObtenerMovimientoArchivoPorId(Id As Long) As Procesos_MovimientoArchivos

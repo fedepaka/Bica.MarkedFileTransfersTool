@@ -66,4 +66,15 @@ Public Class FileUtil
         End If
     End Function
 
+    Public Shared Function FormatoArchivoRecepcionOrdenDebito(fecha As Date) As String
+        Return String.Format("{0}{1}.{2}", "PP0", fecha.Day, ".426")
+    End Function
+
+    Public Shared Function FormatoArchivoRecepcionRechazo(fecha As Date) As String
+        Return String.Format("{0}{1}.{2}", "PR0", fecha.Day, ".426")
+    End Function
+
+    Public Shared Function FormatoArchivoRecepcionRejects(fecha As Date) As String
+        Return String.Format("{0}{1}.{2}", "PJ0", fecha.Day, ".426")
+    End Function
 End Class

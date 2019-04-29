@@ -98,7 +98,7 @@ Public Class MovimientoArchivos
         Return ObtenerMovimientoArchivosCopiadosNTFTP(IdProceso, Fecha)
     End Function
 
-    Public Function ObtenerMovimientoArchivosPendientesRecibir(IdProceso As Long, fecha As Date) As List(Of Model.Procesos_MovimientoArchivos) Implements IMovimientoArchivos.ObtenerMovimientoArchivosPendientesRecibir
+    Public Function ObtenerMovimientoArchivosPendientesRecibir(fecha As Date, IdProceso As Long) As List(Of Model.Procesos_MovimientoArchivos) Implements IMovimientoArchivos.ObtenerMovimientoArchivosPendientesRecibir
         _dataMovimientoArchivos = New Procesos_MovimientoArchivos_DataModel()
 
         Return _dataMovimientoArchivos.ObtenerMovimientoArchivosPendientesRecibir(IdProceso, fecha)
