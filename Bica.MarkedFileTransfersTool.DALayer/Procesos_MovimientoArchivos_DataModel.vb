@@ -189,7 +189,7 @@ Public Class Procesos_MovimientoArchivos_DataModel
         retorno.Transferred = registro.Transferido
         retorno.ToBeTransfer = registro.ParaTransferir
         retorno.Copied = registro.Copiado
-        retorno.Id_File = registro.IdArchivo
+        retorno.Id_File = If(registro.IdArchivo Is Nothing, Nothing, registro.IdArchivo)
         retorno.Presentation_Date = registro.FechaPresentacion
         retorno.UsuarioCreacion = registro.UsuarioCreacion
         retorno.UsuarioModificacion = registro.UsuarioModificacion

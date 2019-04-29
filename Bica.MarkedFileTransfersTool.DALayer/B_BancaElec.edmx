@@ -13,7 +13,7 @@
           <Property Name="Procesos_OrigenDestinoArchivosId" Type="bigint" Nullable="false" />
           <Property Name="NombreArchivo" Type="nvarchar" MaxLength="255" />
           <Property Name="FechaPresentacion" Type="datetime" Nullable="false" />
-          <Property Name="IdArchivo" Type="bigint" Nullable="false" />
+          <Property Name="IdArchivo" Type="bigint" />
           <Property Name="Transferido" Type="bit" Nullable="false" />
           <Property Name="HacerBackup" Type="bit" Nullable="false" />
           <Property Name="ParaTransferir" Type="bit" Nullable="false" />
@@ -106,7 +106,7 @@
           <Property Name="Procesos_OrigenDestinoArchivosId" Type="Int64" Nullable="false" />
           <Property Name="NombreArchivo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="FechaPresentacion" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="IdArchivo" Type="Int64" Nullable="false" />
+          <Property Name="IdArchivo" Type="Int64" />
           <Property Name="Transferido" Type="Boolean" Nullable="false" />
           <Property Name="HacerBackup" Type="Boolean" Nullable="false" />
           <Property Name="ParaTransferir" Type="Boolean" Nullable="false" />

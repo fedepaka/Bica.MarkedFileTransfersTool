@@ -140,7 +140,7 @@ CREATE TABLE [dbo].[Procesos_MovimientoArchivos](
 	[Procesos_OrigenDestinoArchivosId] [bigint] NOT NULL,
 	[NombreArchivo] [nvarchar](255) NULL,
 	[FechaPresentacion] [datetime] NOT NULL,
-	[IdArchivo] [bigint] NOT NULL,
+	[IdArchivo] [bigint] NULL,
 	[Transferido] [bit] NOT NULL,
 	[HacerBackup] [bit] NOT NULL,
 	[ParaTransferir] [bit] NOT NULL,

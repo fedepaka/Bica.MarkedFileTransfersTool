@@ -49,7 +49,7 @@ Namespace Bica.TransferGateway.WindowsService.Service
             For Each objOrigenArchivos As Procesos_OrigenDestinoArchivos In objOrigenArchivosAEnviar
                 Dim objMovimientoArchivos = _blMovimientoArchivos.ObtenerRegistrosMovimientosArchivosPendientesEnviar(fechaProcesoActual, objOrigenArchivos.Id)
 
-                Return MoverArchivosAsync(Tuple.Create(objOrigenArchivos, objMovimientoArchivos))
+                MoverArchivosAsync(Tuple.Create(objOrigenArchivos, objMovimientoArchivos))
             Next
         End Function
 

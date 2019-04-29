@@ -15,7 +15,7 @@ Partial Public Class Procesos_MovimientoArchivos
     Public Property Procesos_OrigenDestinoArchivosId As Long
     Public Property NombreArchivo As String
     Public Property FechaPresentacion As Date
-    Public Property IdArchivo As Long
+    Public Property IdArchivo As Nullable(Of Long)
     Public Property Transferido As Boolean
     Public Property HacerBackup As Boolean
     Public Property ParaTransferir As Boolean

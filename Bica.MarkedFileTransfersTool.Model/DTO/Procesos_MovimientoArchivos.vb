@@ -4,7 +4,7 @@ Public Class Procesos_MovimientoArchivos
     Public Property Procesos_OrigenDestinoArchivosId As Long
     Public Property FileName As String
     Public Property Presentation_Date As DateTime
-    Public Property Id_File As Long
+    Public Property Id_File As Long?
     Public Property Transferred As Boolean
     Public Property ToBeTransfer As Boolean
     Public Property DoBackup As Boolean
