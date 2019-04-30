@@ -52,6 +52,7 @@ CREATE TABLE [Procesos_OrigenDestinoArchivos] (
 	[UbicacionNTFTPEnviar] nvarchar(3000) NULL,--[PATH_NTFTP_SEND] nvarchar(3000) NULL,
 	[UbicacionNTFTPRecibir] nvarchar(3000) NULL,--[PATH_NTFTP_RECIBED] nvarchar(3000) NULL,
 	[UbicacionDestino] nvarchar(3000) NULL,--[PATH_TO] nvarchar(3000) NULL,
+	[UbicacionProcesado] nvarchar(3000) NULL,
 	[UsuarioCreacion] nvarchar(25) NULL,
 	[FechaCreacion] [datetime] NOT NULL,
 	[UsuarioModificacion] nvarchar(25) NULL,
@@ -93,6 +94,8 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ubicacion NTFT
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ubicacion donde se dejarán los archivos que se reciben para BICA' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Procesos_OrigenDestinoArchivos', @level2type=N'COLUMN',@level2name=N'UbicacionDestino'
 GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ubicacion donde se dejarán los archivos procesados por BICA una vez recibido' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Procesos_OrigenDestinoArchivos', @level2type=N'COLUMN',@level2name=N'UbicacionProcesado'
+GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Nombre del usuario que lo creó' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Procesos_OrigenDestinoArchivos', @level2type=N'COLUMN',@level2name=N'UsuarioCreacion'
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Nombre del usuario que modificó' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Procesos_OrigenDestinoArchivos', @level2type=N'COLUMN',@level2name=N'UsuarioModificacion'
@@ -106,28 +109,28 @@ GO
 
 
 --Insert data [Procesos_OrigenDestinoArchivos]
--- 354 - BCO - Envio Debito Directo -PROD
+--PROD
 /*
-INSERT INTO dbo.Procesos_OrigenDestinoArchivos (NumeroProceso, Procesos_TipoDireccionArchivoId, UbicacionDesde, UbicacionNTFTPImportar, UbicacionNTFTPEnviar, UbicacionNTFTPRecibir, UbicacionDestino, UsuarioCreacion) VALUES (354, 1, '\\FILESERVER\EntExt\Provincanje\aProvincanje1\Debitos', '\\BBPROCESO2\Coelsa\Bica\Importado', '\\BBPROCESO2\Coelsa\Bica\Enviado', null, null, 'arey');
-INSERT INTO dbo.Procesos_OrigenDestinoArchivos (NumeroProceso, Procesos_TipoDireccionArchivoId, UbicacionDesde, UbicacionNTFTPImportar, UbicacionNTFTPEnviar, UbicacionNTFTPRecibir, UbicacionDestino, UsuarioCreacion) VALUES (359, 1, '\\FILESERVER\EntExt\Provincanje\aProvincanje1\Debitos', '\\BBPROCESO2\Coelsa\Bica\Importado', '\\BBPROCESO2\Coelsa\Bica\Enviado', null, null, 'arey');
-INSERT INTO dbo.Procesos_OrigenDestinoArchivos (NumeroProceso, Procesos_TipoDireccionArchivoId, UbicacionDesde, UbicacionNTFTPImportar, UbicacionNTFTPEnviar, UbicacionNTFTPRecibir, UbicacionDestino, UsuarioCreacion) VALUES (355, 2, '\\FILESERVER\EntExt\Provincanje\aProvincanje1\Debitos', '\\BBPROCESO2\Coelsa\Bica\Importado', '\\BBPROCESO2\Coelsa\Bica\Enviado', '\\BBPROCESO2\Coelsa\Bica\Recibido', '\\FILESERVER\EntExt\Provincanje\alBanco\Debitos', 'arey');
-INSERT INTO dbo.Procesos_OrigenDestinoArchivos (NumeroProceso, Procesos_TipoDireccionArchivoId, UbicacionDesde, UbicacionNTFTPImportar, UbicacionNTFTPEnviar, UbicacionNTFTPRecibir, UbicacionDestino, UsuarioCreacion) VALUES (363, 2, '\\FILESERVER\EntExt\Provincanje\aProvincanje1\Debitos', '\\BBPROCESO2\Coelsa\Bica\Importado', '\\BBPROCESO2\Coelsa\Bica\Enviado', '\\BBPROCESO2\Coelsa\Bica\Recibido', '\\FILESERVER\EntExt\Provincanje\alBanco\Debitos', 'arey');
-INSERT INTO dbo.Procesos_OrigenDestinoArchivos (NumeroProceso, Procesos_TipoDireccionArchivoId, UbicacionDesde, UbicacionNTFTPImportar, UbicacionNTFTPEnviar, UbicacionNTFTPRecibir, UbicacionDestino, UsuarioCreacion) VALUES (364, 2, '\\FILESERVER\EntExt\Provincanje\aProvincanje1\Debitos', '\\BBPROCESO2\Coelsa\Bica\Importado', '\\BBPROCESO2\Coelsa\Bica\Enviado', '\\BBPROCESO2\Coelsa\Bica\Recibido', '\\FILESERVER\EntExt\Provincanje\alBanco\Debitos', 'arey');
+INSERT INTO dbo.Procesos_OrigenDestinoArchivos (NumeroProceso, Procesos_TipoDireccionArchivoId, UbicacionDesde, UbicacionNTFTPImportar, UbicacionNTFTPEnviar, UbicacionNTFTPRecibir, UbicacionDestino, UbicacionProcesado, UsuarioCreacion) VALUES (354, 1, '\\FILESERVER\EntExt\Provincanje\aProvincanje1\Debitos', '\\BBPROCESO2\Coelsa\Bica\Importado', '\\BBPROCESO2\Coelsa\Bica\Enviado', null, null, null, 'arey');
+INSERT INTO dbo.Procesos_OrigenDestinoArchivos (NumeroProceso, Procesos_TipoDireccionArchivoId, UbicacionDesde, UbicacionNTFTPImportar, UbicacionNTFTPEnviar, UbicacionNTFTPRecibir, UbicacionDestino, UbicacionProcesado, UsuarioCreacion) VALUES (359, 1, '\\FILESERVER\EntExt\Provincanje\aProvincanje1\Debitos', '\\BBPROCESO2\Coelsa\Bica\Importado', '\\BBPROCESO2\Coelsa\Bica\Enviado', null, null, null, 'arey');
+INSERT INTO dbo.Procesos_OrigenDestinoArchivos (NumeroProceso, Procesos_TipoDireccionArchivoId, UbicacionDesde, UbicacionNTFTPImportar, UbicacionNTFTPEnviar, UbicacionNTFTPRecibir, UbicacionDestino, UbicacionProcesado, UsuarioCreacion) VALUES (355, 2, null, null, null, '\\BBPROCESO2\Coelsa\Bica\Recibido', '\\FILESERVER\EntExt\Provincanje\alBanco\Debitos', '\\FILESERVER\EntExt\Provincanje\alBanco\Debitos\Procesados', 'arey');
+INSERT INTO dbo.Procesos_OrigenDestinoArchivos (NumeroProceso, Procesos_TipoDireccionArchivoId, UbicacionDesde, UbicacionNTFTPImportar, UbicacionNTFTPEnviar, UbicacionNTFTPRecibir, UbicacionDestino, UbicacionProcesado, UsuarioCreacion) VALUES (363, 2, null, null, null, '\\BBPROCESO2\Coelsa\Bica\Recibido', '\\FILESERVER\EntExt\Provincanje\alBanco\Debitos', '\\FILESERVER\EntExt\Provincanje\alBanco\Debitos\Procesados', 'arey');
+INSERT INTO dbo.Procesos_OrigenDestinoArchivos (NumeroProceso, Procesos_TipoDireccionArchivoId, UbicacionDesde, UbicacionNTFTPImportar, UbicacionNTFTPEnviar, UbicacionNTFTPRecibir, UbicacionDestino, UbicacionProcesado, UsuarioCreacion) VALUES (364, 2, null, null, null, '\\BBPROCESO2\Coelsa\Bica\Recibido', '\\FILESERVER\EntExt\Provincanje\alBanco\Debitos', '\\FILESERVER\EntExt\Provincanje\alBanco\Debitos\Procesados', 'arey');
 */
 --DEV
 /*
-INSERT INTO dbo.Procesos_OrigenDestinoArchivos (NumeroProceso, Procesos_TipoDireccionArchivoId, UbicacionDesde, UbicacionNTFTPImportar, UbicacionNTFTPEnviar, UbicacionNTFTPRecibir, UbicacionDestino, UsuarioCreacion) VALUES (354, 1, '\\HP\FILESERVER\EntExt\Provincanje\aProvincanje1\Debitos', '\\HP\BBPROCESO2\Coelsa\Bica\Importado', '\\HP\BBPROCESO2\Coelsa\Bica\Enviado', null, null, 'arey');
-INSERT INTO dbo.Procesos_OrigenDestinoArchivos (NumeroProceso, Procesos_TipoDireccionArchivoId, UbicacionDesde, UbicacionNTFTPImportar, UbicacionNTFTPEnviar, UbicacionNTFTPRecibir, UbicacionDestino, UsuarioCreacion) VALUES (359, 1, '\\HP\FILESERVER\EntExt\Provincanje\aProvincanje1\Debitos', '\\HP\BBPROCESO2\Coelsa\Bica\Importado', '\\HP\BBPROCESO2\Coelsa\Bica\Enviado', null, null, 'arey');
-INSERT INTO dbo.Procesos_OrigenDestinoArchivos (NumeroProceso, Procesos_TipoDireccionArchivoId, UbicacionDesde, UbicacionNTFTPImportar, UbicacionNTFTPEnviar, UbicacionNTFTPRecibir, UbicacionDestino, UsuarioCreacion) VALUES (355, 2, null, null, null, '\\HP\BBPROCESO2\Coelsa\Bica\Recibido', '\\HP\FILESERVER\EntExt\Provincanje\alBanco\Debitos', 'arey');
-INSERT INTO dbo.Procesos_OrigenDestinoArchivos (NumeroProceso, Procesos_TipoDireccionArchivoId, UbicacionDesde, UbicacionNTFTPImportar, UbicacionNTFTPEnviar, UbicacionNTFTPRecibir, UbicacionDestino, UsuarioCreacion) VALUES (363, 2, null, null, null, '\\HP\BBPROCESO2\Coelsa\Bica\Recibido', '\\HP\FILESERVER\EntExt\Provincanje\alBanco\Debitos', 'arey');
-INSERT INTO dbo.Procesos_OrigenDestinoArchivos (NumeroProceso, Procesos_TipoDireccionArchivoId, UbicacionDesde, UbicacionNTFTPImportar, UbicacionNTFTPEnviar, UbicacionNTFTPRecibir, UbicacionDestino, UsuarioCreacion) VALUES (364, 2, null, null, null, '\\HP\BBPROCESO2\Coelsa\Bica\Recibido', '\\HP\FILESERVER\EntExt\Provincanje\alBanco\Debitos', 'arey');
+INSERT INTO dbo.Procesos_OrigenDestinoArchivos (NumeroProceso, Procesos_TipoDireccionArchivoId, UbicacionDesde, UbicacionNTFTPImportar, UbicacionNTFTPEnviar, UbicacionNTFTPRecibir, UbicacionDestino, UbicacionProcesado, UsuarioCreacion) VALUES (354, 1, '\\HP\FILESERVER\EntExt\Provincanje\aProvincanje1\Debitos', '\\HP\BBPROCESO2\Coelsa\Bica\Importado', '\\HP\BBPROCESO2\Coelsa\Bica\Enviado', null, null, null, 'arey');
+INSERT INTO dbo.Procesos_OrigenDestinoArchivos (NumeroProceso, Procesos_TipoDireccionArchivoId, UbicacionDesde, UbicacionNTFTPImportar, UbicacionNTFTPEnviar, UbicacionNTFTPRecibir, UbicacionDestino, UbicacionProcesado, UsuarioCreacion) VALUES (359, 1, '\\HP\FILESERVER\EntExt\Provincanje\aProvincanje1\Debitos', '\\HP\BBPROCESO2\Coelsa\Bica\Importado', '\\HP\BBPROCESO2\Coelsa\Bica\Enviado', null, null, null, 'arey');
+INSERT INTO dbo.Procesos_OrigenDestinoArchivos (NumeroProceso, Procesos_TipoDireccionArchivoId, UbicacionDesde, UbicacionNTFTPImportar, UbicacionNTFTPEnviar, UbicacionNTFTPRecibir, UbicacionDestino, UbicacionProcesado, UsuarioCreacion) VALUES (355, 2, null, null, null, '\\HP\BBPROCESO2\Coelsa\Bica\Recibido', '\\HP\FILESERVER\EntExt\Provincanje\alBanco\Debitos', '\\HP\FILESERVER\EntExt\Provincanje\alBanco\Debitos\Procesados', 'arey');
+INSERT INTO dbo.Procesos_OrigenDestinoArchivos (NumeroProceso, Procesos_TipoDireccionArchivoId, UbicacionDesde, UbicacionNTFTPImportar, UbicacionNTFTPEnviar, UbicacionNTFTPRecibir, UbicacionDestino, UbicacionProcesado, UsuarioCreacion) VALUES (363, 2, null, null, null, '\\HP\BBPROCESO2\Coelsa\Bica\Recibido', '\\HP\FILESERVER\EntExt\Provincanje\alBanco\Debitos', '\\HP\FILESERVER\EntExt\Provincanje\alBanco\Debitos\Procesados', 'arey');
+INSERT INTO dbo.Procesos_OrigenDestinoArchivos (NumeroProceso, Procesos_TipoDireccionArchivoId, UbicacionDesde, UbicacionNTFTPImportar, UbicacionNTFTPEnviar, UbicacionNTFTPRecibir, UbicacionDestino, UbicacionProcesado, UsuarioCreacion) VALUES (364, 2, null, null, null, '\\HP\BBPROCESO2\Coelsa\Bica\Recibido', '\\HP\FILESERVER\EntExt\Provincanje\alBanco\Debitos', '\\HP\FILESERVER\EntExt\Provincanje\alBanco\Debitos\Procesados', 'arey');
 */
 --TESTING
-INSERT INTO dbo.Procesos_OrigenDestinoArchivos (NumeroProceso, Procesos_TipoDireccionArchivoId, UbicacionDesde, UbicacionNTFTPImportar, UbicacionNTFTPEnviar, UbicacionNTFTPRecibir, UbicacionDestino, UsuarioCreacion) VALUES (354, 1, '\\FILESERVER\EntExt\Provincanje\aProvincanje1\Debitos', '\\cctecn32\BBPROCESOS2_TEST\Coelsa\Bica\Importado', '\\cctecn32\BBPROCESOS2_TEST\Coelsa\Bica\Enviado', null, null, 'arey');
-INSERT INTO dbo.Procesos_OrigenDestinoArchivos (NumeroProceso, Procesos_TipoDireccionArchivoId, UbicacionDesde, UbicacionNTFTPImportar, UbicacionNTFTPEnviar, UbicacionNTFTPRecibir, UbicacionDestino, UsuarioCreacion) VALUES (359, 1, '\\FILESERVER\EntExt\Provincanje\aProvincanje1\Debitos', '\\cctecn32\BBPROCESOS2_TEST\Coelsa\Bica\Importado', '\\cctecn32\BBPROCESOS2_TEST\Coelsa\Bica\Enviado', null, null, 'arey');
-INSERT INTO dbo.Procesos_OrigenDestinoArchivos (NumeroProceso, Procesos_TipoDireccionArchivoId, UbicacionDesde, UbicacionNTFTPImportar, UbicacionNTFTPEnviar, UbicacionNTFTPRecibir, UbicacionDestino, UsuarioCreacion) VALUES (355, 2, null, null, null, '\\HP\BBPROCESO2\Coelsa\Bica\Recibido', '\\HP\FILESERVER\EntExt\Provincanje\alBanco\Debitos', 'arey');
-INSERT INTO dbo.Procesos_OrigenDestinoArchivos (NumeroProceso, Procesos_TipoDireccionArchivoId, UbicacionDesde, UbicacionNTFTPImportar, UbicacionNTFTPEnviar, UbicacionNTFTPRecibir, UbicacionDestino, UsuarioCreacion) VALUES (363, 2, null, null, null, '\\HP\BBPROCESO2\Coelsa\Bica\Recibido', '\\HP\FILESERVER\EntExt\Provincanje\alBanco\Debitos', 'arey');
-INSERT INTO dbo.Procesos_OrigenDestinoArchivos (NumeroProceso, Procesos_TipoDireccionArchivoId, UbicacionDesde, UbicacionNTFTPImportar, UbicacionNTFTPEnviar, UbicacionNTFTPRecibir, UbicacionDestino, UsuarioCreacion) VALUES (364, 2, null, null, null, '\\HP\BBPROCESO2\Coelsa\Bica\Recibido', '\\HP\FILESERVER\EntExt\Provincanje\alBanco\Debitos', 'arey');
+INSERT INTO dbo.Procesos_OrigenDestinoArchivos (NumeroProceso, Procesos_TipoDireccionArchivoId, UbicacionDesde, UbicacionNTFTPImportar, UbicacionNTFTPEnviar, UbicacionNTFTPRecibir, UbicacionDestino, UbicacionProcesado, UsuarioCreacion) VALUES (354, 1, '\\FILESERVER\EntExt\Provincanje\aProvincanje1\Debitos', '\\cctecn32\BBPROCESOS2_TEST\Coelsa\Bica\Importado', '\\cctecn32\BBPROCESOS2_TEST\Coelsa\Bica\Enviado', null, null, null, 'arey');
+INSERT INTO dbo.Procesos_OrigenDestinoArchivos (NumeroProceso, Procesos_TipoDireccionArchivoId, UbicacionDesde, UbicacionNTFTPImportar, UbicacionNTFTPEnviar, UbicacionNTFTPRecibir, UbicacionDestino, UbicacionProcesado, UsuarioCreacion) VALUES (359, 1, '\\FILESERVER\EntExt\Provincanje\aProvincanje1\Debitos', '\\cctecn32\BBPROCESOS2_TEST\Coelsa\Bica\Importado', '\\cctecn32\BBPROCESOS2_TEST\Coelsa\Bica\Enviado', null, null, null, 'arey');
+INSERT INTO dbo.Procesos_OrigenDestinoArchivos (NumeroProceso, Procesos_TipoDireccionArchivoId, UbicacionDesde, UbicacionNTFTPImportar, UbicacionNTFTPEnviar, UbicacionNTFTPRecibir, UbicacionDestino, UbicacionProcesado, UsuarioCreacion) VALUES (355, 2, null, null, null, '\\BBPROCESO2\Coelsa\Bica\Recibido', '\\FILESERVER\EntExt\Provincanje\alBanco\Debitos', '\\FILESERVER\EntExt\Provincanje\alBanco\Debitos\Procesados','arey');
+INSERT INTO dbo.Procesos_OrigenDestinoArchivos (NumeroProceso, Procesos_TipoDireccionArchivoId, UbicacionDesde, UbicacionNTFTPImportar, UbicacionNTFTPEnviar, UbicacionNTFTPRecibir, UbicacionDestino, UbicacionProcesado, UsuarioCreacion) VALUES (363, 2, null, null, null, '\\BBPROCESO2\Coelsa\Bica\Recibido', '\\FILESERVER\EntExt\Provincanje\alBanco\Debitos', '\\FILESERVER\EntExt\Provincanje\alBanco\Debitos\Procesados', 'arey');
+INSERT INTO dbo.Procesos_OrigenDestinoArchivos (NumeroProceso, Procesos_TipoDireccionArchivoId, UbicacionDesde, UbicacionNTFTPImportar, UbicacionNTFTPEnviar, UbicacionNTFTPRecibir, UbicacionDestino, UbicacionProcesado, UsuarioCreacion) VALUES (364, 2, null, null, null, '\\BBPROCESO2\Coelsa\Bica\Recibido', '\\FILESERVER\EntExt\Provincanje\alBanco\Debitos', '\\FILESERVER\EntExt\Provincanje\alBanco\Debitos\Procesados', 'arey');
 
 GO
 --fin [Procesos_OrigenDestinoArchivos]
@@ -146,6 +149,7 @@ CREATE TABLE [dbo].[Procesos_MovimientoArchivos](
 	[ParaTransferir] [bit] NOT NULL,
 	[Copiado] [bit] NOT NULL,
 	[Recibido] [bit] NOT NULL, --INDICA SI EL ARCHIVO FUE RECIBIDO EN LAS CARPETAS DE LA ENTIDAD
+	[Procesado] [bit] NOT NULL, --INDICA SI EL ARCHIVO FUE procesado por la grilla
 	[UsuarioCreacion] nvarchar(25) NULL,
 	[FechaCreacion] [datetime] NOT NULL,
 	[UsuarioModificacion] nvarchar(25) NULL,
@@ -167,6 +171,8 @@ GO
 ALTER TABLE [dbo].[Procesos_MovimientoArchivos] ADD  DEFAULT ((0)) FOR [Copiado]
 GO
 ALTER TABLE [dbo].[Procesos_MovimientoArchivos] ADD  DEFAULT ((0)) FOR [Recibido]
+GO
+ALTER TABLE [dbo].[Procesos_MovimientoArchivos] ADD  DEFAULT ((0)) FOR [Procesado]
 GO
 ALTER TABLE [dbo].[Procesos_MovimientoArchivos] ADD  DEFAULT ((0)) FOR [Eliminado]
 GO
@@ -194,6 +200,8 @@ GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Marca copiado' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Procesos_MovimientoArchivos', @level2type=N'COLUMN',@level2name=N'Copiado'
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Marca recibido. Desde Coelsa a BICA' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Procesos_MovimientoArchivos', @level2type=N'COLUMN',@level2name=N'Recibido'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Marca procesado. Desde Bica a BICA' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Procesos_MovimientoArchivos', @level2type=N'COLUMN',@level2name=N'Procesado'
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Nombre del usuario que lo creó' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Procesos_MovimientoArchivos', @level2type=N'COLUMN',@level2name=N'UsuarioCreacion'
 GO

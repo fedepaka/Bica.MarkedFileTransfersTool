@@ -19,6 +19,7 @@
           <Property Name="ParaTransferir" Type="bit" Nullable="false" />
           <Property Name="Copiado" Type="bit" Nullable="false" />
           <Property Name="Recibido" Type="bit" Nullable="false" />
+          <Property Name="Procesado" Type="bit" Nullable="false" />
           <Property Name="UsuarioCreacion" Type="nvarchar" MaxLength="25" />
           <Property Name="FechaCreacion" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
           <Property Name="UsuarioModificacion" Type="nvarchar" MaxLength="25" />
@@ -37,6 +38,7 @@
           <Property Name="UbicacionNTFTPEnviar" Type="nvarchar" MaxLength="3000" />
           <Property Name="UbicacionNTFTPRecibir" Type="nvarchar" MaxLength="3000" />
           <Property Name="UbicacionDestino" Type="nvarchar" MaxLength="3000" />
+          <Property Name="UbicacionProcesado" Type="nvarchar" MaxLength="3000" />
           <Property Name="UsuarioCreacion" Type="nvarchar" MaxLength="25" />
           <Property Name="FechaCreacion" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
           <Property Name="UsuarioModificacion" Type="nvarchar" MaxLength="25" />
@@ -112,6 +114,7 @@
           <Property Name="ParaTransferir" Type="Boolean" Nullable="false" />
           <Property Name="Copiado" Type="Boolean" Nullable="false" />
           <Property Name="Recibido" Type="Boolean" Nullable="false" />
+          <Property Name="Procesado" Type="Boolean" Nullable="false" />
           <Property Name="UsuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="UsuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
@@ -131,6 +134,7 @@
           <Property Name="UbicacionNTFTPEnviar" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
           <Property Name="UbicacionNTFTPRecibir" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
           <Property Name="UbicacionDestino" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="UbicacionProcesado" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
           <Property Name="UsuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="UsuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
@@ -209,6 +213,7 @@
                 <ScalarProperty Name="ParaTransferir" ColumnName="ParaTransferir" />
                 <ScalarProperty Name="Copiado" ColumnName="Copiado" />
                 <ScalarProperty Name="Recibido" ColumnName="Recibido" />
+                <ScalarProperty Name="Procesado" ColumnName="Procesado" />
                 <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
                 <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
                 <ScalarProperty Name="UsuarioModificacion" ColumnName="UsuarioModificacion" />
@@ -228,6 +233,7 @@
                 <ScalarProperty Name="UbicacionNTFTPEnviar" ColumnName="UbicacionNTFTPEnviar" />
                 <ScalarProperty Name="UbicacionNTFTPRecibir" ColumnName="UbicacionNTFTPRecibir" />
                 <ScalarProperty Name="UbicacionDestino" ColumnName="UbicacionDestino" />
+                <ScalarProperty Name="UbicacionProcesado" ColumnName="UbicacionProcesado" />
                 <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
                 <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
                 <ScalarProperty Name="UsuarioModificacion" ColumnName="UsuarioModificacion" />

@@ -19,6 +19,7 @@ Partial Public Class Procesos_OrigenDestinoArchivos
     Public Property UbicacionNTFTPEnviar As String
     Public Property UbicacionNTFTPRecibir As String
     Public Property UbicacionDestino As String
+    Public Property UbicacionProcesado As String
     Public Property UsuarioCreacion As String
     Public Property FechaCreacion As Date
     Public Property UsuarioModificacion As String

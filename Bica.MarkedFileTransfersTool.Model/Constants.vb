@@ -1,5 +1,18 @@
 ﻿Public Module Constants
     Public BCO_Envio_Debito_Directo_Code As Long = 354
+    Public BCO_Envio_Rechazos_Orden_Debito_Code As Long = 359
+    Public BCO_Camara_Recepcion_Rejects_Code As Long = 364
+    Public BCO_Debito_Directo_Recepcion_Rechazos_Code As Long = 363
+    Public BCO_Camara_Recepcion_Orden_Debito_Code As Long = 355
+
+
+    '364 BCO - Camara - Recepcion Rejects_VsN
+    '363 BCO - Deb. Directo - Recepcion Rechazos_VsN
+    '359 BCO - Camara - Envio Rechazos Orden Debito
+    '355 BCO - Camara - Recepcion Orden Debito_VsN
+    '354 BCO - Envio Debito Directo
+
+
     Public Procesos_TipoDireccionArchivo_ENVIO As String = "Entidad-Coelsa"
     Public Procesos_TipoDireccionArchivo_RECEPCION As String = "Coelsa-Entidad"
 

@@ -14,13 +14,13 @@ Public Class Procesos_DebitoDirecto_DataModel
 
         Using resource As New B_GeneralEntities()
 
-            Dim pepe = (From f In resource.Prov_DebitoDirecto
-                        Where DbFunctions.TruncateTime(f.FechaPres) = fecha.Date
-                        Select New With {.CantD = f.CantD, .FechaEnvio = f.FechaEnvio, .FechaPres = f.FechaPres,
+            Dim listaAux = (From f In resource.Prov_DebitoDirecto
+                            Where DbFunctions.TruncateTime(f.FechaPres) = fecha.Date
+                            Select New With {.CantD = f.CantD, .FechaEnvio = f.FechaEnvio, .FechaPres = f.FechaPres,
                             .IdArchivo = f.IdArchivo, .NombreArchivo = f.NombreArchivo, .TipoArch = f.TipoArch, .UsuarioEnvio = f.UsuarioEnvio}).ToList()
 
 
-            registros = pepe.[Select](Function(f) New Prov_DebitoDirecto With {
+            registros = listaAux.[Select](Function(f) New Prov_DebitoDirecto With {
                 .CantD = f.CantD, .FechaEnvio = f.FechaEnvio, .FechaPres = f.FechaPres,
                             .IdArchivo = f.IdArchivo, .NombreArchivo = f.NombreArchivo, .TipoArch = f.TipoArch, .UsuarioEnvio = f.UsuarioEnvio
             }).ToList()

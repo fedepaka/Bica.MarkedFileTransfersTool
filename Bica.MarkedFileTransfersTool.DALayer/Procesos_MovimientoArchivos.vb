@@ -21,6 +21,7 @@ Partial Public Class Procesos_MovimientoArchivos
     Public Property ParaTransferir As Boolean
     Public Property Copiado As Boolean
     Public Property Recibido As Boolean
+    Public Property Procesado As Boolean
     Public Property UsuarioCreacion As String
     Public Property FechaCreacion As Date
     Public Property UsuarioModificacion As String

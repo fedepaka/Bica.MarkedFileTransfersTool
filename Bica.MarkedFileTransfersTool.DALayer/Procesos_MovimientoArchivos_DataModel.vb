@@ -145,7 +145,8 @@ Public Class Procesos_MovimientoArchivos_DataModel
     ''' <param name="Transferred"></param>
     ''' <param name="DoBackup"></param>
     ''' <returns></returns>
-    Public Function ActualizarRegistroMovimientoArchivo(IdMovimientoArchivo As Long, Transferred As Boolean, DoBackup As Boolean, ToBeTransfer As Boolean, Copied As Boolean, UpdatedUserName As String) As Long
+    Public Function ActualizarRegistroMovimientoArchivo(IdMovimientoArchivo As Long, Transferred As Boolean, DoBackup As Boolean, ToBeTransfer As Boolean,
+                                                        Copied As Boolean, Recibed As Boolean, UpdatedUserName As String) As Long
         Using resource = New B_BancaElecEntities()
 
             Dim objMovArchivos = (From f In resource.Procesos_MovimientoArchivos
@@ -157,6 +158,7 @@ Public Class Procesos_MovimientoArchivos_DataModel
                 objMovArchivos.Transferido = Transferred
                 objMovArchivos.ParaTransferir = ToBeTransfer
                 objMovArchivos.Copiado = Copied
+                objMovArchivos.Recibido = Recibed
                 objMovArchivos.UsuarioModificacion = UpdatedUserName
                 If resource.SaveChanges() > 0 Then
                     Return 1

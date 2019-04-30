@@ -1,7 +1,6 @@
 ﻿Imports Quartz
 Imports Bica.MarkedFileTransfersTool.Model
 Imports Bica.MarkedFileTransfersTool.BusinessLayer
-Imports Bica.MarkedFileTransfersTool
 Imports Bica.MarkedFileTransfersTool.Helper
 
 Namespace Bica.TransferGateway.WindowsService.Service
@@ -18,11 +17,11 @@ Namespace Bica.TransferGateway.WindowsService.Service
 
             If Not String.IsNullOrEmpty(lastRun) Then
                 Console.ResetColor()
-                Console.ForegroundColor = ConsoleColor.Green
+                Console.ForegroundColor = ConsoleColor.Yellow
                 Console.WriteLine(String.Format("Ejecución previa del JOB ReciberNTFTPJob: {0}.", lastRun))
             Else
                 Console.ResetColor()
-                Console.ForegroundColor = ConsoleColor.Green
+                Console.ForegroundColor = ConsoleColor.Yellow
                 Console.WriteLine(String.Format("Ejecución inicial del JOB ReciberNTFTPJob: {0}.", context.FireTimeUtc.DateTime.ToString()))
             End If
 
@@ -30,54 +29,101 @@ Namespace Bica.TransferGateway.WindowsService.Service
             Return Task.FromResult(0)
         End Function
 
-        Private Function IniciarProcesoRecepcion() As Boolean
+        Private Sub IniciarProcesoRecepcion()
+            RecibirArchivosAsync()
+        End Sub
+
+        Private Function RecibirArchivosAsync() As Boolean
+            Dim fatory = Task.Factory.StartNew(Function() RecibirArchivos())
+            Return fatory.Result
+        End Function
+
+        Private Function RecibirArchivos() As Boolean
             Dim copiado As Boolean = False
             Dim objOrigenArchivosRecibir = _blOrigenDestinoArchivos.ObtenerOrigenDestinoArchivosPorRecibir()
 
             For Each objOrigenArchivos As Procesos_OrigenDestinoArchivos In objOrigenArchivosRecibir
 
-                'verificar los tipos de archivos que nos interesan en este punto: PR0DD.426 o PP0DD.426
+                'verificar los tipos de archivos que nos interesan en este punto: PR0DD.426, PP0DD.426 y RJ0DD.426
                 Select Case objOrigenArchivos.ProcessNr
-                    Case 355 'BCO - Camara - Recepcion Orden Debito_VsN
+                    Case Constants.BCO_Camara_Recepcion_Orden_Debito_Code '355 - BCO - Camara - Recepcion Orden Debito_VsN
 
-                        If FileUtil.ExisteArchivo(String.Format("{0}\{1}", objOrigenArchivos.PathRecibed, FileUtil.FormatoArchivoRecepcionOrdenDebito(fechaProcesoActual))) Then
-                            copiado = FileUtil.CopiarArchivo(String.Format("{0}\{1}", objOrigenArchivos.PathRecibed, FileUtil.FormatoArchivoRecepcionOrdenDebito(fechaProcesoActual)),
-                                objOrigenArchivos.PathTo)
-                            'si el archivo pudo copiarse, creamos registro en la tabla y lo marcamos como recibido
-                            If copiado Then
-                                _blMovimientoArchivos.InsertarRegistroMovimientoArchivo(objOrigenArchivos.Id, FileUtil.FormatoArchivoRecepcionOrdenDebito(fechaProcesoActual),
-                                                                                fechaProcesoActual, Nothing, userName)
+                        Dim patronArchivo = FileUtil.FormatoArchivoRecepcionOrdenDebito(fechaProcesoActual)
+                        Dim nombreArchivo = FileUtil.ObtenerArchivoPorPatron(objOrigenArchivos.PathRecibed, patronArchivo)
+
+                        If nombreArchivo IsNot String.Empty And nombreArchivo IsNot Nothing Then
+                            Dim registroArchivo = _blMovimientoArchivos.ObtenerMovimientoArchivoPorNombre(nombreArchivo)
+
+                            'si el registro del archivo no existe, vemos si está fisicamente e insertamos registro
+                            If registroArchivo Is Nothing Then
+
+                                copiado = FileUtil.CopiarArchivo(String.Format("{0}\{1}", objOrigenArchivos.PathRecibed, nombreArchivo), String.Format("{0}\{1}", objOrigenArchivos.PathTo, nombreArchivo))
+                                'si el archivo pudo copiarse, creamos registro en la tabla y lo marcamos como recibido
+                                If copiado Then
+                                    Dim idMovArchivo = _blMovimientoArchivos.InsertarRegistroMovimientoArchivo(objOrigenArchivos.Id, nombreArchivo,
+                                                                                    fechaProcesoActual, Nothing, userName)
+                                    _blMovimientoArchivos.ActualizarRegistroRecibido(idMovArchivo, userName)
+
+                                End If
                             End If
+
                         End If
 
-                    Case 363 'BCO - Deb. Directo - Recepcion Rechazos_VsN
+                    Case Constants.BCO_Debito_Directo_Recepcion_Rechazos_Code '363 - BCO - Deb. Directo - Recepcion Rechazos_VsN
 
-                        If FileUtil.ExisteArchivo(String.Format("{0}\{1}", objOrigenArchivos.PathRecibed, FileUtil.FormatoArchivoRecepcionRechazo(fechaProcesoActual))) Then
-                            copiado = FileUtil.CopiarArchivo(String.Format("{0}\{1}", objOrigenArchivos.PathRecibed, FileUtil.FormatoArchivoRecepcionRechazo(fechaProcesoActual)),
-                                objOrigenArchivos.PathTo)
-                            'si el archivo pudo copiarse, creamos registro en la tabla y lo marcamos como recibido
-                            If copiado Then
-                                _blMovimientoArchivos.InsertarRegistroMovimientoArchivo(objOrigenArchivos.Id, FileUtil.FormatoArchivoRecepcionRechazo(fechaProcesoActual),
-                                                                                fechaProcesoActual, Nothing, userName)
+                        Dim patronArchivo As String = FileUtil.FormatoArchivoRecepcionRechazo(fechaProcesoActual)
+                        Dim nombreArchivo = FileUtil.ObtenerArchivoPorPatron(objOrigenArchivos.PathRecibed, patronArchivo)
+
+                        If nombreArchivo IsNot String.Empty And nombreArchivo IsNot Nothing Then
+                            Dim registroArchivo = _blMovimientoArchivos.ObtenerMovimientoArchivoPorNombre(nombreArchivo)
+
+                            'si el registro del archivo no existe, vemos si está fisicamente e insertamos registro
+                            If registroArchivo Is Nothing Then
+
+                                copiado = FileUtil.CopiarArchivo(String.Format("{0}\{1}", objOrigenArchivos.PathRecibed, nombreArchivo), String.Format("{0}\{1}", objOrigenArchivos.PathTo, nombreArchivo))
+                                'si el archivo pudo copiarse, creamos registro en la tabla y lo marcamos como recibido
+                                If copiado Then
+                                    Dim idMovArchivo = _blMovimientoArchivos.InsertarRegistroMovimientoArchivo(objOrigenArchivos.Id, nombreArchivo,
+                                                                                    fechaProcesoActual, Nothing, userName)
+                                    _blMovimientoArchivos.ActualizarRegistroRecibido(idMovArchivo, userName)
+                                End If
+
                             End If
+
                         End If
 
-                    Case 364 'BCO - Camara - Recepcion Rejects_VsN
+                    Case Constants.BCO_Camara_Recepcion_Rejects_Code 'BCO - Camara - Recepcion Rejects_VsN
 
-                        If FileUtil.ExisteArchivo(String.Format("{0}\{1}", objOrigenArchivos.PathRecibed, FileUtil.FormatoArchivoRecepcionRejects(fechaProcesoActual))) Then
-                            copiado = FileUtil.CopiarArchivo(String.Format("{0}\{1}", objOrigenArchivos.PathRecibed, FileUtil.FormatoArchivoRecepcionRejects(fechaProcesoActual)),
-                                objOrigenArchivos.PathTo)
-                            'si el archivo pudo copiarse, creamos registro en la tabla y lo marcamos como recibido
-                            If copiado Then
-                                _blMovimientoArchivos.InsertarRegistroMovimientoArchivo(objOrigenArchivos.Id, FileUtil.FormatoArchivoRecepcionRejects(fechaProcesoActual),
+                        Dim patronArchivo As String = FileUtil.FormatoArchivoRecepcionRejects(fechaProcesoActual)
+                        Dim nombreArchivo = FileUtil.ObtenerArchivoPorPatron(objOrigenArchivos.PathRecibed, patronArchivo)
+
+                        If nombreArchivo IsNot String.Empty And nombreArchivo IsNot Nothing Then
+
+                            Dim registroArchivo = _blMovimientoArchivos.ObtenerMovimientoArchivoPorNombre(nombreArchivo)
+
+                            If registroArchivo Is Nothing Then
+
+                                copiado = FileUtil.CopiarArchivo(String.Format("{0}\{1}", objOrigenArchivos.PathRecibed, nombreArchivo), String.Format("{0}\{1}", objOrigenArchivos.PathTo, nombreArchivo))
+
+                                'si el archivo pudo copiarse, creamos registro en la tabla y lo marcamos como recibido
+                                If copiado Then
+                                    Dim idMovArchivo = _blMovimientoArchivos.InsertarRegistroMovimientoArchivo(objOrigenArchivos.Id, nombreArchivo,
                                                                                 fechaProcesoActual, Nothing, userName)
+                                    _blMovimientoArchivos.ActualizarRegistroRecibido(idMovArchivo, userName)
+                                End If
+
                             End If
+
                         End If
+
+
+
 
                 End Select
 
             Next
             Return copiado
         End Function
+
     End Class
 End Namespace
