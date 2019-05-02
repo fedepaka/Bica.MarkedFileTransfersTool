@@ -38,7 +38,7 @@ Public Class DebitoDirecto
                     Dim origeDestino = _blOrigenDestino.ObtenerOrigenDestinoArchivos(Constants.BCO_Envio_Debito_Directo_Code)
 
                     _blMovArchivos.InsertarRegistroMovimientoArchivo(origeDestino.Id,
-                        nombreArchivo, archivoDD.FechaEnvio, archivoDD.IdArchivo, UserName)
+                        nombreArchivo, archivoDD.FechaEnvio.Date, archivoDD.IdArchivo, UserName)
                 End If
             End If
 

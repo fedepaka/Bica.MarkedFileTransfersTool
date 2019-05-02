@@ -61,7 +61,7 @@ Namespace Bica.TransferGateway.WindowsService.Service
                                 'si el archivo pudo copiarse, creamos registro en la tabla y lo marcamos como recibido
                                 If copiado Then
                                     Dim idMovArchivo = _blMovimientoArchivos.InsertarRegistroMovimientoArchivo(objOrigenArchivos.Id, nombreArchivo,
-                                                                                    fechaProcesoActual, Nothing, userName)
+                                                                                    fechaProcesoActual.Date, Nothing, userName)
                                     _blMovimientoArchivos.ActualizarRegistroRecibido(idMovArchivo, userName)
 
                                 End If
@@ -84,7 +84,7 @@ Namespace Bica.TransferGateway.WindowsService.Service
                                 'si el archivo pudo copiarse, creamos registro en la tabla y lo marcamos como recibido
                                 If copiado Then
                                     Dim idMovArchivo = _blMovimientoArchivos.InsertarRegistroMovimientoArchivo(objOrigenArchivos.Id, nombreArchivo,
-                                                                                    fechaProcesoActual, Nothing, userName)
+                                                                                    fechaProcesoActual.Date, Nothing, userName)
                                     _blMovimientoArchivos.ActualizarRegistroRecibido(idMovArchivo, userName)
                                 End If
 
@@ -108,7 +108,7 @@ Namespace Bica.TransferGateway.WindowsService.Service
                                 'si el archivo pudo copiarse, creamos registro en la tabla y lo marcamos como recibido
                                 If copiado Then
                                     Dim idMovArchivo = _blMovimientoArchivos.InsertarRegistroMovimientoArchivo(objOrigenArchivos.Id, nombreArchivo,
-                                                                                fechaProcesoActual, Nothing, userName)
+                                                                                fechaProcesoActual.Date, Nothing, userName)
                                     _blMovimientoArchivos.ActualizarRegistroRecibido(idMovArchivo, userName)
                                 End If
 

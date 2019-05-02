@@ -9,6 +9,7 @@ Public Class Procesos_MovimientoArchivos
     Public Property ToBeTransfer As Boolean
     Public Property DoBackup As Boolean
     Public Property Copied As Boolean
+    Public Property Processed As Boolean
     Public Property FechaCreacion As DateTime
     Public Property FechaModificacion As DateTime?
     Public Property Deleted As Boolean?
