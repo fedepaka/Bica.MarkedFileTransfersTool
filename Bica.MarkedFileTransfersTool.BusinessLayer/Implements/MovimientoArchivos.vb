@@ -1,5 +1,4 @@
 ﻿Imports Bica.MarkedFileTransfersTool.DALayer
-Imports Bica.MarkedFileTransfersTool.Model
 
 Public Class MovimientoArchivos
     Implements IMovimientoArchivos
@@ -107,4 +106,5 @@ Public Class MovimientoArchivos
 
         Return _dataMovimientoArchivos.ObtenerMovimientoArchivosPendientesRecibir(IdProceso, fecha)
     End Function
+
 End Class

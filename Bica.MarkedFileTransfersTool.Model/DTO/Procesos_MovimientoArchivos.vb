@@ -16,4 +16,11 @@ Public Class Procesos_MovimientoArchivos
 
     Public Property UsuarioCreacion As String
     Public Property UsuarioModificacion As String
+
+
+    Public ReadOnly Property CustomToBeTransferCopied() As Boolean
+        Get
+            Return Me.ToBeTransfer Or Me.Copied
+        End Get
+    End Property
 End Class

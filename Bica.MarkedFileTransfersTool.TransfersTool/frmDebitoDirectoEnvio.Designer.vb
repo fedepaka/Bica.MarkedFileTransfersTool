@@ -216,7 +216,7 @@ Partial Class frmDebitoDirectoEnvio
         'ToBeTransfer
         '
         Me.ToBeTransfer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
-        Me.ToBeTransfer.DataPropertyName = "ToBeTransfer"
+        Me.ToBeTransfer.DataPropertyName = "CustomToBeTransferCopied"
         Me.ToBeTransfer.FillWeight = 1.731939!
         Me.ToBeTransfer.HeaderText = "Por Transferir"
         Me.ToBeTransfer.Name = "ToBeTransfer"

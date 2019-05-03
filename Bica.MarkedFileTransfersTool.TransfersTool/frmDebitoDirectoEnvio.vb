@@ -31,10 +31,17 @@ Public Class frmDebitoDirectoEnvio
     Public Sub CargarDatosGrilla(IdProceso As Long)
         Dim _datos = New OrigenDestinoArchivos()
         Dim _blMovArchivos = New MovimientoArchivos()
-
+        Dim listaMovimientos As List(Of Procesos_MovimientoArchivos) = New List(Of Procesos_MovimientoArchivos)
         dgvOrigenDestinoArchivos.DataSource = bindingSource1
 
-        Dim listaMovimientos = _blMovArchivos.ObtenerMovimientosArchivos(IdProceso, fechaProcesoActual)
+        Dim objProcesoLista = _datos.ObtenerOrigenDestinoArchivosPorEnviar()
+
+        For Each objProceso As Procesos_OrigenDestinoArchivos In objProcesoLista
+            Dim idProc = _datos.ObtenerOrigenDestinoArchivos(objProceso.ProcessNr).Id
+
+            Dim listaAux = _blMovArchivos.ObtenerMovimientosArchivos(idProc, fechaProcesoActual)
+            listaMovimientos.AddRange(listaAux)
+        Next
 
         If listaMovimientos.Count <= 0 Then
             lblMensaje.Text = Constants.Formulario_Msg_SinDatos
