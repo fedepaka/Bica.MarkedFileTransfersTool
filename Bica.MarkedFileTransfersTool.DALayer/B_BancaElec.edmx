@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="B_BancaElecModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="B_BancaElecModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Procesos_MovimientoArchivos">
           <Key>
             <PropertyRef Name="Id" />
@@ -44,6 +44,7 @@
           <Property Name="UsuarioModificacion" Type="nvarchar" MaxLength="25" />
           <Property Name="FechaModificacion" Type="datetime" />
           <Property Name="Eliminado" Type="bit" />
+          <Property Name="NombreProceso" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="Procesos_TipoDireccionArchivo">
           <Key>
@@ -95,11 +96,37 @@
             <End Role="Procesos_OrigenDestinoArchivos" EntitySet="Procesos_OrigenDestinoArchivos" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="B_BancaElecModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Procesos_TipoDireccionArchivo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="UsuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="UsuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="Eliminado" Type="Boolean" />
+          <NavigationProperty Name="Procesos_OrigenDestinoArchivos" Relationship="B_BancaElecModel.FK_Procesos_OrigenDestinoArchivos_TipoDireccionArchivo" FromRole="Procesos_TipoDireccionArchivo" ToRole="Procesos_OrigenDestinoArchivos" />
+        </EntityType>
+        <EntityContainer Name="B_BancaElecEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Procesos_TipoDireccionArchivo" EntityType="Self.Procesos_TipoDireccionArchivo" />
+          <EntitySet Name="Procesos_MovimientoArchivos" EntityType="B_BancaElecModel.Procesos_MovimientoArchivos" />
+          <EntitySet Name="Procesos_OrigenDestinoArchivos" EntityType="B_BancaElecModel.Procesos_OrigenDestinoArchivos" />
+          <AssociationSet Name="FK_Procesos_MovimientoArchivos_OrigenDestinoArchivos" Association="B_BancaElecModel.FK_Procesos_MovimientoArchivos_OrigenDestinoArchivos">
+            <End Role="Procesos_OrigenDestinoArchivos" EntitySet="Procesos_OrigenDestinoArchivos" />
+            <End Role="Procesos_MovimientoArchivos" EntitySet="Procesos_MovimientoArchivos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Procesos_OrigenDestinoArchivos_TipoDireccionArchivo" Association="B_BancaElecModel.FK_Procesos_OrigenDestinoArchivos_TipoDireccionArchivo">
+            <End Role="Procesos_TipoDireccionArchivo" EntitySet="Procesos_TipoDireccionArchivo" />
+            <End Role="Procesos_OrigenDestinoArchivos" EntitySet="Procesos_OrigenDestinoArchivos" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Procesos_MovimientoArchivos">
           <Key>
             <PropertyRef Name="Id" />
@@ -120,7 +147,7 @@
           <Property Name="UsuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
           <Property Name="Eliminado" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Procesos_OrigenDestinoArchivos" Relationship="Self.FK_Procesos_MovimientoArchivos_OrigenDestinoArchivos" FromRole="Procesos_MovimientoArchivos" ToRole="Procesos_OrigenDestinoArchivos" />
+          <NavigationProperty Name="Procesos_OrigenDestinoArchivos" Relationship="B_BancaElecModel.FK_Procesos_MovimientoArchivos_OrigenDestinoArchivos" FromRole="Procesos_MovimientoArchivos" ToRole="Procesos_OrigenDestinoArchivos" />
         </EntityType>
         <EntityType Name="Procesos_OrigenDestinoArchivos">
           <Key>
@@ -140,26 +167,13 @@
           <Property Name="UsuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
           <Property Name="Eliminado" Type="Boolean" />
-          <NavigationProperty Name="Procesos_MovimientoArchivos" Relationship="Self.FK_Procesos_MovimientoArchivos_OrigenDestinoArchivos" FromRole="Procesos_OrigenDestinoArchivos" ToRole="Procesos_MovimientoArchivos" />
-          <NavigationProperty Name="Procesos_TipoDireccionArchivo" Relationship="Self.FK_Procesos_OrigenDestinoArchivos_TipoDireccionArchivo" FromRole="Procesos_OrigenDestinoArchivos" ToRole="Procesos_TipoDireccionArchivo" />
-        </EntityType>
-        <EntityType Name="Procesos_TipoDireccionArchivo">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="UsuarioCreacion" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
-          <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
-          <Property Name="UsuarioModificacion" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
-          <Property Name="FechaModificacion" Type="DateTime" Precision="3" />
-          <Property Name="Eliminado" Type="Boolean" />
-          <NavigationProperty Name="Procesos_OrigenDestinoArchivos" Relationship="Self.FK_Procesos_OrigenDestinoArchivos_TipoDireccionArchivo" FromRole="Procesos_TipoDireccionArchivo" ToRole="Procesos_OrigenDestinoArchivos" />
+          <Property Name="NombreProceso" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Procesos_MovimientoArchivos" Relationship="B_BancaElecModel.FK_Procesos_MovimientoArchivos_OrigenDestinoArchivos" FromRole="Procesos_OrigenDestinoArchivos" ToRole="Procesos_MovimientoArchivos" />
+          <NavigationProperty Name="Procesos_TipoDireccionArchivo" Relationship="B_BancaElecModel.FK_Procesos_OrigenDestinoArchivos_TipoDireccionArchivo" FromRole="Procesos_OrigenDestinoArchivos" ToRole="Procesos_TipoDireccionArchivo" />
         </EntityType>
         <Association Name="FK_Procesos_MovimientoArchivos_OrigenDestinoArchivos">
-          <End Role="Procesos_OrigenDestinoArchivos" Type="Self.Procesos_OrigenDestinoArchivos" Multiplicity="1" />
-          <End Role="Procesos_MovimientoArchivos" Type="Self.Procesos_MovimientoArchivos" Multiplicity="*" />
+          <End Type="B_BancaElecModel.Procesos_OrigenDestinoArchivos" Role="Procesos_OrigenDestinoArchivos" Multiplicity="1" />
+          <End Type="B_BancaElecModel.Procesos_MovimientoArchivos" Role="Procesos_MovimientoArchivos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Procesos_OrigenDestinoArchivos">
               <PropertyRef Name="Id" />
@@ -170,8 +184,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Procesos_OrigenDestinoArchivos_TipoDireccionArchivo">
-          <End Role="Procesos_TipoDireccionArchivo" Type="Self.Procesos_TipoDireccionArchivo" Multiplicity="1" />
-          <End Role="Procesos_OrigenDestinoArchivos" Type="Self.Procesos_OrigenDestinoArchivos" Multiplicity="*" />
+          <End Type="B_BancaElecModel.Procesos_TipoDireccionArchivo" Role="Procesos_TipoDireccionArchivo" Multiplicity="1" />
+          <End Type="B_BancaElecModel.Procesos_OrigenDestinoArchivos" Role="Procesos_OrigenDestinoArchivos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Procesos_TipoDireccionArchivo">
               <PropertyRef Name="Id" />
@@ -181,67 +195,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="B_BancaElecEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Procesos_MovimientoArchivos" EntityType="Self.Procesos_MovimientoArchivos" />
-          <EntitySet Name="Procesos_OrigenDestinoArchivos" EntityType="Self.Procesos_OrigenDestinoArchivos" />
-          <EntitySet Name="Procesos_TipoDireccionArchivo" EntityType="Self.Procesos_TipoDireccionArchivo" />
-          <AssociationSet Name="FK_Procesos_MovimientoArchivos_OrigenDestinoArchivos" Association="Self.FK_Procesos_MovimientoArchivos_OrigenDestinoArchivos">
-            <End Role="Procesos_OrigenDestinoArchivos" EntitySet="Procesos_OrigenDestinoArchivos" />
-            <End Role="Procesos_MovimientoArchivos" EntitySet="Procesos_MovimientoArchivos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Procesos_OrigenDestinoArchivos_TipoDireccionArchivo" Association="Self.FK_Procesos_OrigenDestinoArchivos_TipoDireccionArchivo">
-            <End Role="Procesos_TipoDireccionArchivo" EntitySet="Procesos_TipoDireccionArchivo" />
-            <End Role="Procesos_OrigenDestinoArchivos" EntitySet="Procesos_OrigenDestinoArchivos" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="B_BancaElecModelStoreContainer" CdmEntityContainer="B_BancaElecEntities">
-          <EntitySetMapping Name="Procesos_MovimientoArchivos">
-            <EntityTypeMapping TypeName="B_BancaElecModel.Procesos_MovimientoArchivos">
-              <MappingFragment StoreEntitySet="Procesos_MovimientoArchivos">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Procesos_OrigenDestinoArchivosId" ColumnName="Procesos_OrigenDestinoArchivosId" />
-                <ScalarProperty Name="NombreArchivo" ColumnName="NombreArchivo" />
-                <ScalarProperty Name="FechaPresentacion" ColumnName="FechaPresentacion" />
-                <ScalarProperty Name="IdArchivo" ColumnName="IdArchivo" />
-                <ScalarProperty Name="Transferido" ColumnName="Transferido" />
-                <ScalarProperty Name="HacerBackup" ColumnName="HacerBackup" />
-                <ScalarProperty Name="ParaTransferir" ColumnName="ParaTransferir" />
-                <ScalarProperty Name="Copiado" ColumnName="Copiado" />
-                <ScalarProperty Name="Recibido" ColumnName="Recibido" />
-                <ScalarProperty Name="Procesado" ColumnName="Procesado" />
-                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
-                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
-                <ScalarProperty Name="UsuarioModificacion" ColumnName="UsuarioModificacion" />
-                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
-                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Procesos_OrigenDestinoArchivos">
-            <EntityTypeMapping TypeName="B_BancaElecModel.Procesos_OrigenDestinoArchivos">
-              <MappingFragment StoreEntitySet="Procesos_OrigenDestinoArchivos">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="NumeroProceso" ColumnName="NumeroProceso" />
-                <ScalarProperty Name="Procesos_TipoDireccionArchivoId" ColumnName="Procesos_TipoDireccionArchivoId" />
-                <ScalarProperty Name="UbicacionDesde" ColumnName="UbicacionDesde" />
-                <ScalarProperty Name="UbicacionNTFTPImportar" ColumnName="UbicacionNTFTPImportar" />
-                <ScalarProperty Name="UbicacionNTFTPEnviar" ColumnName="UbicacionNTFTPEnviar" />
-                <ScalarProperty Name="UbicacionNTFTPRecibir" ColumnName="UbicacionNTFTPRecibir" />
-                <ScalarProperty Name="UbicacionDestino" ColumnName="UbicacionDestino" />
-                <ScalarProperty Name="UbicacionProcesado" ColumnName="UbicacionProcesado" />
-                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
-                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
-                <ScalarProperty Name="UsuarioModificacion" ColumnName="UsuarioModificacion" />
-                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
-                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Procesos_TipoDireccionArchivo">
             <EntityTypeMapping TypeName="B_BancaElecModel.Procesos_TipoDireccionArchivo">
               <MappingFragment StoreEntitySet="Procesos_TipoDireccionArchivo">
@@ -253,6 +212,49 @@
                 <ScalarProperty Name="UsuarioModificacion" ColumnName="UsuarioModificacion" />
                 <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
                 <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Procesos_MovimientoArchivos">
+            <EntityTypeMapping TypeName="B_BancaElecModel.Procesos_MovimientoArchivos">
+              <MappingFragment StoreEntitySet="Procesos_MovimientoArchivos">
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="UsuarioModificacion" ColumnName="UsuarioModificacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+                <ScalarProperty Name="Procesado" ColumnName="Procesado" />
+                <ScalarProperty Name="Recibido" ColumnName="Recibido" />
+                <ScalarProperty Name="Copiado" ColumnName="Copiado" />
+                <ScalarProperty Name="ParaTransferir" ColumnName="ParaTransferir" />
+                <ScalarProperty Name="HacerBackup" ColumnName="HacerBackup" />
+                <ScalarProperty Name="Transferido" ColumnName="Transferido" />
+                <ScalarProperty Name="IdArchivo" ColumnName="IdArchivo" />
+                <ScalarProperty Name="FechaPresentacion" ColumnName="FechaPresentacion" />
+                <ScalarProperty Name="NombreArchivo" ColumnName="NombreArchivo" />
+                <ScalarProperty Name="Procesos_OrigenDestinoArchivosId" ColumnName="Procesos_OrigenDestinoArchivosId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Procesos_OrigenDestinoArchivos">
+            <EntityTypeMapping TypeName="B_BancaElecModel.Procesos_OrigenDestinoArchivos">
+              <MappingFragment StoreEntitySet="Procesos_OrigenDestinoArchivos">
+                <ScalarProperty Name="NombreProceso" ColumnName="NombreProceso" />
+                <ScalarProperty Name="Eliminado" ColumnName="Eliminado" />
+                <ScalarProperty Name="FechaModificacion" ColumnName="FechaModificacion" />
+                <ScalarProperty Name="UsuarioModificacion" ColumnName="UsuarioModificacion" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioCreacion" ColumnName="UsuarioCreacion" />
+                <ScalarProperty Name="UbicacionProcesado" ColumnName="UbicacionProcesado" />
+                <ScalarProperty Name="UbicacionDestino" ColumnName="UbicacionDestino" />
+                <ScalarProperty Name="UbicacionNTFTPRecibir" ColumnName="UbicacionNTFTPRecibir" />
+                <ScalarProperty Name="UbicacionNTFTPEnviar" ColumnName="UbicacionNTFTPEnviar" />
+                <ScalarProperty Name="UbicacionNTFTPImportar" ColumnName="UbicacionNTFTPImportar" />
+                <ScalarProperty Name="UbicacionDesde" ColumnName="UbicacionDesde" />
+                <ScalarProperty Name="Procesos_TipoDireccionArchivoId" ColumnName="Procesos_TipoDireccionArchivoId" />
+                <ScalarProperty Name="NumeroProceso" ColumnName="NumeroProceso" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

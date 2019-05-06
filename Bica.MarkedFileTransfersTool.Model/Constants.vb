@@ -17,13 +17,15 @@
     Public Procesos_TipoDireccionArchivo_RECEPCION As String = "Coelsa-Entidad"
 
     'Configuración de pantalla de formulario
-    Public Formulario_Titulo As String = "Marcar archivos para enviar"
+    Public Formulario_Titulo_DebitoDirectoEnvio As String = "Débitos Directos - Marcar archivos para enviar"
+    Public Formulario_Titulo_DebitoDirectoRecepcion As String = "Débitos Directos - Información de recepción de archivos"
 
     'Mensajes para Diálogos Si/No
     Public Dialogo_SiNo_Pregunta As String = "Desea efectuar carga de archivos"
     Public Dialogo_SiNo_Titulo As String = "Mensaje"
 
     Public Formulario_Msg_SinDatos As String = "No existen datos de archivos para la fecha de proceso actual."
+    Public Formulario_Msg_SinDatosRecepcion As String = "No existen datos de archivos recibidos/procesados para la fecha de proceso actual."
 
 
 End Module

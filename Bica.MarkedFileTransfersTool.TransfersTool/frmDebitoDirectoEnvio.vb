@@ -4,6 +4,7 @@ Imports Bica.MarkedFileTransfersTool.Model
 Public Class frmDebitoDirectoEnvio
     Private bindingSource1 As BindingSource = New BindingSource()
 
+
     Private _blDebitoDirecto As DebitoDirecto = New DebitoDirecto()
     Private fechaProcesoActual As Date = Date.Now
     Private _datos As OrigenDestinoArchivos = New OrigenDestinoArchivos()
@@ -16,7 +17,7 @@ Public Class frmDebitoDirectoEnvio
         Dim origenArchivoProceso = _datos.ObtenerOrigenDestinoArchivos(Model.Constants.BCO_Envio_Debito_Directo_Code)
         CargaDatosIniciales()
         ConfigurarFormulario(origenArchivoProceso)
-        CargarDatosGrilla(origenArchivoProceso.Id)
+        CargarDatosGrilla()
     End Sub
 
     Private Sub CargaDatosIniciales()
@@ -28,7 +29,7 @@ Public Class frmDebitoDirectoEnvio
     ''' Obtiene los registros de archivos generados para el Proceso dado
     ''' </summary>
     ''' <param name="IdProceso">Es el Id de la tabla Procesos_OrigenDestinoArchivos. Referencia al identificador de la configuración del proceso</param>
-    Public Sub CargarDatosGrilla(IdProceso As Long)
+    Public Sub CargarDatosGrilla()
         Dim _datos = New OrigenDestinoArchivos()
         Dim _blMovArchivos = New MovimientoArchivos()
         Dim listaMovimientos As List(Of Procesos_MovimientoArchivos) = New List(Of Procesos_MovimientoArchivos)
@@ -113,7 +114,7 @@ Public Class frmDebitoDirectoEnvio
         ' Set the start position of the form to the center of the screen.
         Me.StartPosition = FormStartPosition.CenterScreen
 
-        Me.Text = Model.Constants.Formulario_Titulo
+        Me.Text = Model.Constants.Formulario_Titulo_DebitoDirectoEnvio
     End Sub
 
     ''' <summary>
@@ -155,14 +156,33 @@ Public Class frmDebitoDirectoEnvio
                 If answer = vbYes Then
                     Dim resUpdate = _blMovArchivos.ActualizarRegistroASerTransferido(idMovimientoArchivo, userName)
                 End If
-                CargarDatosGrilla(objMovArchivo.Procesos_OrigenDestinoArchivosId)
+                CargarDatosGrilla()
             End If
         End If
-
-
-
-
     End Sub
+
+    Private Sub BtnVerRecibidos_Click(sender As Object, e As EventArgs) Handles btnVerRecibidos.Click
+        Dim frmRecibidos = New frmDebitoDirectoRecibidos()
+        frmRecibidos.ShowDialog()
+        frmRecibidos.Close()
+    End Sub
+
+    Private Sub BtnIrUbicacionDesde_Click(sender As Object, e As EventArgs) Handles btnIrUbicacionDesde.Click
+        If lblPathFrom.Text IsNot String.Empty Then
+            Process.Start(lblPathFrom.Text)
+        End If
+    End Sub
+
+    'Private Sub TimerLoad()
+    '    Dim timer As Timer = New Timer()
+    '    timer.Interval = (10 * 5000)
+    '    timer.Tick = AddHandler context.PostRequestHandlerExecute, AddressOf context_BeginRequest' New EventHandler(AddressOf timer_Tick)
+    '    timer.Start()
+    'End Sub
+
+    'Private Sub timer_Tick(ByVal sender As Object, ByVal e As EventArgs)
+    '    CargarDatos()
+    'End Sub
 End Class
 
 

@@ -4,10 +4,12 @@
     Public Property ProcessNr As Long
     Public Property Procesos_TipoDireccionArchivoId As Long
     Public Property PathFrom As String
+    Public Property ProcessName As String
     Public Property PathTo As String
     Public Property PathInport As String
     Public Property PathSend As String
     Public Property PathRecibed As String
+    Public Property PathProcessed As String
     Public Property Created_User_Id As Long
     Public Property Modified_User_Id As Long?
     Public Property FechaCreacion As DateTime

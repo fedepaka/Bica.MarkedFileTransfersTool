@@ -5,12 +5,13 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{116261AF-5746-447E-BA91-15D7FFD932EF}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <StartupObject>Bica.MarkedFileTransfersTool.DALayer.Module1</StartupObject>
+    <OutputType>Library</OutputType>
+    <StartupObject>
+    </StartupObject>
     <RootNamespace>Bica.MarkedFileTransfersTool.DALayer</RootNamespace>
     <AssemblyName>Bica.MarkedFileTransfersTool.DALayer</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <MyType>Console</MyType>
+    <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -112,7 +113,6 @@
     <Compile Include="Gen_Procesos.vb">
       <DependentUpon>B_General.tt</DependentUpon>
     </Compile>
-    <Compile Include="Module1.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

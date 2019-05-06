@@ -46,6 +46,7 @@ INSERT INTO [dbo].[Procesos_TipoDireccionArchivo] (Nombre, Descripcion, UsuarioC
 CREATE TABLE [Procesos_OrigenDestinoArchivos] (
 	[Id] [bigint] IDENTITY(1,1) NOT NULL,
 	[NumeroProceso] int NULL,
+	[NombreProceso] nvarchar(255) NULL,
 	[Procesos_TipoDireccionArchivoId] [bigint] NOT NULL,
 	[UbicacionDesde]  nvarchar(3000) NULL, --[PATH_FROM]
 	[UbicacionNTFTPImportar] nvarchar(3000) NULL,--[PATH_NTFTP_INPORT] nvarchar(3000) NULL,
@@ -79,6 +80,9 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Identificador 
 GO
 
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Numero de proceso. Hace referencia al campo Proceso de la tabla B_General.dbo.Gen_Procesos' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Procesos_OrigenDestinoArchivos', @level2type=N'COLUMN',@level2name=N'NumeroProceso'
+GO
+
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Nombre de proceso. Hace referencia al campo Proceso de la tabla B_General.dbo.Gen_Procesos' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Procesos_OrigenDestinoArchivos', @level2type=N'COLUMN',@level2name=N'NombreProceso'
 GO
 
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Ubicacion desde donde se toma el archivo' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Procesos_OrigenDestinoArchivos', @level2type=N'COLUMN',@level2name=N'UbicacionDesde'

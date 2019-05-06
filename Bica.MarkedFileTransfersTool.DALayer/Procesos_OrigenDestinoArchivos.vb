@@ -15,6 +15,7 @@ Partial Public Class Procesos_OrigenDestinoArchivos
     Public Property NumeroProceso As Nullable(Of Integer)
     Public Property Procesos_TipoDireccionArchivoId As Long
     Public Property UbicacionDesde As String
+    Public Property NombreProceso As String
     Public Property UbicacionNTFTPImportar As String
     Public Property UbicacionNTFTPEnviar As String
     Public Property UbicacionNTFTPRecibir As String

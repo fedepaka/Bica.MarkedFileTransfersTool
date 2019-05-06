@@ -54,13 +54,28 @@ Public Class Procesos_MovimientoArchivos_DataModel
     End Function
 
     ''' <summary>
-    ''' Obtiene los registros de archivos que fueron recibidos 
+    ''' 
     ''' </summary>
-    ''' <param name="IdProceso"></param>
+    ''' <param name="IdProcesos"></param>
     ''' <param name="fecha"></param>
     ''' <returns></returns>
-    Public Function ObtenerMovimientoArchivosPendientesRecibir(IdProceso As Long, fecha As Date) As List(Of Model.Procesos_MovimientoArchivos)
-        Return ObtenerMovimientoArchivosPendientesRecibir(IdProceso, fecha)
+    Public Function ObtenerArchivosRecibidos(IdProcesos() As Long, fecha As Date) As List(Of Model.Procesos_MovimientoArchivos)
+        Dim registros As List(Of Procesos_MovimientoArchivos)
+
+        Using resource As New B_BancaElecEntities()
+            registros = (From f In resource.Procesos_MovimientoArchivos
+                         Where IdProcesos.Contains(f.Procesos_OrigenDestinoArchivosId) And
+                             DbFunctions.TruncateTime(f.FechaPresentacion) = fecha.Date And
+                                f.Recibido = True).ToList()
+
+            'cargamos lista de resultados
+            Dim lista As List(Of Model.Procesos_MovimientoArchivos) = New List(Of Model.Procesos_MovimientoArchivos)
+            For Each item As Procesos_MovimientoArchivos In registros
+                lista.Add(Map(item))
+            Next
+
+            Return lista
+        End Using
     End Function
 
     Public Function ObtenerMovimientoArchivosCopiadosNTFTP(IdProceso As Long, fecha As Date) As List(Of Model.Procesos_MovimientoArchivos)
@@ -191,6 +206,8 @@ Public Class Procesos_MovimientoArchivos_DataModel
         retorno.Transferred = registro.Transferido
         retorno.ToBeTransfer = registro.ParaTransferir
         retorno.Copied = registro.Copiado
+        retorno.Recibed = registro.Recibido
+        retorno.Processed = registro.Procesado
         retorno.Id_File = If(registro.IdArchivo Is Nothing, Nothing, registro.IdArchivo)
         retorno.Presentation_Date = registro.FechaPresentacion
         retorno.UsuarioCreacion = registro.UsuarioCreacion
