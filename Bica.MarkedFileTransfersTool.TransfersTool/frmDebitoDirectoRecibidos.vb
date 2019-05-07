@@ -1,4 +1,5 @@
-﻿Imports Bica.MarkedFileTransfersTool.BusinessLayer
+﻿Imports System.Configuration
+Imports Bica.MarkedFileTransfersTool.BusinessLayer
 Imports Bica.MarkedFileTransfersTool.Model
 
 Public Class frmDebitoDirectoRecibidos
@@ -7,6 +8,7 @@ Public Class frmDebitoDirectoRecibidos
     Private bsListaRecibidos As BindingSource = New BindingSource()
     Private fechaProcesoActual As Date = Date.Now
     Private _fuente As String = "Microsoft Sans Serif"
+
 
 
     ''' <summary>

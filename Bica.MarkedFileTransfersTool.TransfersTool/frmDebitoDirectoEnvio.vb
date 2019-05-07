@@ -1,4 +1,5 @@
-﻿Imports Bica.MarkedFileTransfersTool.BusinessLayer
+﻿Imports System.Configuration
+Imports Bica.MarkedFileTransfersTool.BusinessLayer
 Imports Bica.MarkedFileTransfersTool.Model
 
 Public Class frmDebitoDirectoEnvio
@@ -11,6 +12,14 @@ Public Class frmDebitoDirectoEnvio
 
     Private _fuente As String = "Microsoft Sans Serif"
     Private userName = "aRey"
+
+    Private Const RECARGA_GRILLA_DATOS_TIME As String = "RECARGA_GRILLA_DATOS_TIME"
+
+    Private Shared ReadOnly Property RecargaGrillaDatosTime As Integer
+        Get
+            Return Integer.Parse(ConfigurationManager.AppSettings.[Get](RECARGA_GRILLA_DATOS_TIME))
+        End Get
+    End Property
 
     Private Sub CargarDatos()
         lblMensaje.Text = String.Empty
@@ -26,9 +35,8 @@ Public Class frmDebitoDirectoEnvio
     End Sub
 
     ''' <summary>
-    ''' Obtiene los registros de archivos generados para el Proceso dado
+    ''' 
     ''' </summary>
-    ''' <param name="IdProceso">Es el Id de la tabla Procesos_OrigenDestinoArchivos. Referencia al identificador de la configuración del proceso</param>
     Public Sub CargarDatosGrilla()
         Dim _datos = New OrigenDestinoArchivos()
         Dim _blMovArchivos = New MovimientoArchivos()
@@ -59,6 +67,7 @@ Public Class frmDebitoDirectoEnvio
     ''' <param name="e"></param>
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CargarDatos()
+        TimerLoad()
     End Sub
 
     ''' <summary>
@@ -173,16 +182,17 @@ Public Class frmDebitoDirectoEnvio
         End If
     End Sub
 
-    'Private Sub TimerLoad()
-    '    Dim timer As Timer = New Timer()
-    '    timer.Interval = (10 * 5000)
-    '    timer.Tick = AddHandler context.PostRequestHandlerExecute, AddressOf context_BeginRequest' New EventHandler(AddressOf timer_Tick)
-    '    timer.Start()
-    'End Sub
+    Private Sub TimerLoad()
+        Dim timer As Timer = New Timer()
+        timer.Interval = (RecargaGrillaDatosTime)
 
-    'Private Sub timer_Tick(ByVal sender As Object, ByVal e As EventArgs)
-    '    CargarDatos()
-    'End Sub
+        AddHandler timer.Tick, AddressOf timer_Tick
+        timer.Start()
+    End Sub
+
+    Private Sub timer_Tick(ByVal sender As Object, ByVal e As EventArgs)
+        CargarDatos()
+    End Sub
 End Class
 
 
