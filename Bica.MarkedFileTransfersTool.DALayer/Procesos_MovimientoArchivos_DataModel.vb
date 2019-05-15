@@ -66,7 +66,7 @@ Public Class Procesos_MovimientoArchivos_DataModel
             registros = (From f In resource.Procesos_MovimientoArchivos
                          Where IdProcesos.Contains(f.Procesos_OrigenDestinoArchivosId) And
                              DbFunctions.TruncateTime(f.FechaPresentacion) = fecha.Date And
-                                f.Recibido = True).ToList()
+                                (f.Recibido = True Or f.Procesado = True)).ToList()
 
             'cargamos lista de resultados
             Dim lista As List(Of Model.Procesos_MovimientoArchivos) = New List(Of Model.Procesos_MovimientoArchivos)
@@ -198,18 +198,18 @@ Public Class Procesos_MovimientoArchivos_DataModel
 
         Dim retorno As New Model.Procesos_MovimientoArchivos()
         retorno.FechaCreacion = registro.FechaCreacion
-        retorno.DoBackup = registro.HacerBackup
-        retorno.FileName = If(registro.NombreArchivo Is Nothing, String.Empty, registro.NombreArchivo)
+        retorno.HacerBackup = registro.HacerBackup
+        retorno.NombreArchivo = If(registro.NombreArchivo Is Nothing, String.Empty, registro.NombreArchivo)
         retorno.Id = registro.ID
         retorno.FechaModificacion = registro.FechaModificacion
         retorno.Procesos_OrigenDestinoArchivosId = registro.Procesos_OrigenDestinoArchivosId
-        retorno.Transferred = registro.Transferido
-        retorno.ToBeTransfer = registro.ParaTransferir
-        retorno.Copied = registro.Copiado
-        retorno.Recibed = registro.Recibido
-        retorno.Processed = registro.Procesado
-        retorno.Id_File = If(registro.IdArchivo Is Nothing, Nothing, registro.IdArchivo)
-        retorno.Presentation_Date = registro.FechaPresentacion
+        retorno.Transferido = registro.Transferido
+        retorno.ParaTransferir = registro.ParaTransferir
+        retorno.Copiado = registro.Copiado
+        retorno.Recibido = registro.Recibido
+        retorno.Procesado = registro.Procesado
+        retorno.IdArchivo = If(registro.IdArchivo Is Nothing, Nothing, registro.IdArchivo)
+        retorno.FechaPresentacion = registro.FechaPresentacion
         retorno.UsuarioCreacion = registro.UsuarioCreacion
         retorno.UsuarioModificacion = registro.UsuarioModificacion
         Return retorno

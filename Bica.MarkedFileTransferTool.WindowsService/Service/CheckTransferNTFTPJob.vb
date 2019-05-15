@@ -78,7 +78,7 @@ Namespace Bica.TransferGateway.WindowsService.Service
             'si existen, marcarlos como transferido
 
             For Each archivo As Procesos_MovimientoArchivos In listaArchivos
-                If FileUtil.ExisteArchivo(String.Format("{0}\{1}", origenDestinoArchivos.PathSend, archivo.FileName)) Then
+                If FileUtil.ExisteArchivo(String.Format("{0}\{1}", origenDestinoArchivos.UbicacionNTFTPEnviar, archivo.NombreArchivo)) Then
                     _blMovimientoArchivos.ActualizarRegistroTransferido(archivo.Id, userName)
                 Else
                     retorno = False

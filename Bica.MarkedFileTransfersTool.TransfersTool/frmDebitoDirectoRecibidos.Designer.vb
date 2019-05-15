@@ -23,13 +23,11 @@ Partial Class frmDebitoDirectoRecibidos
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.dgvArchivosRecibidos = New System.Windows.Forms.DataGridView()
-        Me.Id = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Procesos_OrigenDestinoArchivosId = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NombreArchivo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FechaPresentacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Recibido = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.Procesado = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.btnUbicacionProcesado = New System.Windows.Forms.Button()
+        Me.btnUbicacionDestinoRecepcion = New System.Windows.Forms.Button()
+        Me.lblUbicacionProcesado = New System.Windows.Forms.Label()
+        Me.lblUbicacionProcesadoTitulo = New System.Windows.Forms.Label()
         Me.lblUbicacionDestino = New System.Windows.Forms.Label()
         Me.lblUbicacionDestinoTitulo = New System.Windows.Forms.Label()
         Me.lblUbicacionRecibido = New System.Windows.Forms.Label()
@@ -38,11 +36,13 @@ Partial Class frmDebitoDirectoRecibidos
         Me.lblNumeroProceso = New System.Windows.Forms.Label()
         Me.lblNombreProcesoTitulo = New System.Windows.Forms.Label()
         Me.lblNombreProceso = New System.Windows.Forms.Label()
-        Me.lblUbicacionProcesado = New System.Windows.Forms.Label()
-        Me.lblUbicacionProcesadoTitulo = New System.Windows.Forms.Label()
         Me.lblMensaje = New System.Windows.Forms.Label()
-        Me.btnUbicacionDestinoRecepcion = New System.Windows.Forms.Button()
-        Me.btnUbicacionProcesado = New System.Windows.Forms.Button()
+        Me.Id = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Procesos_OrigenDestinoArchivosId = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NombreArchivo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FechaPresentacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Recibido = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.Procesado = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         CType(Me.dgvArchivosRecibidos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
@@ -58,52 +58,6 @@ Partial Class frmDebitoDirectoRecibidos
         Me.dgvArchivosRecibidos.ReadOnly = True
         Me.dgvArchivosRecibidos.Size = New System.Drawing.Size(675, 150)
         Me.dgvArchivosRecibidos.TabIndex = 0
-        '
-        'Id
-        '
-        Me.Id.DataPropertyName = "Id"
-        Me.Id.HeaderText = "Id"
-        Me.Id.Name = "Id"
-        Me.Id.ReadOnly = True
-        Me.Id.Visible = False
-        '
-        'Procesos_OrigenDestinoArchivosId
-        '
-        Me.Procesos_OrigenDestinoArchivosId.DataPropertyName = "Procesos_OrigenDestinoArchivosId"
-        Me.Procesos_OrigenDestinoArchivosId.HeaderText = "Procesos_OrigenDestinoArchivosId"
-        Me.Procesos_OrigenDestinoArchivosId.Name = "Procesos_OrigenDestinoArchivosId"
-        Me.Procesos_OrigenDestinoArchivosId.ReadOnly = True
-        Me.Procesos_OrigenDestinoArchivosId.Visible = False
-        '
-        'NombreArchivo
-        '
-        Me.NombreArchivo.DataPropertyName = "FileName"
-        Me.NombreArchivo.HeaderText = "Nombre Archivo"
-        Me.NombreArchivo.Name = "NombreArchivo"
-        Me.NombreArchivo.ReadOnly = True
-        '
-        'FechaPresentacion
-        '
-        Me.FechaPresentacion.DataPropertyName = "Presentation_Date"
-        Me.FechaPresentacion.HeaderText = "Fecha"
-        Me.FechaPresentacion.Name = "FechaPresentacion"
-        Me.FechaPresentacion.ReadOnly = True
-        '
-        'Recibido
-        '
-        Me.Recibido.DataPropertyName = "Recibed"
-        Me.Recibido.HeaderText = "Recibido"
-        Me.Recibido.Name = "Recibido"
-        Me.Recibido.ReadOnly = True
-        Me.Recibido.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Recibido.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        '
-        'Procesado
-        '
-        Me.Procesado.DataPropertyName = "Processed"
-        Me.Procesado.HeaderText = "Procesado"
-        Me.Procesado.Name = "Procesado"
-        Me.Procesado.ReadOnly = True
         '
         'GroupBox1
         '
@@ -125,6 +79,42 @@ Partial Class frmDebitoDirectoRecibidos
         Me.GroupBox1.TabIndex = 6
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Datos de proceso "
+        '
+        'btnUbicacionProcesado
+        '
+        Me.btnUbicacionProcesado.Location = New System.Drawing.Point(578, 134)
+        Me.btnUbicacionProcesado.Name = "btnUbicacionProcesado"
+        Me.btnUbicacionProcesado.Size = New System.Drawing.Size(75, 23)
+        Me.btnUbicacionProcesado.TabIndex = 18
+        Me.btnUbicacionProcesado.Text = "ir"
+        Me.btnUbicacionProcesado.UseVisualStyleBackColor = True
+        '
+        'btnUbicacionDestinoRecepcion
+        '
+        Me.btnUbicacionDestinoRecepcion.Location = New System.Drawing.Point(578, 105)
+        Me.btnUbicacionDestinoRecepcion.Name = "btnUbicacionDestinoRecepcion"
+        Me.btnUbicacionDestinoRecepcion.Size = New System.Drawing.Size(75, 23)
+        Me.btnUbicacionDestinoRecepcion.TabIndex = 17
+        Me.btnUbicacionDestinoRecepcion.Text = "ir"
+        Me.btnUbicacionDestinoRecepcion.UseVisualStyleBackColor = True
+        '
+        'lblUbicacionProcesado
+        '
+        Me.lblUbicacionProcesado.AutoSize = True
+        Me.lblUbicacionProcesado.Location = New System.Drawing.Point(212, 145)
+        Me.lblUbicacionProcesado.Name = "lblUbicacionProcesado"
+        Me.lblUbicacionProcesado.Size = New System.Drawing.Size(116, 13)
+        Me.lblUbicacionProcesado.TabIndex = 15
+        Me.lblUbicacionProcesado.Text = "lblUbicacionProcesado"
+        '
+        'lblUbicacionProcesadoTitulo
+        '
+        Me.lblUbicacionProcesadoTitulo.AutoSize = True
+        Me.lblUbicacionProcesadoTitulo.Location = New System.Drawing.Point(17, 145)
+        Me.lblUbicacionProcesadoTitulo.Name = "lblUbicacionProcesadoTitulo"
+        Me.lblUbicacionProcesadoTitulo.Size = New System.Drawing.Size(142, 13)
+        Me.lblUbicacionProcesadoTitulo.TabIndex = 14
+        Me.lblUbicacionProcesadoTitulo.Text = "lblUbicacionProcesadoTitulo"
         '
         'lblUbicacionDestino
         '
@@ -198,24 +188,6 @@ Partial Class frmDebitoDirectoRecibidos
         Me.lblNombreProceso.TabIndex = 6
         Me.lblNombreProceso.Text = "lblNombreProceso"
         '
-        'lblUbicacionProcesado
-        '
-        Me.lblUbicacionProcesado.AutoSize = True
-        Me.lblUbicacionProcesado.Location = New System.Drawing.Point(212, 145)
-        Me.lblUbicacionProcesado.Name = "lblUbicacionProcesado"
-        Me.lblUbicacionProcesado.Size = New System.Drawing.Size(116, 13)
-        Me.lblUbicacionProcesado.TabIndex = 15
-        Me.lblUbicacionProcesado.Text = "lblUbicacionProcesado"
-        '
-        'lblUbicacionProcesadoTitulo
-        '
-        Me.lblUbicacionProcesadoTitulo.AutoSize = True
-        Me.lblUbicacionProcesadoTitulo.Location = New System.Drawing.Point(17, 145)
-        Me.lblUbicacionProcesadoTitulo.Name = "lblUbicacionProcesadoTitulo"
-        Me.lblUbicacionProcesadoTitulo.Size = New System.Drawing.Size(142, 13)
-        Me.lblUbicacionProcesadoTitulo.TabIndex = 14
-        Me.lblUbicacionProcesadoTitulo.Text = "lblUbicacionProcesadoTitulo"
-        '
         'lblMensaje
         '
         Me.lblMensaje.AutoSize = True
@@ -226,23 +198,51 @@ Partial Class frmDebitoDirectoRecibidos
         Me.lblMensaje.TabIndex = 8
         Me.lblMensaje.Text = "Mensaje"
         '
-        'btnUbicacionDestinoRecepcion
+        'Id
         '
-        Me.btnUbicacionDestinoRecepcion.Location = New System.Drawing.Point(578, 105)
-        Me.btnUbicacionDestinoRecepcion.Name = "btnUbicacionDestinoRecepcion"
-        Me.btnUbicacionDestinoRecepcion.Size = New System.Drawing.Size(75, 23)
-        Me.btnUbicacionDestinoRecepcion.TabIndex = 17
-        Me.btnUbicacionDestinoRecepcion.Text = "ir"
-        Me.btnUbicacionDestinoRecepcion.UseVisualStyleBackColor = True
+        Me.Id.DataPropertyName = "Id"
+        Me.Id.HeaderText = "Id"
+        Me.Id.Name = "Id"
+        Me.Id.ReadOnly = True
+        Me.Id.Visible = False
         '
-        'btnUbicacionProcesado
+        'Procesos_OrigenDestinoArchivosId
         '
-        Me.btnUbicacionProcesado.Location = New System.Drawing.Point(578, 134)
-        Me.btnUbicacionProcesado.Name = "btnUbicacionProcesado"
-        Me.btnUbicacionProcesado.Size = New System.Drawing.Size(75, 23)
-        Me.btnUbicacionProcesado.TabIndex = 18
-        Me.btnUbicacionProcesado.Text = "ir"
-        Me.btnUbicacionProcesado.UseVisualStyleBackColor = True
+        Me.Procesos_OrigenDestinoArchivosId.DataPropertyName = "Procesos_OrigenDestinoArchivosId"
+        Me.Procesos_OrigenDestinoArchivosId.HeaderText = "Procesos_OrigenDestinoArchivosId"
+        Me.Procesos_OrigenDestinoArchivosId.Name = "Procesos_OrigenDestinoArchivosId"
+        Me.Procesos_OrigenDestinoArchivosId.ReadOnly = True
+        Me.Procesos_OrigenDestinoArchivosId.Visible = False
+        '
+        'NombreArchivo
+        '
+        Me.NombreArchivo.DataPropertyName = "NombreArchivo"
+        Me.NombreArchivo.HeaderText = "Nombre Archivo"
+        Me.NombreArchivo.Name = "NombreArchivo"
+        Me.NombreArchivo.ReadOnly = True
+        '
+        'FechaPresentacion
+        '
+        Me.FechaPresentacion.DataPropertyName = "FechaPresentacion"
+        Me.FechaPresentacion.HeaderText = "Fecha"
+        Me.FechaPresentacion.Name = "FechaPresentacion"
+        Me.FechaPresentacion.ReadOnly = True
+        '
+        'Recibido
+        '
+        Me.Recibido.DataPropertyName = "Recibido"
+        Me.Recibido.HeaderText = "Recibido"
+        Me.Recibido.Name = "Recibido"
+        Me.Recibido.ReadOnly = True
+        Me.Recibido.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Recibido.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'Procesado
+        '
+        Me.Procesado.DataPropertyName = "Procesado"
+        Me.Procesado.HeaderText = "Procesado"
+        Me.Procesado.Name = "Procesado"
+        Me.Procesado.ReadOnly = True
         '
         'frmDebitoDirectoRecibidos
         '
@@ -263,12 +263,6 @@ Partial Class frmDebitoDirectoRecibidos
     End Sub
 
     Friend WithEvents dgvArchivosRecibidos As DataGridView
-    Friend WithEvents Id As DataGridViewTextBoxColumn
-    Friend WithEvents Procesos_OrigenDestinoArchivosId As DataGridViewTextBoxColumn
-    Friend WithEvents NombreArchivo As DataGridViewTextBoxColumn
-    Friend WithEvents FechaPresentacion As DataGridViewTextBoxColumn
-    Friend WithEvents Recibido As DataGridViewCheckBoxColumn
-    Friend WithEvents Procesado As DataGridViewCheckBoxColumn
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents lblUbicacionProcesado As Label
     Friend WithEvents lblUbicacionProcesadoTitulo As Label
@@ -283,4 +277,10 @@ Partial Class frmDebitoDirectoRecibidos
     Friend WithEvents lblMensaje As Label
     Friend WithEvents btnUbicacionProcesado As Button
     Friend WithEvents btnUbicacionDestinoRecepcion As Button
+    Friend WithEvents Id As DataGridViewTextBoxColumn
+    Friend WithEvents Procesos_OrigenDestinoArchivosId As DataGridViewTextBoxColumn
+    Friend WithEvents NombreArchivo As DataGridViewTextBoxColumn
+    Friend WithEvents FechaPresentacion As DataGridViewTextBoxColumn
+    Friend WithEvents Recibido As DataGridViewCheckBoxColumn
+    Friend WithEvents Procesado As DataGridViewCheckBoxColumn
 End Class

@@ -19,6 +19,7 @@
     'Configuración de pantalla de formulario
     Public Formulario_Titulo_DebitoDirectoEnvio As String = "Débitos Directos - Marcar archivos para enviar"
     Public Formulario_Titulo_DebitoDirectoRecepcion As String = "Débitos Directos - Información de recepción de archivos"
+    Public Formulario_Error_Titulo As String = "Mensaje de error"
 
     'Mensajes para Diálogos Si/No
     Public Dialogo_SiNo_Pregunta As String = "Desea efectuar carga de archivos"

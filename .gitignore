@@ -153,3 +153,23 @@ Bica\.MarkedFileTransferTool\.WindowsService/bin/Debug/
 Bica\.MarkedFileTransfersTool\.BusinessLayer/bin/Debug/
 
 Bica\.MarkedFileTransfersTool\.Helper/bin/Debug/
+
+Bica\.MarkedFileTransfersTool\.BusinessLayer/bin/Release/
+
+Bica\.MarkedFileTransfersTool\.DALayer/obj/Release/
+
+Bica\.MarkedFileTransfersTool\.Model/bin/Release/
+
+Bica\.MarkedFileTransfersTool\.Model/obj/Release/
+
+Bica\.MarkedFileTransfersTool\.DALayer/bin/Release/
+
+Bica\.MarkedFileTransfersTool\.Helper/bin/Release/
+
+Bica\.MarkedFileTransfersTool\.TransfersTool/bin/Release/
+
+Bica\.MarkedFileTransfersTool\.TransfersTool/obj/Release/
+
+Bica\.MarkedFileTransferTool\.WindowsService/bin/Release/
+
+README\.md

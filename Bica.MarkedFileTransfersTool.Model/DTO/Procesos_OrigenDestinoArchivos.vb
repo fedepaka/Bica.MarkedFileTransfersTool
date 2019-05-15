@@ -1,20 +1,18 @@
 ﻿Public Class Procesos_OrigenDestinoArchivos
 
     Public Property Id As Long
-    Public Property ProcessNr As Long
+    Public Property NumeroProceso As Long
     Public Property Procesos_TipoDireccionArchivoId As Long
-    Public Property PathFrom As String
-    Public Property ProcessName As String
-    Public Property PathTo As String
-    Public Property PathInport As String
-    Public Property PathSend As String
-    Public Property PathRecibed As String
-    Public Property PathProcessed As String
-    Public Property Created_User_Id As Long
-    Public Property Modified_User_Id As Long?
+    Public Property UbicacionDesde As String
+    Public Property NombreProceso As String
+    Public Property UbicacionDestino As String
+    Public Property UbicacionNTFTPImportar As String
+    Public Property UbicacionNTFTPEnviar As String
+    Public Property UbicacionNTFTPRecibir As String
+    Public Property UbicacionProcesado As String
     Public Property FechaCreacion As DateTime
-    Public Property Updated_Date As DateTime?
-    Public Property Deleted As Boolean?
+    Public Property FechaModificacion As DateTime?
+    Public Property Eliminado As Boolean?
     Public Property UsuarioCreacion As String
     Public Property UsuarioModificacion As String
 End Class

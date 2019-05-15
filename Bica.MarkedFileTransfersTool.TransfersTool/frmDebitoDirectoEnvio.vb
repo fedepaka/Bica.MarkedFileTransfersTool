@@ -3,9 +3,8 @@ Imports Bica.MarkedFileTransfersTool.BusinessLayer
 Imports Bica.MarkedFileTransfersTool.Model
 
 Public Class frmDebitoDirectoEnvio
+
     Private bindingSource1 As BindingSource = New BindingSource()
-
-
     Private _blDebitoDirecto As DebitoDirecto = New DebitoDirecto()
     Private fechaProcesoActual As Date = Date.Now
     Private _datos As OrigenDestinoArchivos = New OrigenDestinoArchivos()
@@ -13,14 +12,21 @@ Public Class frmDebitoDirectoEnvio
     Private _fuente As String = "Microsoft Sans Serif"
     Private userName = "aRey"
 
-    Private Const RECARGA_GRILLA_DATOS_TIME As String = "RECARGA_GRILLA_DATOS_TIME"
+    Private Const TIEMPO_RECARGA_GRILLA_DATOS As String = "TIEMPO_RECARGA_GRILLA_DATOS"
 
+    ''' <summary>
+    ''' Propiedad para obtener el tiempo de refresco/obtención de datos de forma automática
+    ''' </summary>
+    ''' <returns></returns>
     Private Shared ReadOnly Property RecargaGrillaDatosTime As Integer
         Get
-            Return Integer.Parse(ConfigurationManager.AppSettings.[Get](RECARGA_GRILLA_DATOS_TIME))
+            Return Integer.Parse(ConfigurationManager.AppSettings.[Get](TIEMPO_RECARGA_GRILLA_DATOS))
         End Get
     End Property
 
+    ''' <summary>
+    ''' Evento principal de la ejecución del formulario
+    ''' </summary>
     Private Sub CargarDatos()
         lblMensaje.Text = String.Empty
         Dim origenArchivoProceso = _datos.ObtenerOrigenDestinoArchivos(Model.Constants.BCO_Envio_Debito_Directo_Code)
@@ -29,13 +35,16 @@ Public Class frmDebitoDirectoEnvio
         CargarDatosGrilla()
     End Sub
 
+    ''' <summary>
+    ''' Inicialización de datos de débito directo
+    ''' </summary>
     Private Sub CargaDatosIniciales()
 
         _blDebitoDirecto.CargaArchivosDebitoDirecto(fechaProcesoActual, userName)
     End Sub
 
     ''' <summary>
-    ''' 
+    ''' Obtener datos de archivos de envío para la fecha actual de proceso y mostrar en grilla
     ''' </summary>
     Public Sub CargarDatosGrilla()
         Dim _datos = New OrigenDestinoArchivos()
@@ -46,7 +55,7 @@ Public Class frmDebitoDirectoEnvio
         Dim objProcesoLista = _datos.ObtenerOrigenDestinoArchivosPorEnviar()
 
         For Each objProceso As Procesos_OrigenDestinoArchivos In objProcesoLista
-            Dim idProc = _datos.ObtenerOrigenDestinoArchivos(objProceso.ProcessNr).Id
+            Dim idProc = _datos.ObtenerOrigenDestinoArchivos(objProceso.NumeroProceso).Id
 
             Dim listaAux = _blMovArchivos.ObtenerMovimientosArchivos(idProc, fechaProcesoActual)
             listaMovimientos.AddRange(listaAux)
@@ -77,9 +86,9 @@ Public Class frmDebitoDirectoEnvio
     Private Sub ConfigurarFormulario(objOrigenArchivo As Procesos_OrigenDestinoArchivos)
 
         Me.dgvOrigenDestinoArchivos.AutoGenerateColumns = False
-        Me.dgvOrigenDestinoArchivos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnMode.AllCells
         Me.dgvOrigenDestinoArchivos.SelectionMode = DataGridViewSelectionMode.FullRowSelect
         Me.dgvOrigenDestinoArchivos.ClearSelection()
+        dgvOrigenDestinoArchivos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
 
         Me.lblFechaProceso.Text = "Fecha de proceso / envío"
         Me.txtFechaProceso.Text = DateTime.Now.ToString("dd/MM/yyyy")
@@ -88,13 +97,13 @@ Public Class frmDebitoDirectoEnvio
         lblNombreProceso.Text = "Débitos DirBCO - Envio Debito Directo"
 
         lblNumeroProcesoTitulo.Text = "Número proceso:"
-        lblNumeroProceso.Text = objOrigenArchivo.ProcessNr
+        lblNumeroProceso.Text = objOrigenArchivo.NumeroProceso
 
         lblPathFromTitulo.Text = "Path origen archivo:"
-        lblPathFrom.Text = objOrigenArchivo.PathFrom
+        lblPathFrom.Text = objOrigenArchivo.UbicacionDesde
 
         lblPathToTitulo.Text = "Path destino archivo:"
-        lblPathTo.Text = objOrigenArchivo.PathSend
+        lblPathTo.Text = objOrigenArchivo.UbicacionNTFTPEnviar
 
         txtFechaProceso.ReadOnly = True
 
@@ -137,6 +146,7 @@ Public Class frmDebitoDirectoEnvio
         answer = MessageBox.Show(Model.Constants.Dialogo_SiNo_Pregunta, Model.Constants.Dialogo_SiNo_Titulo, MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If answer = vbYes Then
             CargarDatos()
+
         End If
 
     End Sub
@@ -157,7 +167,7 @@ Public Class frmDebitoDirectoEnvio
             Dim _blMovArchivos = New MovimientoArchivos()
             Dim objMovArchivo = _blMovArchivos.ObtenerMovimientoArchivoPorId(idMovimientoArchivo)
 
-            If Not objMovArchivo.Transferred And Not objMovArchivo.ToBeTransfer Then
+            If Not objMovArchivo.Transferido And Not objMovArchivo.ParaTransferir Then
 
                 answer = MessageBox.Show("¿Desea marcar el archivo: " + dgvOrigenDestinoArchivos.Item("FileName", dgvOrigenDestinoArchivos.CurrentRow.Index).Value +
                 " para ser enviado?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
@@ -170,18 +180,31 @@ Public Class frmDebitoDirectoEnvio
         End If
     End Sub
 
+    ''' <summary>
+    ''' Muestra formulario donde se visualiza los archivos recibidos desde la cámara COELSA
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub BtnVerRecibidos_Click(sender As Object, e As EventArgs) Handles btnVerRecibidos.Click
         Dim frmRecibidos = New frmDebitoDirectoRecibidos()
         frmRecibidos.ShowDialog()
         frmRecibidos.Close()
     End Sub
 
+    ''' <summary>
+    ''' Abre la carpeta donde se ubican el origen de los archivos para enviar a cámara
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub BtnIrUbicacionDesde_Click(sender As Object, e As EventArgs) Handles btnIrUbicacionDesde.Click
         If lblPathFrom.Text IsNot String.Empty Then
             Process.Start(lblPathFrom.Text)
         End If
     End Sub
 
+    ''' <summary>
+    ''' Inicialización y ejecución del timer
+    ''' </summary>
     Private Sub TimerLoad()
         Dim timer As Timer = New Timer()
         timer.Interval = (RecargaGrillaDatosTime)
@@ -190,6 +213,11 @@ Public Class frmDebitoDirectoEnvio
         timer.Start()
     End Sub
 
+    ''' <summary>
+    ''' Evento que se ejecuta cuando vence el timer
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub timer_Tick(ByVal sender As Object, ByVal e As EventArgs)
         CargarDatos()
     End Sub

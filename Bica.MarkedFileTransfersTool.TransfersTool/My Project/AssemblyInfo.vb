@@ -34,4 +34,4 @@ Imports log4net.Config
 
 <Assembly: AssemblyVersion("1.0.0.0")>
 <Assembly: AssemblyFileVersion("1.0.0.0")>
-<Assembly: XmlConfigurator(ConfigFile:="log4net.config", Watch:=True)>
+<Assembly: XmlConfigurator(ConfigFile:="log4net.config")>

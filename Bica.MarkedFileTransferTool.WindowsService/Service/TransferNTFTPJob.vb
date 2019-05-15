@@ -51,6 +51,7 @@ Namespace Bica.TransferGateway.WindowsService.Service
 
                 MoverArchivosAsync(Tuple.Create(objOrigenArchivos, objMovimientoArchivos))
             Next
+            Return True
         End Function
 
         ''' <summary>
@@ -73,12 +74,12 @@ Namespace Bica.TransferGateway.WindowsService.Service
             Dim datosProceso As Procesos_OrigenDestinoArchivos = procesoArchivo.Item1
             Dim listaArchivos As List(Of Model.Procesos_MovimientoArchivos) = procesoArchivo.Item2
 
-            Dim rutaOrigen = datosProceso.PathFrom
-            Dim rutaDestino = datosProceso.PathInport
+            Dim rutaOrigen = datosProceso.UbicacionDesde
+            Dim rutaDestino = datosProceso.UbicacionNTFTPImportar
 
             For Each archivo As Model.Procesos_MovimientoArchivos In listaArchivos
                 'armamos la ruta del archivo
-                Dim rutaArchivoDesdeCompleta = String.Format("{0}\{1}", rutaOrigen, archivo.FileName)
+                Dim rutaArchivoDesdeCompleta = String.Format("{0}\{1}", rutaOrigen, archivo.NombreArchivo)
                 'verificamos que exista el archivo
                 'si existe el archivo en el origen
                 'y existe la ruta destino de NTFTP, copiamos el archivo
@@ -86,7 +87,7 @@ Namespace Bica.TransferGateway.WindowsService.Service
                     Not FileUtil.ExisteDirectorio(rutaDestino) Then
                     Return resultado
                 Else
-                    FileUtil.CopiarArchivo(rutaArchivoDesdeCompleta, String.Format("{0}\{1}", rutaDestino, archivo.FileName))
+                    FileUtil.CopiarArchivo(rutaArchivoDesdeCompleta, String.Format("{0}\{1}", rutaDestino, archivo.NombreArchivo))
                     'marcar como copiado
                     _blMovimientoArchivos.ActualizarRegistroCopiado(archivo.Id, userName)
                 End If
